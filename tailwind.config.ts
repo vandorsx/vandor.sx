@@ -8,6 +8,9 @@ export default {
 			fontFamily: {
 				sans: ['seven sans', ...defaultTheme.fontFamily.sans],
 				serif: ['seven serif', ...defaultTheme.fontFamily.serif],
+			},
+			colors: {
+				raspberry: '#fdcbe2'
 			}
 		},
 	},
