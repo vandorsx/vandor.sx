@@ -2,6 +2,49 @@
 import Layout from "../layouts/base.astro";
 ---
 
+<style>
+   p {
+      @apply my-[1em];
+   }
+
+   a:not(.incognito) {
+      @apply underline decoration-wavy underline-offset-2;
+      @apply decoration-black/30 hover:decoration-raspberry;
+   }
+</style>
+
 <Layout title="inthetrees">
-   <h1>please picture me in the trees</h1>
+   <h1 class="font-serif text-xl">inthetrees.me</h1>
+   <p>
+      Hi there, welcome to my website.<br />My name is Jade&nbsp;<span class="text-black/30 text-xs"
+         >(he/him)</span
+      >, and, if you wish, please, <a
+         class="incognito"
+         href="https://en.wikipedia.org/wiki/Seven_(Taylor_Swift_song)"
+         target="_blank">picture me in the trees</a
+      >.
+   </p>
+   <p>
+      <a
+         class="incognito"
+         href="https://en.wikipedia.org/wiki/Long_Story_Short_(Taylor_Swift_song)"
+         target="_blank">long story short</a
+      >, I'm a human and a netizen. I'm also a web developer, primarily in the front-end sphere. A lot
+      of my time is spent learning, coding, writing, and biking.
+   </p>
+   <p>
+      Need or want to contact me? My preferred contact methods are via <a
+         href="mailto:jade@inthetrees.me"
+         target="_blank">email</a
+      >, <a
+         href="https://signal.me/#eu/U23Og9rvFD3KcSEVVoiiJCS6MmxRamzQWyVaaleTYCPzH272GeJMo5eQ-gstLIK2"
+         target="_blank">Signal</a
+      >, or <a href="https://matrix.to/#/@inthetrees:matrix.org" target="_blank">Matrix</a>. I'm happy
+      to receive any and all inquiries.
+   </p>
+   <p>
+      I invite you to visit my <a href="/blog">blog</a> and <a href="/microblog">microblog</a> pages; my
+      blog is where I publish longer-form writing, and my microblog is my place to share quick updates
+      and musings.
+   </p>
 </Layout>
