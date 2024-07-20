@@ -17,6 +17,14 @@ const { title, description } = Astro.props;
          html {
             font-size: 100%;
          }
+
+         *::selection {
+            background: #fdcbe2;
+         }
+
+         *::-moz-selection {
+            background: #fdcbe2;
+         }
       </style>
    </head>
    <body class="flex justify-center mt-[3.5rem] md:mt-[5.25rem] lg:mt-[7rem] text-sm font-light mx-7">
