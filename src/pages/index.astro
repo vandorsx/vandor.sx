@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/base.astro";
+import IHeader from "~components/iheader.astro";
 ---
 
 <style>
@@ -14,8 +15,15 @@ import Layout from "../layouts/base.astro";
 </style>
 
 <Layout>
-   <h1 class="font-serif text-xl font-[327] mb-7">inthetrees</h1>
-   <nav></nav>
+   <IHeader
+      slot="hnav"
+      title="inthetrees"
+      links={[
+         { href: "/microblog", text: "microblog" },
+         { href: "/blog", text: "blog" },
+         { href: "/pages", text: "pages" },
+      ]}
+   />
    <p>
       Hi there, welcome to my website.<br />My name is Jade&nbsp;<span
          class="text-black/30 text-xs">(he/him)</span
