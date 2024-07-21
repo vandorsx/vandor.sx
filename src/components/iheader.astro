@@ -12,8 +12,14 @@ const { title, links } = Astro.props;
 
 <style>
    nav a {
-      @apply underline decoration-wavy underline-offset-2;
+      @apply underline underline-offset-1;
       @apply decoration-black/10 hover:decoration-raspberry;
+   }
+
+   _::-webkit-full-page-media,
+   _:future,
+   :root nav a {
+      @apply decoration-wavy underline-offset-2;
    }
 </style>
 
