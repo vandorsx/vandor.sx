@@ -1,24 +1,27 @@
 @font-face {
-   font-family: 'seven sans';
-   src: url('/fonts/sans vf.woff2') format("woff2 supports variations"),
-        url('/fonts/sans vf.woff2') format("woff2-variations");
+   font-family: "seven sans";
+   src:
+      url("/fonts/sans-v.woff2") format("woff2 supports variations"),
+      url("/fonts/sans-v.woff2") format("woff2-variations");
    font-display: swap;
    font-weight: 300 800;
 }
 
 @font-face {
-   font-family: 'seven serif';
-   src: url('/fonts/serif vf.woff2') format("woff2 supports variations"),
-        url('/fonts/serif vf.woff2') format("woff2-variations");
+   font-family: "seven serif";
+   src:
+      url("/fonts/serif-v.woff2") format("woff2 supports variations"),
+      url("/fonts/serif-v.woff2") format("woff2-variations");
    font-display: swap;
    font-style: normal;
    font-weight: 300 800;
 }
 
 @font-face {
-   font-family: 'seven serif';
-   src: url('/fonts/serif i vf.woff2') format("woff2 supports variations"),
-        url('/fonts/serif i vf.woff2') format("woff2-variations");
+   font-family: "seven serif";
+   src:
+      url("/fonts/serif-iv.woff2") format("woff2 supports variations"),
+      url("/fonts/serif-iv.woff2") format("woff2-variations");
    font-display: swap;
    font-style: italic;
    font-weight: 300 800;
