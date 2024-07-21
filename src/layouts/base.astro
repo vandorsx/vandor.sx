@@ -1,7 +1,6 @@
 ---
+import { SEO } from "astro-seo";
 import "~styles/fonts.css";
-
-const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,8 +9,15 @@ const { title, description } = Astro.props;
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <slot name="seo">
+         <SEO
+            title="inthetrees.me"
+            description="My personal website."
+            twitter={{
+               creator: "@inthetrees_7",
+            }}
+         />
+      </slot>
 
       <style>
          html {
@@ -27,7 +33,9 @@ const { title, description } = Astro.props;
          }
       </style>
    </head>
-   <body class="flex justify-center mt-[3.5rem] md:mt-[5.25rem] lg:mt-[7rem] text-sm font-light mx-7">
+   <body
+      class="flex justify-center mt-[3.5rem] md:mt-[5.25rem] lg:mt-[7rem] text-sm font-light mx-7"
+   >
       <main class="w-full max-w-[72ch]">
          <slot />
       </main>
