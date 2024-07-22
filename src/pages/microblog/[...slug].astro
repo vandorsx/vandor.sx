@@ -3,6 +3,8 @@ export const prerender = false;
 
 import Layout from "~layouts/base.astro";
 import "~styles/text.css";
+import IHeader from "~components/iheader.astro";
+
 import { getPost, type Microblog } from "~libs/microblog";
 import MicroblogPost from "~components/microblog/post.astro";
 
@@ -51,5 +53,17 @@ if (slugArray.length === 4) {
 ---
 
 <Layout>
+   <IHeader
+      slot="hnav"
+      title={{
+         text: "inthetrees",
+         italic: true,
+      }}
+      links={[
+         { href: "/microblog", text: "microblog" },
+         { href: "/blog", text: "blog" },
+         { href: "/pages", text: "pages" },
+      ]}
+   />
    <MicroblogPost post={post} />
 </Layout>
