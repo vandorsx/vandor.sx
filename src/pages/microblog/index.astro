@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Layout from "~layouts/base.astro";
 import IHeader from "~components/iheader.astro";
 import "~styles/text.css";
@@ -10,7 +12,9 @@ import MicroblogPost from "~components/microblog/post.astro";
 let posts: Microblog[] = [];
 let error: Error | null = null;
 try {
-   posts = await getPosts(`https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`);
+   posts = await getPosts(
+      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`
+   );
 } catch (e) {
    error = e as Error;
    console.error(error);
@@ -28,7 +32,7 @@ try {
       ]}
    />
    {
-      error ? (
+      error ?
          <p class="text-black/50">
             oops &gt;.&lt;
             <br />
@@ -38,13 +42,13 @@ try {
             </a>
             .
          </p>
-      ) : (
-         posts.map((post, index) => (
+      :  posts.map((post, index) => (
             <>
                <MicroblogPost post={post} />
-               {index < posts.length - 1 && <hr class="border-black/[.054] w-full my-7" />}
+               {index < posts.length - 1 && (
+                  <hr class="border-black/[.054] w-full my-7" />
+               )}
             </>
          ))
-      )
    }
 </Layout>
