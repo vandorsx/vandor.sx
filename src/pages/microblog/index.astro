@@ -1,0 +1,19 @@
+---
+import Layout from "~layouts/base.astro";
+import IHeader from "~components/iheader.astro";
+---
+
+<Layout>
+   <IHeader
+      slot="hnav"
+      title={{
+         text: "Microblog",
+         italic: true,
+      }}
+      links={[
+         { href: "/", text: "index" },
+         { href: "/blog", text: "blog" },
+         { href: "/pages", text: "pages" },
+      ]}
+   />
+</Layout>
