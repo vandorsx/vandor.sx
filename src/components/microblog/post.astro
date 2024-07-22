@@ -8,24 +8,43 @@ interface Props {
 }
 
 const { post, inFeed } = Astro.props;
+
+const [year, month, day] = post.date_published
+   .split("T")[0]
+   .split("-")
+   .map(Number);
 ---
+
+<style>
+   header a {
+      @apply text-black/[.72];
+      @apply no-underline hover:underline;
+      @apply decoration-black/30 decoration-solid underline-offset-1;
+   }
+</style>
 
 <article>
    {
       inFeed ?
-         <header class="font-serif italic text-xs text-black/[.72] mb-4">
-            <Fragment>
-               Posted{" "}
-               <time datetime={post.date_published}>
-                  <DynamicTimestamp date={post.date_published} client:load />
-               </time>
-            </Fragment>
-            {post.date_modified && post.categories?.includes("show_updated") && (
+         <header class="font-serif italic text-xs mb-4">
+            <a href={`/microblog/${year}/${month}/${day}/${post.id}`}>
                <Fragment>
-                  & updated
-                  <DynamicTimestamp date={post.date_modified} client:load />
+                  Posted{" "}
+                  <time datetime={post.date_published}>
+                     <DynamicTimestamp date={post.date_published} client:load />
+                  </time>
                </Fragment>
-            )}
+               {post.date_modified &&
+                  post.categories?.includes("show_updated") && (
+                     <Fragment>
+                        & updated
+                        <DynamicTimestamp
+                           date={post.date_modified}
+                           client:load
+                        />
+                     </Fragment>
+                  )}
+            </a>
          </header>
       :  <header class="font-serif italic text-black/[.72] mb-4">
             Microblog post on{" "}
