@@ -24,13 +24,18 @@ try {
 <Layout>
    <IHeader
       slot="hnav"
-      title="Microblog"
+      title={{
+         text: "inthetrees",
+         italic: true,
+         element: "span",
+      }}
       links={[
          { href: "/", text: "index" },
          { href: "/blog", text: "blog" },
          { href: "/pages", text: "pages" },
       ]}
    />
+   <h1>Microblog</h1>
    {
       error ?
          <p class="text-black/50">
