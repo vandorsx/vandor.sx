@@ -2,27 +2,33 @@
 export const prerender = false;
 
 import Layout from "~layouts/base.astro";
-import type { Microblog } from "~libs/microblog";
+import { getPost, type Microblog } from "~libs/microblog";
+import MicroblogPost from "~components/microblog/post.astro";
 
 const { slug } = Astro.params;
 const slugArray = slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
 
-let post: Microblog;
+let post: Microblog = {} as Microblog;
 
+// check if slug length is valid
 if (slugArray.length !== 4 && slugArray.length !== 1) {
    return new Response(null, { status: 404 });
 }
 
 if (slugArray.length === 1) {
-   // assign to postId
    const postId = slugArray[0];
 
    // check if slug is a valid post id
    if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
+
+   try {
+      post = await getPost(postId);
+   } catch {
+      return new Response(null, { status: 404 });
+   }
 }
 
 if (slugArray.length === 4) {
-   // split into year, month, day, and post id
    const [year, month, day, postId] = slugArray;
 
    // check if slug ends with a valid post id
@@ -34,7 +40,15 @@ if (slugArray.length === 4) {
       return new Response(null, { status: 404 });
    if (!/^(3[01]|[12]\d|[1-9])$/.test(day))
       return new Response(null, { status: 404 });
+
+   try {
+      post = await getPost(postId, { year, month, day });
+   } catch {
+      return new Response(null, { status: 404 });
+   }
 }
 ---
 
-<Layout />
+<Layout>
+   <MicroblogPost post={post} />
+</Layout>
