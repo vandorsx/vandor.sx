@@ -1,6 +1,19 @@
 ---
 import Layout from "~layouts/base.astro";
 import IHeader from "~components/iheader.astro";
+import "~styles/text.css";
+
+import type { Microblog } from "~libs/microblog";
+import { getPosts } from "~libs/microblog";
+
+let posts: Microblog[] = [];
+let error: Error | null = null;
+try {
+   posts = await getPosts(`https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`);
+} catch (e) {
+   error = e as Error;
+   console.error(error);
+}
 ---
 
 <Layout>
