@@ -1,5 +1,6 @@
 ---
 import type { Microblog } from "~libs/microblog";
+import { formatTimeRelatively } from "~libs/relative-time";
 
 interface Props {
    post: Microblog;
@@ -11,7 +12,7 @@ const { post, inFeed } = Astro.props;
 
 <article>
    <header class="font-serif italic text-xs text-black/[.72] flex items-center gap-2">
-      <span>Posted on <time>{new Date(post.date_published).toLocaleDateString()}</time></span>
+      <span>Posted <time>{formatTimeRelatively(post.date_published, true)}</time></span>
    </header>
    <Fragment set:html={post.content_html} />
 </article>
