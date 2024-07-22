@@ -34,3 +34,14 @@ export type Microblog = {
    title?: string;
    description?: string;
 };
+
+export async function getPosts(feed: string) {
+   const res = await fetch(feed);
+   if (!res.ok) {
+      throw new Error(`Failed to fetch microblog feed: ${res.status}`);
+   } else {
+      const json = await res.json();
+      throw new Error("test");
+      return json.items;
+   }
+}
