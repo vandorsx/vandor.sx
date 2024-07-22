@@ -44,7 +44,7 @@ try {
          </p>
       :  posts.map((post, index) => (
             <>
-               <MicroblogPost post={post} />
+               <MicroblogPost post={post} inFeed />
                {index < posts.length - 1 && (
                   <hr class="border-black/[.054] w-full mt-7 mb-4" />
                )}

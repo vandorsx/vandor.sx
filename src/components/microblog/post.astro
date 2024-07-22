@@ -1,6 +1,7 @@
 ---
 import type { Microblog } from "~libs/microblog";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
+import { formatTimeRelatively } from "~libs/relative-time";
 
 interface Props {
    post: Microblog;
@@ -11,20 +12,28 @@ const { post, inFeed } = Astro.props;
 ---
 
 <article>
-   <header class="font-serif italic text-xs text-black/[.72] mb-4">
-      <Fragment>
-         Posted <time datetime={post.date_published}
-            ><DynamicTimestamp date={post.date_published} client:load /></time
-         >
-      </Fragment>
-      {
-         post.date_modified && post.categories?.includes("show_updated") && (
+   {
+      inFeed ?
+         <header class="font-serif italic text-xs text-black/[.72] mb-4">
             <Fragment>
-               & updated
-               <DynamicTimestamp date={post.date_modified} client:load />
+               Posted{" "}
+               <time datetime={post.date_published}>
+                  <DynamicTimestamp date={post.date_published} client:load />
+               </time>
             </Fragment>
-         )
-      }
-   </header>
+            {post.date_modified && post.categories?.includes("show_updated") && (
+               <Fragment>
+                  & updated
+                  <DynamicTimestamp date={post.date_modified} client:load />
+               </Fragment>
+            )}
+         </header>
+      :  <header class="font-serif italic text-black/[.72] mb-4">
+            Microblog post on{" "}
+            <time datetime={post.date_published}>
+               {formatTimeRelatively(post.date_published)}
+            </time>
+         </header>
+   }
    <Fragment set:html={post.content_html} />
 </article>
