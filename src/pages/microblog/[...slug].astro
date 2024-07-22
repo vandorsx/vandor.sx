@@ -2,6 +2,39 @@
 export const prerender = false;
 
 import Layout from "~layouts/base.astro";
+import type { Microblog } from "~libs/microblog";
+
+const { slug } = Astro.params;
+const slugArray = slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
+
+let post: Microblog;
+
+if (slugArray.length !== 4 && slugArray.length !== 1) {
+   return new Response(null, { status: 404 });
+}
+
+if (slugArray.length === 1) {
+   // assign to postId
+   const postId = slugArray[0];
+
+   // check if slug is a valid post id
+   if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
+}
+
+if (slugArray.length === 4) {
+   // split into year, month, day, and post id
+   const [year, month, day, postId] = slugArray;
+
+   // check if slug ends with a valid post id
+   if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
+
+   // check if date is valid
+   if (!/^\d{4}$/.test(year)) return new Response(null, { status: 404 });
+   if (!/^(1[0-2]|[1-9])$/.test(month))
+      return new Response(null, { status: 404 });
+   if (!/^(3[01]|[12]\d|[1-9])$/.test(day))
+      return new Response(null, { status: 404 });
+}
 ---
 
 <Layout />
