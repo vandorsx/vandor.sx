@@ -11,7 +11,7 @@ const { post, inFeed } = Astro.props;
 ---
 
 <article>
-   <header class="font-serif italic text-xs text-black/[.72]">
+   <header class="font-serif italic text-xs text-black/[.72] mb-4">
       <Fragment>
          Posted <time datetime={post.date_published}
             ><DynamicTimestamp date={post.date_published} client:load /></time
