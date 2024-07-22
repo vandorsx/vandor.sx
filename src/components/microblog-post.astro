@@ -10,5 +10,8 @@ const { post, inFeed } = Astro.props;
 ---
 
 <article>
+   <header class="font-serif italic text-xs text-black/[.72] flex items-center gap-2">
+      <span>Posted on <time>{new Date(post.date_published).toLocaleDateString()}</time></span>
+   </header>
    <Fragment set:html={post.content_html} />
 </article>
