@@ -1,4 +1,6 @@
 ---
+import "~styles/text.css";
+
 interface Props {
    title:
       | string
@@ -14,19 +16,6 @@ interface Props {
 
 const { title, links } = Astro.props;
 ---
-
-<style>
-   nav a {
-      @apply underline underline-offset-1;
-      @apply decoration-black/10 hover:decoration-raspberry;
-   }
-
-   _::-webkit-full-page-media,
-   _:future,
-   :root nav a {
-      @apply decoration-wavy underline-offset-2;
-   }
-</style>
 
 <header slot="hnav" class="flex items-center gap-3 text-xs mb-7">
    <h1

@@ -1,24 +1,8 @@
 ---
 import Layout from "~layouts/base.astro";
 import IHeader from "~components/iheader.astro";
+import "~styles/text.css";
 ---
-
-<style>
-   p {
-      @apply my-[1em];
-   }
-
-   a:not(.incognito) {
-      @apply underline underline-offset-1;
-      @apply decoration-black/30 hover:decoration-raspberry;
-   }
-
-   _::-webkit-full-page-media,
-   _:future,
-   :root a:not(.incognito) {
-      @apply decoration-wavy underline-offset-2;
-   }
-</style>
 
 <Layout>
    <IHeader
