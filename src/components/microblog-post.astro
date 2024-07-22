@@ -1,0 +1,14 @@
+---
+import type { Microblog } from "~libs/microblog";
+
+interface Props {
+   post: Microblog;
+   inFeed?: boolean;
+}
+
+const { post, inFeed } = Astro.props;
+---
+
+<article>
+   <Fragment set:html={post.content_html} />
+</article>
