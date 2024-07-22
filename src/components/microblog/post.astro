@@ -11,14 +11,20 @@ const { post, inFeed } = Astro.props;
 ---
 
 <article>
-   <header
-      class="font-serif italic text-xs text-black/[.72] flex items-center gap-2"
-   >
-      <span
-         >Posted <time datetime={post.date_published}
+   <header class="font-serif italic text-xs text-black/[.72]">
+      <Fragment>
+         Posted <time datetime={post.date_published}
             ><DynamicTimestamp date={post.date_published} client:load /></time
-         ></span
-      >
+         >
+      </Fragment>
+      {
+         post.date_modified && post.categories?.includes("show_updated") && (
+            <Fragment>
+               & updated
+               <DynamicTimestamp date={post.date_modified} client:load />
+            </Fragment>
+         )
+      }
    </header>
    <Fragment set:html={post.content_html} />
 </article>
