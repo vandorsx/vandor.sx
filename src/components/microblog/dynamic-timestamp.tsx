@@ -6,9 +6,9 @@ interface Props {
 }
 
 export default function DynamicTimestamp(props: Props) {
-   const [relativeTimestamp, setRelativeTimestamp] = createSignal(formatTimeRelatively(props.date, true));
+   const [relativeTimestamp, setRelativeTimestamp] = createSignal(formatTimeRelatively(props.date));
 	const interval = setInterval(
-		() => setRelativeTimestamp(formatTimeRelatively(props.date, true)),
+		() => setRelativeTimestamp(formatTimeRelatively(props.date)),
 		1000
 	);
 	onCleanup(() => clearInterval(interval));
