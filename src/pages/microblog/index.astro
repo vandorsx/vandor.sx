@@ -5,6 +5,7 @@ import "~styles/text.css";
 
 import type { Microblog } from "~libs/microblog";
 import { getPosts } from "~libs/microblog";
+import MicroblogPost from "~components/microblog-post.astro";
 
 let posts: Microblog[] = [];
 let error: Error | null = null;
@@ -19,10 +20,7 @@ try {
 <Layout>
    <IHeader
       slot="hnav"
-      title={{
-         text: "Microblog",
-         italic: true,
-      }}
+      title="Microblog"
       links={[
          { href: "/", text: "index" },
          { href: "/blog", text: "blog" },
@@ -40,6 +38,8 @@ try {
             </a>
             .
          </p>
-      ) : null
+      ) : (
+         posts.map((post) => <MicroblogPost post={post} />)
+      )
    }
 </Layout>
