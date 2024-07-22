@@ -1,7 +1,6 @@
 ---
 import type { Microblog } from "~libs/microblog";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
-import { formatTimeRelatively } from "~libs/relative-time";
 
 interface Props {
    post: Microblog;
@@ -31,7 +30,14 @@ const { post, inFeed } = Astro.props;
       :  <header class="font-serif italic text-black/[.72] mb-4">
             Microblog post on{" "}
             <time datetime={post.date_published}>
-               {formatTimeRelatively(post.date_published)}
+               {new Date(post.date_published).toLocaleString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: false,
+               })}
             </time>
          </header>
    }

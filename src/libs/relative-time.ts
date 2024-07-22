@@ -29,7 +29,7 @@ export const formatTimeRelatively = (
    const diff = (date.getTime() - now.getTime()) / 1000;
 
    if (!dynamic || Math.abs(diff) > rel_units[0].seconds) {
-      return date.toLocaleString("en-US", non_rel_format).replace(" at ", ", ");
+      return date.toLocaleString("en-US", non_rel_format);
    }
 
    for (const { unit, seconds } of rel_units) {
