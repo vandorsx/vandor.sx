@@ -29,4 +29,17 @@ try {
          { href: "/pages", text: "pages" },
       ]}
    />
+   {
+      error ? (
+         <p class="text-black/50">
+            oops &gt;.&lt;
+            <br />
+            It looks like Micro.blog may be currently unavailable;{" "}
+            <a href="https://status.micro.blog" target="_blank">
+               check status
+            </a>
+            .
+         </p>
+      ) : null
+   }
 </Layout>
