@@ -41,7 +41,6 @@ export async function getPosts(feed: string) {
       throw new Error(`Failed to fetch microblog feed: ${res.status}`);
    } else {
       const json = await res.json();
-      throw new Error("test");
       return json.items;
    }
 }
