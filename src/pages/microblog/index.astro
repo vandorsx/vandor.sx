@@ -39,7 +39,12 @@ try {
             .
          </p>
       ) : (
-         posts.map((post) => <MicroblogPost post={post} />)
+         posts.map((post, index) => (
+            <>
+               <MicroblogPost post={post} />
+               {index < posts.length - 1 && <hr class="border-black/[.054] w-full my-7" />}
+            </>
+         ))
       )
    }
 </Layout>
