@@ -1,6 +1,6 @@
 ---
 import type { Microblog } from "~libs/microblog";
-import { formatTimeRelatively } from "~libs/relative-time";
+import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 
 interface Props {
    post: Microblog;
@@ -11,8 +11,14 @@ const { post, inFeed } = Astro.props;
 ---
 
 <article>
-   <header class="font-serif italic text-xs text-black/[.72] flex items-center gap-2">
-      <span>Posted <time>{formatTimeRelatively(post.date_published, true)}</time></span>
+   <header
+      class="font-serif italic text-xs text-black/[.72] flex items-center gap-2"
+   >
+      <span
+         >Posted <time datetime={post.date_published}
+            ><DynamicTimestamp date={post.date_published} client:load /></time
+         ></span
+      >
    </header>
    <Fragment set:html={post.content_html} />
 </article>
