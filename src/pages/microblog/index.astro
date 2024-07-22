@@ -5,7 +5,7 @@ import "~styles/text.css";
 
 import type { Microblog } from "~libs/microblog";
 import { getPosts } from "~libs/microblog";
-import MicroblogPost from "~components/microblog-post.astro";
+import MicroblogPost from "~components/microblog/post.astro";
 
 let posts: Microblog[] = [];
 let error: Error | null = null;
