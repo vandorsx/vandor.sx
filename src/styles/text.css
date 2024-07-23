@@ -36,6 +36,7 @@ blockquote {
    @apply border-l border-black;
    @apply pl-4 ml-4;
    font-variation-settings: "ital" 0.5;
+   @apply text-slightly-smaller;
 }
 
 @supports (font-variation-settings: normal) {
