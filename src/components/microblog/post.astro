@@ -1,6 +1,7 @@
 ---
 import type { Microblog } from "~libs/microblog";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
+import transformImage from "~libs/mb-img-transform";
 
 interface Props {
    post: Microblog;
@@ -13,6 +14,8 @@ const [year, month, day] = post.date_published
    .split("T")[0]
    .split("-")
    .map(Number);
+
+const contentHtml = transformImage(post.content_html, post.photos);
 ---
 
 <style>
@@ -59,5 +62,5 @@ const [year, month, day] = post.date_published
             </time>
          </header>
    }
-   <Fragment set:html={post.content_html} />
+   <Fragment set:html={contentHtml} />
 </article>
