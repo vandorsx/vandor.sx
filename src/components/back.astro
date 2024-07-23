@@ -12,11 +12,15 @@ const { href, text } = Astro.props;
    const backLinkPath = new URL(backLink.href).pathname;
    const previousPath = sessionStorage.getItem("previous-path");
 
-   if (previousPath === backLinkPath) {
+   const routeBack = () => {
       backLink.addEventListener("click", (e) => {
          e.preventDefault();
          history.back();
       });
+   };
+
+   if (previousPath === backLinkPath) {
+      routeBack();
    }
 </script>
 
