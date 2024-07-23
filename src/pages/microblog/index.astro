@@ -20,6 +20,7 @@ try {
    console.error(error);
 }
 
+// only posts within the last day
 const now = new Date();
 const cutoff = 24;
 posts = posts.filter((post) => {
