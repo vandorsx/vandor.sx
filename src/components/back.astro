@@ -1,0 +1,33 @@
+---
+interface Props {
+   href: string;
+   text: string;
+}
+
+const { href, text } = Astro.props;
+---
+
+<script>
+   const backLink = document.getElementById("back-link") as HTMLAnchorElement;
+   const backLinkPath = new URL(backLink.href).pathname;
+   const previousPath = sessionStorage.getItem("previous-path");
+
+   if (previousPath === backLinkPath) {
+      backLink.addEventListener("click", (e) => {
+         e.preventDefault();
+         history.back();
+      });
+   }
+</script>
+
+<style>
+   #back-link {
+      @apply font-serif text-xs italic text-black/[.27];
+      @apply no-underline hover:underline;
+      @apply mb-2 inline-block;
+   }
+</style>
+
+<a href={href} id="back-link">
+   &#8592;&nbsp;&nbsp;{text}
+</a>
