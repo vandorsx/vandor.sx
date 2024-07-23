@@ -25,38 +25,42 @@ try {
    <header slot="hnav" class="leading-none">
       <Back href="/" text="index" />
    </header>
-   <div class="mb-7">
-      <h1 class="font-serif text-xl font-[354]">Microblog</h1>
-      <p class="my-2">
-         Welcome to my microblog — my place to share quick updates and musings in
-         a tweet-like fashion. By default, only posts within the last day are
-         visible. My microblog is also available as a <a
-            href="https://jade.micro.blog/feed.json"
-            target="_blank">JSON feed</a
-         > and via <a
-            href="https://micro.blog/jade?remote_follow=1"
-            target="_blank">ActivityPub</a
-         >.
-      </p>
-   </div>
-   {
-      error ?
-         <p class="text-black/50">
-            oops &gt;.&lt;
-            <br />
-            It looks like Micro.blog may be currently unavailable;{" "}
-            <a href="https://status.micro.blog" target="_blank">
-               check status
-            </a>
-            .
+   <div class="flex flex-col gap-7">
+      <div>
+         <h1 class="font-serif text-xl font-[354]">Microblog</h1>
+         <p class="my-2">
+            Welcome to my microblog — my place to share quick updates and musings
+            in a tweet-like fashion. By default, only posts within the last day
+            are visible. My microblog is also available as a <a
+               href="https://jade.micro.blog/feed.json"
+               target="_blank">JSON feed</a
+            > and via <a
+               href="https://micro.blog/jade?remote_follow=1"
+               target="_blank">ActivityPub</a
+            >.
          </p>
-      :  posts.map((post, index) => (
-            <>
-               <MicroblogPost post={post} inFeed />
-               {index < posts.length - 1 && (
-                  <hr class="border-black/[.054] w-full mt-7 mb-4" />
-               )}
-            </>
-         ))
-   }
+      </div>
+      <div>
+         {
+            error ?
+               <p class="text-black/50">
+                  oops &gt;.&lt;
+                  <br />
+                  It looks like Micro.blog may be currently unavailable;{" "}
+                  <a href="https://status.micro.blog" target="_blank">
+                     check status
+                  </a>
+                  .
+               </p>
+            :  posts.map((post, index) => (
+                  <>
+                     <MicroblogPost post={post} inFeed />
+                     {index < posts.length - 1 && (
+                        <hr class="border-black/[.027] w-full mt-7 mb-5" />
+                     )}
+                  </>
+               ))
+         }
+      </div>
+   </div>
 </Layout>
