@@ -19,6 +19,18 @@ try {
    error = e as Error;
    console.error(error);
 }
+
+const now = new Date();
+const cutoff = 24;
+posts = posts.filter((post) => {
+   const dateToCompare =
+      post.date_modified ?
+         new Date(post.date_modified)
+      :  new Date(post.date_published);
+   const timeDiff = now.getTime() - dateToCompare.getTime();
+   const hoursDiff = timeDiff / (1000 * 3600);
+   return hoursDiff <= cutoff;
+});
 ---
 
 <Layout>
