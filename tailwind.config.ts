@@ -12,6 +12,9 @@ export default {
          colors: {
             raspberry: "#fdcbe2",
          },
+         fontSize: {
+            "slightly-smaller": "calc(1em - 1px)",
+         },
       },
    },
    plugins: [require("@tailwindcss/typography")],
