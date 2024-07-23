@@ -12,3 +12,15 @@ _:future,
 :root a:not(.incognito) {
    @apply decoration-wavy underline-offset-2;
 }
+
+.image-wrapper {
+   @apply flex justify-center;
+   @apply my-[1.5em];
+}
+
+.image-wrapper img {
+   @apply max-w-full max-h-[605px];
+   @apply w-auto h-auto;
+   @apply object-contain;
+   @apply bg-black/[.027];
+}
