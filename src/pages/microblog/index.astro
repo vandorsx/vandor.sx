@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import Layout from "~layouts/base.astro";
-import IHeader from "~components/iheader.astro";
+import Back from "~components/back.astro";
 import "~styles/text.css";
 
 import type { Microblog } from "~libs/microblog";
@@ -22,20 +22,23 @@ try {
 ---
 
 <Layout>
-   <IHeader
-      slot="hnav"
-      title={{
-         text: "inthetrees",
-         italic: true,
-         element: "span",
-      }}
-      links={[
-         { href: "/", text: "index" },
-         { href: "/blog", text: "blog" },
-         { href: "/pages", text: "pages" },
-      ]}
-   />
-   <h1>Microblog</h1>
+   <Fragment slot="hnav">
+      <Back href="/" text="index" />
+   </Fragment>
+   <div class="mb-7">
+      <h1 class="font-serif text-xl font-[354]">Microblog</h1>
+      <p class="my-2">
+         Welcome to my microblog — my place to share quick updates and musings in
+         a tweet-like fashion. By default, only posts within the last day are
+         visible. My microblog is also available as a <a
+            href="https://jade.micro.blog/feed.json"
+            target="_blank">JSON feed</a
+         > and via <a
+            href="https://micro.blog/jade?remote_follow=1"
+            target="_blank">ActivityPub</a
+         >.
+      </p>
+   </div>
    {
       error ?
          <p class="text-black/50">
