@@ -14,9 +14,11 @@ _:future,
    @apply decoration-wavy underline-offset-2;
 }
 
-i, em {
-   @apply not-italic;
-   font-variation-settings: "ital" 0.5;
+@supports (font-variation-settings: normal) {
+   i, em {
+      @apply not-italic;
+      font-variation-settings: "ital" 0.5;
+   }
 }
 
 .image-wrapper {
@@ -36,6 +38,8 @@ blockquote {
    font-variation-settings: "ital" 0.5;
 }
 
-blockquote i, blockquote em {
-   font-variation-settings: "ital" 1;
+@supports (font-variation-settings: normal) {
+   blockquote i, blockquote em {
+      font-variation-settings: "ital" 1;
+   }
 }
