@@ -29,3 +29,13 @@ i, em {
    @apply object-contain;
    @apply bg-black/[.027];
 }
+
+blockquote {
+   @apply border-l border-black;
+   @apply pl-4 ml-4;
+   font-variation-settings: "ital" 0.5;
+}
+
+blockquote i, blockquote em {
+   font-variation-settings: "ital" 1;
+}
