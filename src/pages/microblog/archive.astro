@@ -1,0 +1,59 @@
+---
+export const prerender = false;
+
+import Layout from "~layouts/base.astro";
+import Back from "~components/back.astro";
+import "~styles/text.css";
+
+import type { Microblog } from "~libs/microblog";
+import { getPosts } from "~libs/microblog";
+import MicroblogPost from "~components/microblog/post.astro";
+
+let posts: Microblog[] = [];
+let error: Error | null = null;
+try {
+   posts = await getPosts(
+      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`
+   );
+} catch (e) {
+   error = e as Error;
+   console.error(error);
+}
+---
+
+<Layout>
+   <header slot="header" class="leading-none">
+      <Back href="/microblog" text="microblog" />
+   </header>
+   <div class="flex flex-col gap-7">
+      <div>
+         <h1 class="font-serif text-xl font-[354]">Microblog archive</h1>
+         <p class="my-2">
+            I find ephemerality to be ideal for microblog content, and so, after
+            a day, all my posts end up here in the archive.
+         </p>
+      </div>
+      <div>
+         {
+            error ?
+               <p class="text-black/50">
+                  oops &gt;.&lt;
+                  <br />
+                  It looks like Micro.blog may be currently unavailable;{" "}
+                  <a href="https://status.micro.blog" target="_blank">
+                     check status
+                  </a>
+                  .
+               </p>
+            :  posts.map((post, index) => (
+                  <>
+                     <MicroblogPost post={post} inFeed lazyImages />
+                     {index < posts.length - 1 && (
+                        <hr class="border-black/[.027] w-full mt-7 mb-5" />
+                     )}
+                  </>
+               ))
+         }
+      </div>
+   </div>
+</Layout>
