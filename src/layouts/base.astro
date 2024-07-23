@@ -44,12 +44,18 @@ import "~styles/fonts.css";
       </slot>
 
       <script>
-         const path = window.location.pathname;
-         const sessionPath = sessionStorage.getItem("current-path");
-         if (sessionPath && sessionPath !== path) {
-            sessionStorage.setItem("previous-path", sessionPath);
+         function trackPath() {
+            const path = window.location.pathname;
+            const sessionPath = sessionStorage.getItem("current-path");
+            if (sessionPath && sessionPath !== path) {
+               sessionStorage.setItem("previous-path", sessionPath);
+            }
+            sessionStorage.setItem("current-path", path);
          }
-         sessionStorage.setItem("current-path", path);
+
+         window.addEventListener("pageshow", () => {
+            trackPath();
+         });
       </script>
 
       <style>
