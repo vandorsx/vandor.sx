@@ -11,9 +11,27 @@ import "~styles/fonts.css";
 
       <meta name="theme-color" content="#ffffff" />
 
-      <link rel="preload" href="/fonts/sans-v.woff2" as="font" type="font/woff2" crossorigin />
-      <link rel="preload" href="/fonts/serif-v.woff2" as="font" type="font/woff2" crossorigin />
-      <link rel="preload" href="/fonts/serif-iv.woff2" as="font" type="font/woff2" crossorigin />
+      <link
+         rel="preload"
+         href="/fonts/sans-v.woff2"
+         as="font"
+         type="font/woff2"
+         crossorigin
+      />
+      <link
+         rel="preload"
+         href="/fonts/serif-v.woff2"
+         as="font"
+         type="font/woff2"
+         crossorigin
+      />
+      <link
+         rel="preload"
+         href="/fonts/serif-iv.woff2"
+         as="font"
+         type="font/woff2"
+         crossorigin
+      />
 
       <slot name="seo">
          <SEO
@@ -25,13 +43,22 @@ import "~styles/fonts.css";
          />
       </slot>
 
+      <script>
+         const path = window.location.pathname;
+         const sessionPath = sessionStorage.getItem("current-path");
+         if (sessionPath && sessionPath !== path) {
+            sessionStorage.setItem("previous-path", sessionPath);
+         }
+         sessionStorage.setItem("current-path", path);
+      </script>
+
       <style>
          html {
             font-size: 100%;
          }
 
          body {
-            @apply flex justify-center mx-7;
+            @apply mx-7 flex justify-center;
             @apply text-sm font-light leading-[1.4rem];
             @apply mt-[3.5rem] md:mt-[5.25rem] lg:mt-[7rem];
             @apply mb-[1.75rem] md:mb-[2.625rem] lg:mb-[3.5rem];
