@@ -1,8 +1,8 @@
 import * as cheerio from "cheerio";
 import type { MicroblogPhoto } from "~libs/microblog";
 
-const MAX_WIDTH = 384;
-const MAX_HEIGHT = 320;
+const MAX_WIDTH = 605;
+const MAX_HEIGHT = 605;
 
 const transformImage = (
    content_html: string,
@@ -19,7 +19,7 @@ const transformImage = (
 
       // Check if image is hosted via Micro.blog
       const isMicroblogPhoto = src.startsWith(
-         `https://${process.env.NEXT_PUBLIC_MICROBLOG_BASE_URL}/uploads`,
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/uploads`,
       );
 
       // Optimize image if hosted via Micro.blog
@@ -64,7 +64,6 @@ const transformImage = (
          } else if (height > MAX_HEIGHT && width > MAX_WIDTH) {
             height = MAX_HEIGHT;
             width = MAX_WIDTH;
-            console.log("1x1 but too big");
          }
 
          img.attr("width", width.toString());
@@ -87,7 +86,6 @@ const transformImage = (
          .attr("class", "image-link")
          .attr("href", initialSrc)
          .attr("target", "_blank")
-         .attr("rel", "noopener noreferrer");
       img.wrap(a);
 
       // Wrap in a div
