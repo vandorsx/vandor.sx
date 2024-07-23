@@ -45,7 +45,10 @@ export async function getPosts(feed: string) {
    }
 }
 
-export const getPost = async (id: string, dateParams?: { year: string; month: string; day: string }) => {
+export const getPost = async (
+   id: string,
+   dateParams?: { year: string; month: string; day: string },
+) => {
    const idDataResponse = await fetch(
       `https://${import.meta.env.MICROBLOG_BASE_URL}/api/ids.json`,
    );
@@ -54,7 +57,12 @@ export const getPost = async (id: string, dateParams?: { year: string; month: st
       throw new Error("Failed to fetch id data");
    } else {
       const idData: {
-         ids: { id: string; url: string; date_published: string; date_modified: string }[];
+         ids: {
+            id: string;
+            url: string;
+            date_published: string;
+            date_modified: string;
+         }[];
       } = await idDataResponse.json();
 
       let postUrl: string | undefined = undefined;
@@ -96,5 +104,16 @@ export const getPost = async (id: string, dateParams?: { year: string; month: st
             return json;
          }
       }
+   }
+};
+
+export const getMicrodotblog = async (permalink: string) => {
+   const conversationUrl = `https://micro.blog/conversation.js?url=${permalink}&format=jsonfeed`;
+
+   const res: Response = await fetch(conversationUrl);
+   if (!res.ok) {
+      console.error(res);
+   } else {
+      return await res.json();
    }
 };
