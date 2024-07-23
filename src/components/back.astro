@@ -21,6 +21,13 @@ const { href, text } = Astro.props;
 
    if (previousPath === backLinkPath) {
       routeBack();
+   } else {
+      if (
+         previousPath === "/microblog/archive" &&
+         backLinkPath === "/microblog"
+      ) {
+         routeBack();
+      }
    }
 </script>
 
