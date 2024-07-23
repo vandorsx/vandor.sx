@@ -21,7 +21,6 @@ _:future,
 
 .image-wrapper img {
    @apply max-w-full max-h-[605px];
-   @apply w-auto h-auto;
    @apply object-contain;
    @apply bg-black/[.027];
 }
