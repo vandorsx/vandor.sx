@@ -6,16 +6,21 @@ import transformImage from "~libs/mb-img-transform";
 interface Props {
    post: Microblog;
    inFeed?: boolean;
+   lazyImages?: boolean;
 }
 
-const { post, inFeed } = Astro.props;
+const { post, inFeed, lazyImages } = Astro.props;
 
 const [year, month, day] = post.date_published
    .split("T")[0]
    .split("-")
    .map(Number);
 
-const contentHtml = transformImage(post.content_html, post.photos);
+const contentHtml = transformImage(
+   post.content_html,
+   post.photos,
+   lazyImages ? "lazy" : undefined
+);
 ---
 
 <style>
