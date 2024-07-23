@@ -20,7 +20,7 @@ const { title, links } = Astro.props;
 const TitleElement = (typeof title !== "string" && title.element) || "h1";
 ---
 
-<header class="flex items-center gap-3 text-xs">
+<header class="flex items-center gap-3 text-xs justify-between">
    <TitleElement
       class:list={[
          "font-serif text-xl font-[327]",
@@ -29,7 +29,6 @@ const TitleElement = (typeof title !== "string" && title.element) || "h1";
    >
       {typeof title === "string" ? title : title.text}
    </TitleElement>
-   <hr class="border-black/[.027] w-full" />
    <nav class="text-black/50">
       <ul class="flex gap-2">
          {
