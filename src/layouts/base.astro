@@ -78,10 +78,11 @@ import "~styles/fonts.css";
    </head>
    <body>
       <div class="w-full max-w-[72ch] flex flex-col gap-3">
-         <slot name="hnav" />
+         <slot name="header" />
          <main>
             <slot />
          </main>
+         <slot name="footer" />
       </div>
    </body>
 </html>
