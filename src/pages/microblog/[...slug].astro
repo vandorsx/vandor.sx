@@ -59,10 +59,6 @@ if (slugArray.length === 4) {
 }
 
 const microdotblog: Microdotblog = await getMicrodotblog(post.url);
-const [mdbId] =
-   microdotblog.home_page_url ?
-      microdotblog.home_page_url.match(/(\d+)$/) || []
-   :  [];
 ---
 
 <Layout>
@@ -79,20 +75,4 @@ const [mdbId] =
          client:load
       />
    </section>
-
-   <div
-      id="reply-buttons"
-      class="font-serif pt-3 text-xs italic text-black/[.54] text-right"
-   >
-      reply with <a
-         href=`https://micro.blog/account/comments/${mdbId}/mb?url=${post.url}`
-         >micro.blog</a
-      >, <a
-         href=`https://micro.blog/account/comments/${mdbId}/bluesky?url=${post.url}`
-         >bluesky</a
-      >, or <a
-         href=`https://micro.blog/account/comments/${mdbId}/mastodon?url=${post.url}`
-         >mastodon</a
-      >
-   </div>
 </Layout>

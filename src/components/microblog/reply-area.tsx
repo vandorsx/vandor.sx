@@ -209,6 +209,30 @@ export function ReplyArea(props: {
                </div>
             </div>
          :  null}
+
+         <div
+            id="reply-buttons"
+            class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
+         >
+            reply with{" "}
+            <a
+               href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
+            >
+               micro.blog
+            </a>
+            ,{" "}
+            <a
+               href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
+            >
+               bluesky
+            </a>
+            , or{" "}
+            <a
+               href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
+            >
+               mastodon
+            </a>
+         </div>
       </>
    );
 }
