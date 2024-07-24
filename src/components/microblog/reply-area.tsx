@@ -3,6 +3,10 @@ import { getMicrodotblog, type Microdotblog } from "~libs/microblog";
 import sanitizeHtml from "sanitize-html";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 
+const [token, setToken] = createSignal("");
+const [username, setUsername] = createSignal("");
+const [tokenized, setTokenized] = createSignal(false);
+
 function Converastion(props: { microdotblog: Microdotblog }) {
    const microdotblog = props.microdotblog;
 
@@ -37,6 +41,54 @@ function Converastion(props: { microdotblog: Microdotblog }) {
    );
 }
 
+function ReplyBox(props: {
+   token: string;
+   username: string;
+   postUrl: string;
+   postId: string;
+}) {
+   const token = props.token;
+   const username = props.username;
+   const postUrl = props.postUrl;
+
+   const postReply = () => {
+      if (!token || !username || !postUrl) return;
+
+      const text = document.getElementById("reply-field")?.textContent;
+      if (!text) return;
+
+      const body = new URLSearchParams();
+      body.append("token", token);
+      body.append("username", username);
+      body.append("url", postUrl);
+      body.append("text", text);
+
+      setToken("");
+      setUsername("");
+
+      fetch(`https://micro.blog/account/comments/${props.postId}/post`, {
+         method: "POST",
+         mode: "no-cors",
+         headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+         },
+         body: body.toString(),
+      });
+   };
+
+   return (
+      <form>
+         <textarea
+            id="reply-field"
+            name="text"
+            placeholder="Some nice words..."
+            class="w-full border border-black/[.27] p-2 placeholder-black/[.27]"
+         ></textarea>
+         <button onClick={postReply}>Reply</button>
+      </form>
+   );
+}
+
 export function ReplyArea(props: {
    postUrl: string;
    initialMicrodotblog: Microdotblog;
@@ -46,13 +98,12 @@ export function ReplyArea(props: {
       return null;
    }
 
+   const postIdMatch = props.initialMicrodotblog.home_page_url.match(/(\d+)$/);
+   const postId = postIdMatch && postIdMatch[1];
+
    const [microdotblog, setMicrodotblog] = createSignal(
       props.initialMicrodotblog,
    );
-
-   const [token, setToken] = createSignal("");
-   const [username, setUsername] = createSignal("");
-   const [tokenized, setTokenized] = createSignal(false);
 
    createEffect(() => {
       if (token() && username()) {
@@ -85,8 +136,12 @@ export function ReplyArea(props: {
       <>
          {tokenized() ?
             <div class="reply-area-part">
-               <div>TOKEN: {token()}</div>
-               <div>USERNAME: {username()}</div>
+               <ReplyBox
+                  token={token()}
+                  username={username()}
+                  postUrl={props.postUrl}
+                  postId={postId || ""}
+               />
             </div>
          :  null}
          {microdotblog() && microdotblog().items.length > 0 ?
