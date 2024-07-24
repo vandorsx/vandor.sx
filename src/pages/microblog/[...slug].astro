@@ -57,8 +57,11 @@ const microdotblog: Microdotblog = await getMicrodotblog(post.url);
 ---
 
 <Layout>
+   <header slot="header" class="leading-none">
+      <Back href="/microblog" text="microblog" />
+   </header>
+
    <MicroblogPost post={post} />
-   <footer slot="footer"><Back href="/microblog" text="microblog" /></footer>
 
    <section id="reply-area">
       <ReplyArea
