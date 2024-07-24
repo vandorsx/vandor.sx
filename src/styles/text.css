@@ -39,6 +39,31 @@ blockquote {
    @apply text-slightly-smaller;
 }
 
+.rich-link {
+   @apply not-italic;
+   font-variation-settings: "ital" 0;
+   @apply ml-0 p-2 my-[1em];
+   @apply border border-black/[.54];
+   @apply flex flex-col gap-1;
+
+   p {
+      @apply m-0;
+      font-variation-settings: "ital" 0.5;
+   }
+
+   footer {
+      @apply flex flex-col items-center;
+   }
+
+   footer > span {
+      @apply font-[354] block w-full;
+   }
+
+   cite {
+      @apply not-italic text-black/[.72];
+   }
+}
+
 @supports (font-variation-settings: normal) {
    blockquote i, blockquote em {
       font-variation-settings: "ital" 1;
