@@ -41,6 +41,7 @@ export function ReplyArea(props: {
    postUrl: string;
    initialMicrodotblog: Microdotblog;
 }) {
+   // early return if props aren't delivered
    if (!props.postUrl || !props.initialMicrodotblog) {
       return null;
    }
@@ -48,6 +49,10 @@ export function ReplyArea(props: {
    const [microdotblog, setMicrodotblog] = createSignal(
       props.initialMicrodotblog,
    );
+
+   const [token, setToken] = createSignal("");
+   const [username, setUsername] = createSignal("");
+   const [tokenized, setTokenized] = createSignal(false);
 
    return <Converastion microdotblog={microdotblog()} />;
 }
