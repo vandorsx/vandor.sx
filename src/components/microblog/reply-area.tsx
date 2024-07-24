@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { createSignal, createEffect, onMount, For } from "solid-js";
 import { getMicrodotblog, type Microdotblog } from "~libs/microblog";
 import sanitizeHtml from "sanitize-html";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
@@ -54,5 +54,42 @@ export function ReplyArea(props: {
    const [username, setUsername] = createSignal("");
    const [tokenized, setTokenized] = createSignal(false);
 
-   return <Converastion microdotblog={microdotblog()} />;
+   createEffect(() => {
+      if (token() && username()) {
+         console.log("TOKENIZED");
+         setTokenized(true);
+      } else {
+         console.log("NOT TOKENIZED");
+         setTokenized(false);
+      }
+   });
+
+   const getQueryParam = (param: string) => {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+   };
+
+   onMount(() => {
+      setToken(getQueryParam("token") || "");
+      setUsername(getQueryParam("username") || "");
+
+      // remove query params from url
+      window.history.replaceState(
+         null,
+         "",
+         window.location.pathname + window.location.hash,
+      );
+   });
+
+   return (
+      <>
+         {tokenized() ?
+            <>
+               <div>TOKEN: {token()}</div>
+               <div>USERNAME: {username()}</div>
+            </>
+         :  null}
+         <Converastion microdotblog={microdotblog()} />
+      </>
+   );
 }
