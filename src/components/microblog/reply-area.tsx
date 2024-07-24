@@ -6,8 +6,6 @@ import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 function Converastion(props: { microdotblog: Microdotblog }) {
    const microdotblog = props.microdotblog;
 
-   const MY_USERNAME = import.meta.env.MICROBLOG_USERNAME;
-
    return (
       <div class="flex flex-col gap-4 text-slightly-smaller">
          <For each={microdotblog.items}>
@@ -19,7 +17,8 @@ function Converastion(props: { microdotblog: Microdotblog }) {
                            {reply.author.name}
                         </a>
                      :  <span>{reply.author.name}</span>}
-                     {reply.author._microblog.username === MY_USERNAME && (
+                     {reply.author._microblog.username ===
+                        import.meta.env.MICROBLOG_USERNAME && (
                         <span class="text-black/[.54]"> (me)</span>
                      )}
                      <span class="text-black/[.72]">
