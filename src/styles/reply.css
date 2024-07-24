@@ -1,0 +1,12 @@
+.reply-metadata a {
+   @apply no-underline;
+}
+
+#reply-area p {
+   @apply my-[0.75em];
+}
+
+.reply-content a:first-of-type {
+   @apply no-underline;
+   @apply font-[327];
+}
