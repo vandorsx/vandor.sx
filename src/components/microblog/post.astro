@@ -2,7 +2,7 @@
 import type { Microblog } from "~libs/microblog";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 import transformImage from "~libs/mb-img-transform";
-import { createLegacyRichLinks } from "~libs/mb-rich-links";
+import { createRichLinks, createLegacyRichLinks } from "~libs/mb-rich-links";
 
 interface Props {
    post: Microblog;
@@ -23,6 +23,7 @@ contentHtml = transformImage(
    post.photos,
    lazyImages ? "lazy" : undefined
 );
+contentHtml = createRichLinks(contentHtml);
 contentHtml = createLegacyRichLinks(contentHtml);
 ---
 
