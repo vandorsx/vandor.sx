@@ -112,10 +112,8 @@ export function ReplyArea(props: {
 
    createEffect(() => {
       if (token() && username()) {
-         console.log("TOKENIZED");
          setTokenized(true);
       } else {
-         console.log("NOT TOKENIZED");
          setTokenized(false);
       }
    });
