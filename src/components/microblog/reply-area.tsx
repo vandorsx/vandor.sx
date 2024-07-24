@@ -89,7 +89,7 @@ function ReplyBox(props: {
    };
 
    return (
-      <form>
+      <form class="text-slightly-smaller">
          <textarea
             id="reply-field"
             name="text"
@@ -104,6 +104,12 @@ function ReplyBox(props: {
                   {username}
                </span>
             </div>
+            <button
+               onClick={postReply}
+               class="border border-black/[.27] px-2.5 font-serif italic hover:border-black/[.54] hover:bg-black/[.027]"
+            >
+               Reply
+            </button>
          </div>
       </form>
    );
