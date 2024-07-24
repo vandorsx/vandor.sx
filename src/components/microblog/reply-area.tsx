@@ -51,10 +51,15 @@ function ReplyBox(props: {
    const username = props.username;
    const postUrl = props.postUrl;
 
-   const postReply = () => {
+   const postReply = (event: MouseEvent) => {
+      event.preventDefault();
+
       if (!token || !username || !postUrl) return;
 
-      const text = document.getElementById("reply-field")?.textContent;
+      const textArea = document.getElementById(
+         "reply-field",
+      ) as HTMLTextAreaElement;
+      const text = textArea.value;
       if (!text) return;
 
       const body = new URLSearchParams();
