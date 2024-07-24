@@ -92,7 +92,7 @@ function ReplyBox(props: {
    };
 
    return (
-      <form class="text-slightly-smaller">
+      <form class="mb-5 text-slightly-smaller">
          <textarea
             id="reply-field"
             name="text"
