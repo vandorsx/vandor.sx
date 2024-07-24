@@ -19,6 +19,9 @@ function Converastion(props: { microdotblog: Microdotblog }) {
                            {reply.author.name}
                         </a>
                      :  <span>{reply.author.name}</span>}
+                     {reply.author._microblog.username === MY_USERNAME && (
+                        <span class="text-black/[.54]"> (me)</span>
+                     )}
                      <span class="text-black/[.72]">
                         {" "}
                         replied <DynamicTimestamp date={reply.date_published} />
