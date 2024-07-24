@@ -1,5 +1,23 @@
 import * as cheerio from "cheerio";
 
+export const createRichLinks = (content_html: string): string => {
+   const $ = cheerio.load(`<div class="content-wrapper">${content_html}</div>`);
+   const richLinks = $(".rich-link");
+
+   richLinks.each(function () {
+      const richLink = $(this);
+
+      const linkElement = richLink.find("cite a");
+      const url =
+         $(this).attr("cite") || linkElement.attr("href") || linkElement.text();
+
+      const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
+      linkElement.text(niceUrl);
+   });
+
+   return $(".content-wrapper").html() || content_html;
+};
+
 export const createLegacyRichLinks = (content_html: string): string => {
    const $ = cheerio.load(`<div class="content-wrapper">${content_html}</div>`);
    const richLinkContainers = $(".rl-container");
