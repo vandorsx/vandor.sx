@@ -15,6 +15,9 @@ export default {
          fontSize: {
             "slightly-smaller": "calc(1em - 1px)",
          },
+         fontWeight: {
+            bolder: "bolder",
+         },
       },
    },
    plugins: [require("@tailwindcss/typography")],
