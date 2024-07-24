@@ -1,20 +1,20 @@
+export interface MicrodotblogReply {
+   id: string;
+   content_html: string;
+   url: string;
+   date_published: string;
+   author: {
+      name: string;
+      url: string;
+      _microblog: {
+         username: string;
+      };
+   };
+}
+
 export interface Microdotblog {
    home_page_url: string;
-   items: [
-      {
-         id: string;
-         content_html: string;
-         url: string;
-         date_published: string;
-         author: {
-            name: string;
-            url: string;
-            _microblog: {
-               username: string;
-            };
-         };
-      },
-   ];
+   items: MicrodotblogReply[];
 }
 
 export type MicroblogPhoto = {
