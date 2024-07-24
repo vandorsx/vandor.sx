@@ -5,8 +5,9 @@ import Layout from "~layouts/base.astro";
 import "~styles/text.css";
 import Back from "~components/back.astro";
 
-import { getPost, type Microblog } from "~libs/microblog";
+import { getMicrodotblog, getPost, type Microblog } from "~libs/microblog";
 import MicroblogPost from "~components/microblog/post.astro";
+import { ReplyArea } from "~components/microblog/reply-area";
 
 const { slug } = Astro.params;
 const slugArray = slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
@@ -50,9 +51,12 @@ if (slugArray.length === 4) {
       return new Response(null, { status: 404 });
    }
 }
+
+const microdotblog = await getMicrodotblog(post.url);
 ---
 
 <Layout>
    <MicroblogPost post={post} />
    <footer slot="footer"><Back href="/microblog" text="microblog" /></footer>
+   <ReplyArea postUrl={post.url} initialMicrodotblog={microdotblog} />
 </Layout>
