@@ -13,6 +13,7 @@ export const createRichLinks = (content_html: string): string => {
 
       const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
       linkElement.text(niceUrl);
+      linkElement.attr("target", "_blank");
    });
 
    return $(".content-wrapper").html() || content_html;
