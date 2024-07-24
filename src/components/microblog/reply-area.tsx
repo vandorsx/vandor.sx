@@ -10,6 +10,7 @@ import { formatTimeRelatively } from "~libs/relative-time";
 const [token, setToken] = createSignal("");
 const [username, setUsername] = createSignal("");
 const [tokenized, setTokenized] = createSignal(false);
+const [refreshConversation, setRefreshConversation] = createSignal(false);
 
 function Reply(props: { reply: MicrodotblogReply }) {
    const reply = props.reply;
@@ -86,6 +87,8 @@ function ReplyBox(props: {
          },
          body: body.toString(),
       });
+
+      setRefreshConversation(true);
    };
 
    return (
@@ -130,6 +133,35 @@ export function ReplyArea(props: {
    const [microdotblog, setMicrodotblog] = createSignal(
       props.initialMicrodotblog,
    );
+
+   createEffect(async () => {
+      if (refreshConversation()) {
+         const fetchConversation = async () => {
+            let retries = 0;
+            let updatedMicrodotblog: Microdotblog | null = null;
+
+            do {
+               if (retries !== 0) {
+                  await new Promise((resolve) => setTimeout(resolve, 250));
+               }
+
+               updatedMicrodotblog = await getMicrodotblog(props.postUrl);
+               retries++;
+            } while (
+               (JSON.stringify(updatedMicrodotblog) ===
+                  JSON.stringify(microdotblog()) ||
+                  !updatedMicrodotblog) &&
+               retries < 5
+            );
+
+            if (updatedMicrodotblog) {
+               setMicrodotblog(updatedMicrodotblog);
+            }
+         };
+
+         fetchConversation();
+      }
+   });
 
    createEffect(() => {
       if (token() && username()) {
