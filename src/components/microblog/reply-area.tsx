@@ -102,7 +102,7 @@ function ReplyBox(props: {
          <div class="flex items-center justify-between">
             <div class="font-serif text-xs italic text-black/[.54]">
                Replying as{" "}
-               <span class="font-normal">
+               <span class="font-[327]">
                   <span class="mr-[.03125rem]">@</span>
                   {username}
                </span>
