@@ -56,10 +56,9 @@ function ReplyBox(props: {
 
       if (!token || !username || !postUrl) return;
 
-      const textArea = document.getElementById(
-         "reply-field",
-      ) as HTMLTextAreaElement;
-      const text = textArea.value;
+      const text = (
+         document.getElementById("reply-field") as HTMLTextAreaElement
+      ).value;
       if (!text) return;
 
       const body = new URLSearchParams();
