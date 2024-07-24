@@ -1,14 +1,38 @@
-import { createSignal } from "solid-js";
+import { createSignal, For } from "solid-js";
 import { getMicrodotblog, type Microdotblog } from "~libs/microblog";
+import sanitizeHtml from "sanitize-html";
+import { formatTimeRelatively } from "~libs/relative-time";
 
 function Converastion(props: { microdotblog: Microdotblog }) {
    const microdotblog = props.microdotblog;
 
    const MY_USERNAME = import.meta.env.MICROBLOG_USERNAME;
 
-   return microdotblog.items.map((reply) => (
-      <div innerHTML={reply.content_html} />
-   ));
+   return (
+      <div class="flex flex-col gap-4 text-slightly-smaller">
+         <For each={microdotblog.items}>
+            {(reply) => (
+               <div class="flex flex-col">
+                  <div class="reply-metadata font-serif italic">
+                     {reply.author.url ?
+                        <a href={reply.author.url} target="_blank">
+                           {reply.author.name}
+                        </a>
+                     :  <span>{reply.author.name}</span>}
+                     <span class="text-black/[.72]">
+                        {" "}
+                        replied {formatTimeRelatively(reply.date_published)}
+                     </span>
+                  </div>
+                  <div
+                     class="reply-content"
+                     innerHTML={sanitizeHtml(reply.content_html)}
+                  />
+               </div>
+            )}
+         </For>
+      </div>
+   );
 }
 
 export function ReplyArea(props: {
