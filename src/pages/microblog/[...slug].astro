@@ -72,19 +72,15 @@ const [mdbId] =
 
    <MicroblogPost post={post} />
 
-   {
-      microdotblog && microdotblog.items.length > 0 && (
-         <section id="reply-area" class="pt-4">
-            <div class="border-t py-7 border-black/[.054]">
-               <ReplyArea
-                  postUrl={post.url}
-                  initialMicrodotblog={microdotblog}
-                  client:load
-               />
-            </div>
-         </section>
-      )
-   }
+   <section id="reply-area" class="pt-4">
+      <div class="border-t py-7 border-black/[.054]">
+         <ReplyArea
+            postUrl={post.url}
+            initialMicrodotblog={microdotblog}
+            client:load
+         />
+      </div>
+   </section>
 
    <div
       id="reply-buttons"
