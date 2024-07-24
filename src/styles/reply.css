@@ -7,6 +7,10 @@
    @apply no-underline;
 }
 
+.reply-area-part:first-of-type {
+   @apply border-t pt-7 pb-4 border-black/[.054];
+}
+
 #reply-area p {
    @apply my-[0.75em];
 }

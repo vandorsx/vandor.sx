@@ -73,18 +73,16 @@ const [mdbId] =
    <MicroblogPost post={post} />
 
    <section id="reply-area" class="pt-4">
-      <div class="border-t py-7 border-black/[.054]">
-         <ReplyArea
-            postUrl={post.url}
-            initialMicrodotblog={microdotblog}
-            client:load
-         />
-      </div>
+      <ReplyArea
+         postUrl={post.url}
+         initialMicrodotblog={microdotblog}
+         client:load
+      />
    </section>
 
    <div
       id="reply-buttons"
-      class="font-serif pt-7 text-xs italic text-black/[.54] text-right"
+      class="font-serif pt-3 text-xs italic text-black/[.54] text-right"
    >
       reply with <a
          href=`https://micro.blog/account/comments/${mdbId}/mb?url=${post.url}`

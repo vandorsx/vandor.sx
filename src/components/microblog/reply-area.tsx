@@ -84,12 +84,16 @@ export function ReplyArea(props: {
    return (
       <>
          {tokenized() ?
-            <>
+            <div class="reply-area-part">
                <div>TOKEN: {token()}</div>
                <div>USERNAME: {username()}</div>
-            </>
+            </div>
          :  null}
-         <Converastion microdotblog={microdotblog()} />
+         {microdotblog() && microdotblog().items.length > 0 ?
+            <div class="reply-area-part">
+               <Converastion microdotblog={microdotblog()} />
+            </div>
+         :  null}
       </>
    );
 }
