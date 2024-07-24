@@ -2,6 +2,7 @@
 import type { Microblog } from "~libs/microblog";
 import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 import transformImage from "~libs/mb-img-transform";
+import { createLegacyRichLinks } from "~libs/mb-rich-links";
 
 interface Props {
    post: Microblog;
@@ -16,11 +17,13 @@ const [year, month, day] = post.date_published
    .split("-")
    .map(Number);
 
-const contentHtml = transformImage(
+let contentHtml = post.content_html;
+contentHtml = transformImage(
    post.content_html,
    post.photos,
    lazyImages ? "lazy" : undefined
 );
+contentHtml = createLegacyRichLinks(contentHtml);
 ---
 
 <style>
