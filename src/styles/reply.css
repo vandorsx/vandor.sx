@@ -1,3 +1,8 @@
+#reply-buttons a {
+   @apply font-serif text-xs italic text-black/[.27] no-underline;
+   @apply inline-block;
+}
+
 .reply-metadata a {
    @apply no-underline;
 }
