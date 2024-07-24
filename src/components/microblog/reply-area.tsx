@@ -96,7 +96,15 @@ function ReplyBox(props: {
             placeholder="Some nice words..."
             class="w-full border border-black/[.27] p-2 placeholder-black/[.27]"
          ></textarea>
-         <button onClick={postReply}>Reply</button>
+         <div class="flex items-center justify-between">
+            <div class="font-serif text-xs italic text-black/[.54]">
+               Replying as{" "}
+               <span class="font-normal">
+                  <span class="mr-[.03125rem]">@</span>
+                  {username}
+               </span>
+            </div>
+         </div>
       </form>
    );
 }
