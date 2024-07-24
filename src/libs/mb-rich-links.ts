@@ -39,9 +39,9 @@ export const createLegacyRichLinks = (content_html: string): string => {
       }
       innerHTML += `
                      <footer>
-                        ${title ? `<span class="rl-title">${title}</span>` : ""}
-                        <div class="rl-url-container">
-                           <cite class="rl-url">${niceUrl}</cite>
+                        ${title ? `<span>${title}</span>` : ""}
+                        <div>
+                           <cite><a href="${url}" target="_blank">${niceUrl}</a></cite>
                         </div>
                      </footer>
                   `;
