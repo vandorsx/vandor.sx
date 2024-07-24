@@ -1,7 +1,7 @@
 import { createSignal, For } from "solid-js";
 import { getMicrodotblog, type Microdotblog } from "~libs/microblog";
 import sanitizeHtml from "sanitize-html";
-import { formatTimeRelatively } from "~libs/relative-time";
+import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
 
 function Converastion(props: { microdotblog: Microdotblog }) {
    const microdotblog = props.microdotblog;
@@ -21,7 +21,7 @@ function Converastion(props: { microdotblog: Microdotblog }) {
                      :  <span>{reply.author.name}</span>}
                      <span class="text-black/[.72]">
                         {" "}
-                        replied {formatTimeRelatively(reply.date_published)}
+                        replied <DynamicTimestamp date={reply.date_published} />
                      </span>
                   </div>
                   <div
