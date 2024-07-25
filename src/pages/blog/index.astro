@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "~layouts/base.astro";
+import Back from "~components/back.astro";
+import "~styles/text.css";
+
+const blog = await getCollection("blog", ({ data }) => {
+   return import.meta.env.PROD ? data.draft !== true : true;
+});
+---
+
+<style>
+   .post-list-item p {
+      @apply my-0;
+   }
+
+   .post-list-item p:first-of-type {
+      @apply my-0 pb-1 pt-0.5 font-serif text-[1.125em];
+   }
+
+   .post-list-item p:first-of-type a {
+      @apply no-underline hover:underline;
+   }
+</style>
+
+<Layout>
+   <header slot="header" class="leading-none">
+      <Back href="/" text="index" />
+   </header>
+
+   <div class="flex flex-col gap-7">
+      <div>
+         <h1 class="font-serif text-xl font-[354]">Blog</h1>
+         <p class="my-2">
+            Welcome to my blog. This is where I publish longer-form writing and
+            content that I consider to be more evergreen in nature.
+         </p>
+      </div>
+      <section>
+         <ul class="flex flex-col gap-7">
+            {
+               blog.map((entry) => (
+                  <li class="post-list-item flex flex-col gap-1">
+                     <span class="font-serif text-xs italic">
+                        Published{" "}
+                        <time>
+                           {new Date(entry.data.datePublished).toLocaleString(
+                              "en-US",
+                              {
+                                 year: "numeric",
+                                 month: "long",
+                                 day: "numeric",
+                              }
+                           )}
+                        </time>
+                     </span>
+                     <p>
+                        <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                     </p>
+                     <p>{entry.data.description}</p>
+                  </li>
+               ))
+            }
+         </ul>
+      </section>
+   </div>
+</Layout>
