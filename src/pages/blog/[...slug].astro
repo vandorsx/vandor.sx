@@ -6,7 +6,9 @@ import "~styles/text.css";
 import "~styles/blog.css";
 
 export async function getStaticPaths() {
-   const blog = await getCollection("blog");
+   const blog = await getCollection("blog", ({ data }) => {
+      return import.meta.env.PROD ? data.draft !== true : true;
+   });
 
    return blog.map((entry) => ({
       params: { slug: entry.slug },
