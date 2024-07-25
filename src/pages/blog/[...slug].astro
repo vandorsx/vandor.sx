@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "~layouts/base.astro";
+import Back from "~components/back.astro";
+import "~styles/text.css";
+
+export async function getStaticPaths() {
+   const blog = await getCollection("blog");
+
+   return blog.map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry },
+   }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout>
+   <header slot="header" class="leading-none">
+      <Back href="/blog" text="blog" />
+   </header>
+
+   <Content />
+</Layout>
