@@ -7,11 +7,12 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), solidJs(), mdx()],
-  output: "hybrid",
-  adapter: cloudflare(),
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: "hover"
-  }
+   integrations: [tailwind(), solidJs(), mdx()],
+   output: "hybrid",
+   adapter: cloudflare(),
+   prefetch: {
+      prefetchAll: true,
+      defaultStrategy: "hover",
+   },
+   site: "https://inthetrees.me",
 });
