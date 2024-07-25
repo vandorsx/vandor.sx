@@ -4,7 +4,7 @@ p {
 
 a:not(.incognito) {
    @apply underline underline-offset-1;
-   @apply decoration-black/30 hover:decoration-raspberry;
+   @apply decoration-black/[.27] hover:decoration-raspberry;
 }
 
 /* wavy underline for webkit only */
