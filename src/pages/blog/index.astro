@@ -41,7 +41,7 @@ const blog = await getCollection("blog", ({ data }) => {
             {
                blog.map((entry) => (
                   <li class="post-list-item flex flex-col gap-1">
-                     <span class="font-serif text-xs italic">
+                     <span class="font-serif text-xs italic text-black/[.72]">
                         Published{" "}
                         <time>
                            {new Date(entry.data.datePublished).toLocaleString(
