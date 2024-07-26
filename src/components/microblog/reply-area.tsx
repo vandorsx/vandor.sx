@@ -7,10 +7,42 @@ import {
 import sanitizeHtml from "sanitize-html";
 import { formatTimeRelatively } from "~libs/relative-time";
 
+const [microdotblog, setMicrodotblog] = createSignal<Microdotblog | null>(null);
 const [token, setToken] = createSignal("");
 const [username, setUsername] = createSignal("");
 const [tokenized, setTokenized] = createSignal(false);
-const [refreshConversation, setRefreshConversation] = createSignal(false);
+
+const refreshConversation = async (postUrl: string) => {
+   let retries = 0;
+   let updatedMicrodotblog: Microdotblog | null = null;
+
+   try {
+      while (retries < 5) {
+         if (retries > 0) {
+            await new Promise((resolve) => setTimeout(resolve, 250));
+         }
+
+         updatedMicrodotblog = await getMicrodotblog(postUrl);
+
+         if (
+            updatedMicrodotblog &&
+            (!microdotblog() ||
+               JSON.stringify(updatedMicrodotblog) !==
+                  JSON.stringify(microdotblog()))
+         ) {
+            break;
+         }
+
+         retries++;
+      }
+
+      if (updatedMicrodotblog) {
+         setMicrodotblog(updatedMicrodotblog);
+      }
+   } catch (error) {
+      console.error("Error fetching conversation:", error);
+   }
+};
 
 function Reply(props: { reply: MicrodotblogReply }) {
    const reply = props.reply;
@@ -88,7 +120,7 @@ function ReplyBox(props: {
          body: body.toString(),
       });
 
-      setRefreshConversation(true);
+      refreshConversation(postUrl);
    };
 
    return (
@@ -130,38 +162,9 @@ export function ReplyArea(props: {
    const postIdMatch = props.initialMicrodotblog.home_page_url.match(/(\d+)$/);
    const postId = postIdMatch && postIdMatch[1];
 
-   const [microdotblog, setMicrodotblog] = createSignal(
-      props.initialMicrodotblog,
-   );
-
-   createEffect(async () => {
-      if (refreshConversation()) {
-         const fetchConversation = async () => {
-            let retries = 0;
-            let updatedMicrodotblog: Microdotblog | null = null;
-
-            do {
-               if (retries !== 0) {
-                  await new Promise((resolve) => setTimeout(resolve, 250));
-               }
-
-               updatedMicrodotblog = await getMicrodotblog(props.postUrl);
-               retries++;
-            } while (
-               (JSON.stringify(updatedMicrodotblog) ===
-                  JSON.stringify(microdotblog()) ||
-                  !updatedMicrodotblog) &&
-               retries < 5
-            );
-
-            if (updatedMicrodotblog) {
-               setMicrodotblog(updatedMicrodotblog);
-            }
-         };
-
-         fetchConversation();
-      }
-   });
+   if (!microdotblog()) {
+      setMicrodotblog(props.initialMicrodotblog);
+   }
 
    createEffect(() => {
       if (token() && username()) {
@@ -200,10 +203,12 @@ export function ReplyArea(props: {
                />
             </div>
          :  null}
-         {microdotblog() && microdotblog().items.length > 0 ?
+         {(
+            microdotblog() && microdotblog()!.items.length > 0 // remove the two !s eventually!!
+         ) ?
             <div class="reply-area-part">
                <div class="flex flex-col gap-4 text-slightly-smaller">
-                  <For each={microdotblog().items}>
+                  <For each={microdotblog()!.items}>
                      {(reply) => <Reply reply={reply} />}
                   </For>
                </div>
