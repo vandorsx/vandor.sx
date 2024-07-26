@@ -55,8 +55,12 @@ blockquote {
       @apply flex flex-col items-center;
    }
 
+   footer > * {
+      @apply block w-full;
+   }
+
    footer > span {
-      @apply font-[354] block w-full;
+      @apply font-[354];
    }
 
    cite {
