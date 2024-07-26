@@ -6,11 +6,11 @@ import {
 } from "~libs/microblog";
 import sanitizeHtml from "sanitize-html";
 import { formatTimeRelatively } from "~libs/relative-time";
+import { set } from "astro/zod";
 
 const [microdotblog, setMicrodotblog] = createSignal<Microdotblog | null>(null);
-const [token, setToken] = createSignal("");
-const [username, setUsername] = createSignal("");
-const [tokenized, setTokenized] = createSignal(false);
+const [token, setToken] = createSignal<string | undefined>(undefined);
+const [username, setUsername] = createSignal<string | undefined>(undefined);
 
 const refreshConversation = async (postUrl: string) => {
    let retries = 0;
@@ -108,8 +108,8 @@ function ReplyBox(props: {
       body.append("url", postUrl);
       body.append("text", text);
 
-      setToken("");
-      setUsername("");
+      setToken(undefined);
+      setUsername(undefined);
 
       fetch(`https://micro.blog/account/comments/${props.postId}/post`, {
          method: "POST",
@@ -153,7 +153,12 @@ function ReplyBox(props: {
 export function ReplyArea(props: {
    postUrl: string;
    initialMicrodotblog: Microdotblog;
+   token?: string;
+   username?: string;
 }) {
+   setToken(props.token);
+   setUsername(props.username);
+
    // early return if props aren't delivered
    if (!props.postUrl || !props.initialMicrodotblog) {
       return null;
@@ -166,38 +171,13 @@ export function ReplyArea(props: {
       setMicrodotblog(props.initialMicrodotblog);
    }
 
-   createEffect(() => {
-      if (token() && username()) {
-         setTokenized(true);
-      } else {
-         setTokenized(false);
-      }
-   });
-
-   const getQueryParam = (param: string) => {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(param);
-   };
-
-   onMount(() => {
-      setToken(getQueryParam("token") || "");
-      setUsername(getQueryParam("username") || "");
-
-      // remove query params from url
-      window.history.replaceState(
-         null,
-         "",
-         window.location.pathname + window.location.hash,
-      );
-   });
-
    return (
       <>
-         {tokenized() ?
+         {token() && username() ?
             <div class="reply-area-part">
                <ReplyBox
-                  token={token()}
-                  username={username()}
+                  token={token() as string}
+                  username={username() as string}
                   postUrl={props.postUrl}
                   postId={postId || ""}
                />
@@ -215,7 +195,7 @@ export function ReplyArea(props: {
             </div>
          :  null}
 
-         {!tokenized() && (
+         {(!token() || !username()) && (
             <div
                id="reply-buttons"
                class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
