@@ -59,7 +59,19 @@ if (slugArray.length === 4) {
 }
 
 const microdotblog: Microdotblog = await getMicrodotblog(post.url);
+
+const token = Astro.url.searchParams.get("token") || undefined;
+const username = Astro.url.searchParams.get("username") || undefined;
 ---
+
+<script>
+   // remove query params from url
+   window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.hash
+   );
+</script>
 
 <Layout>
    <header slot="header" class="leading-none">
@@ -72,6 +84,8 @@ const microdotblog: Microdotblog = await getMicrodotblog(post.url);
       <ReplyArea
          postUrl={post.url}
          initialMicrodotblog={microdotblog}
+         token={token}
+         username={username}
          client:load
       />
    </section>
