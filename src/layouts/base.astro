@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions, fade } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "~styles/fonts.css";
 ---
@@ -43,6 +44,8 @@ import "~styles/fonts.css";
          />
       </slot>
 
+      <ViewTransitions />
+
       <script>
          function trackPath() {
             const path = window.location.pathname;
@@ -82,7 +85,7 @@ import "~styles/fonts.css";
          }
       </style>
    </head>
-   <body>
+   <body transition:animate={fade({ duration: "0.27s" })}>
       <div class="w-full max-w-[72ch] flex flex-col gap-3">
          <slot name="header" />
          <main>
