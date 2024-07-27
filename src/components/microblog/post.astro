@@ -25,6 +25,15 @@ contentHtml = transformImage(
 );
 contentHtml = createRichLinks(contentHtml);
 contentHtml = createLegacyRichLinks(contentHtml);
+
+const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
+   year: "numeric",
+   month: "long",
+   day: "numeric",
+   hour: "2-digit",
+   minute: "2-digit",
+   hour12: false,
+};
 ---
 
 <style>
@@ -62,15 +71,18 @@ contentHtml = createLegacyRichLinks(contentHtml);
             <time datetime={post.date_published}>
                {new Date(post.date_published.slice(0, -5)).toLocaleString(
                   "en-US",
-                  {
-                     year: "numeric",
-                     month: "long",
-                     day: "numeric",
-                     hour: "2-digit",
-                     minute: "2-digit",
-                     hour12: false,
-                  }
+                  nonRelativeDateOptions
                )}
+               {post.date_modified &&
+                  post.categories?.includes("show_updated") && (
+                     <span class="text-black/[.54]">
+                        (updated{" "}
+                        {new Date(
+                           post.date_modified.slice(0, -5)
+                        ).toLocaleString("en-US", nonRelativeDateOptions)}
+                        )
+                     </span>
+                  )}
             </time>
          </header>
    }
