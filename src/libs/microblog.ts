@@ -108,7 +108,7 @@ export const getPost = async (
 };
 
 export const getMicrodotblog = async (permalink: string) => {
-   const conversationUrl = `https://micro.blog/conversation.js?url=${permalink}&format=jsonfeed`;
+   const conversationUrl = `https://micro.blog/conversation.js?url=${permalink}&format=jsonfeed&nocache=${new Date().getTime()}`;
 
    const res: Response = await fetch(conversationUrl);
    if (!res.ok) {
