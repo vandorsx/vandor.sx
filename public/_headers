@@ -1,9 +1,6 @@
 /*
-  Content-Security-Policy : default-src 'none'; connect-src 'self' https://micro.blog; img-src 'self' https://micro.blog https://jade.micro.blog; font-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; base-uri 'none'; block-all-mixed-content; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy : default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' blob: data: https://micro.blog https://jade.micro.blog; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; connect-src 'self' https://micro.blog https://jade.micro.blog; upgrade-insecure-requests
   X-Content-Type-Options : nosniff
   Referrer-Policy : no-referrer
   X-Frame-Options : DENY
   X-XSS-Protection : 0
-  Permissions-Policy : accelerometer=(), autoplay=(), bluetooth=(), browsing-topics=(), camera=(), clipboard-read=(), display-capture=(), encrypted-media=(), fullscreen=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), keyboard-map=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), sync-xhr=(), xr-spatial-tracking=()
-  Cross-Origin-Resource-Policy : same-origin
-  Cross-Origin-Embedder-Policy : require-corp
