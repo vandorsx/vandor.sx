@@ -60,14 +60,17 @@ contentHtml = createLegacyRichLinks(contentHtml);
       :  <header class="font-serif italic text-black/[.72] mb-4">
             Microblog post on{" "}
             <time datetime={post.date_published}>
-               {new Date(post.date_published).toLocaleString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: false,
-               })}
+               {new Date(post.date_published.slice(0, -5)).toLocaleString(
+                  "en-US",
+                  {
+                     year: "numeric",
+                     month: "long",
+                     day: "numeric",
+                     hour: "2-digit",
+                     minute: "2-digit",
+                     hour12: false,
+                  }
+               )}
             </time>
          </header>
    }
