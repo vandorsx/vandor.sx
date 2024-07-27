@@ -74,7 +74,8 @@ posts = posts.filter((post) => {
                   </a>
                   .
                </p>
-            :  posts.map((post, index) => (
+            : posts.length ?
+               posts.map((post, index) => (
                   <>
                      <MicroblogPost post={post} inFeed />
                      {index < posts.length - 1 && (
@@ -82,6 +83,9 @@ posts = posts.filter((post) => {
                      )}
                   </>
                ))
+            :  <p class="text-black/50">
+                  No posts yet today — check back later!
+               </p>
          }
       </div>
    </div>
