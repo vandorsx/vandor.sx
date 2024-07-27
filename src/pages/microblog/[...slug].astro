@@ -2,6 +2,7 @@
 export const prerender = false;
 
 import Layout from "~layouts/base.astro";
+import { SEO } from "astro-seo";
 import "~styles/text.css";
 import "~styles/reply.css";
 import Back from "~components/back.astro";
@@ -60,6 +61,9 @@ if (slugArray.length === 4) {
 
 const microdotblog: Microdotblog = await getMicrodotblog(post.url);
 
+const urlDate = new Date(post.date_published.split("T")[0]);
+const canonical = `${Astro.site}microblog/${urlDate.getUTCFullYear()}/${urlDate.getUTCMonth() + 1}/${urlDate.getUTCDate()}/${post.id}`;
+
 const token = Astro.url.searchParams.get("token");
 const username = Astro.url.searchParams.get("username");
 ---
@@ -74,6 +78,13 @@ const username = Astro.url.searchParams.get("username");
 </script>
 
 <Layout>
+   <SEO
+      slot="seo"
+      title={post.title}
+      description={post.description}
+      canonical={canonical}
+   />
+
    <header slot="header" class="leading-none">
       <Back href="/microblog" text="microblog" />
    </header>
