@@ -118,7 +118,34 @@ export default function ReplyArea(props: ReplyAreaProps) {
                </div>
             </form>
          :  null}
-         <Conversation {...microdotblog()} />
+         <div class="mb-3">
+            <Conversation {...microdotblog()} />
+         </div>
+         {!token() && !username() && (
+            <div
+               id="reply-buttons"
+               class="text-right font-serif text-xs italic text-black/[.54]"
+            >
+               reply with{" "}
+               <a
+                  href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
+               >
+                  micro.blog
+               </a>
+               ,{" "}
+               <a
+                  href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
+               >
+                  bluesky
+               </a>
+               , or{" "}
+               <a
+                  href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
+               >
+                  mastodon
+               </a>
+            </div>
+         )}
       </div>
    );
 }
