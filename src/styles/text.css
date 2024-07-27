@@ -65,6 +65,7 @@ blockquote {
 
    cite {
       @apply not-italic text-black/[.72];
+      overflow-wrap: break-word;
    }
 }
 
