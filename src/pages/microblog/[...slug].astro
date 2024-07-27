@@ -80,7 +80,7 @@ const username = Astro.url.searchParams.get("username");
 
    <MicroblogPost post={post} />
 
-   <section id="reply-area" class="pt-4">
+   <section class="pt-4">
       <ReplyArea
          postUrl={post.url}
          microdotblog={microdotblog}

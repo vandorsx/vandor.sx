@@ -89,9 +89,13 @@ export default function ReplyArea(props: ReplyAreaProps) {
    }
 
    return (
-      <div>
+      <div id="reply-area">
          {token() && username() ?
-            <form class="mb-5 text-slightly-smaller" onSubmit={handleReply}>
+            <form
+               class="mb-5 text-slightly-smaller"
+               onSubmit={handleReply}
+               id="reply-area-form"
+            >
                <textarea
                   onInput={(e) => {
                      setReplyText(e.currentTarget.value);
@@ -118,13 +122,15 @@ export default function ReplyArea(props: ReplyAreaProps) {
                </div>
             </form>
          :  null}
-         <div class="mb-3">
-            <Conversation {...microdotblog()} />
-         </div>
+         {microdotblog() && microdotblog().items.length > 0 && (
+            <div class="mb-3" id="reply-area-conversation">
+               <Conversation {...microdotblog()} />
+            </div>
+         )}
          {!token() && !username() && (
             <div
-               id="reply-buttons"
-               class="text-right font-serif text-xs italic text-black/[.54]"
+               id="reply-area-buttons"
+               class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
             >
                reply with{" "}
                <a

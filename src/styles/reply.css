@@ -1,14 +1,14 @@
-#reply-buttons a {
+#reply-area > *:first-child:not(#reply-area-buttons) {
+   @apply border-t pt-7 pb-4 border-black/[.054];
+}
+
+#reply-area-buttons a {
    @apply font-serif text-xs italic text-black/[.27] no-underline hover:underline;
    @apply inline-block;
 }
 
 .reply-metadata a {
    @apply no-underline;
-}
-
-.reply-area-part:first-of-type {
-   @apply border-t pt-7 pb-4 border-black/[.054];
 }
 
 #reply-area p {
