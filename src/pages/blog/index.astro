@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~layouts/base.astro";
+import { SEO } from "astro-seo";
 import Back from "~components/back.astro";
 import "~styles/text.css";
 
@@ -24,13 +25,19 @@ const blog = await getCollection("blog", ({ data }) => {
 </style>
 
 <Layout>
+   <SEO
+      slot="seo"
+      title="My blog"
+      description="Where I publish longer-form writing and content that I consider to be more evergreen in nature."
+   />
+
    <header slot="header" class="leading-none">
       <Back href="/" text="index" />
    </header>
 
    <div class="flex flex-col gap-7">
       <div>
-         <h1 class="font-serif text-xl font-[354]">Blog</h1>
+         <h1 class="font-serif text-xl font-[354]">My blog</h1>
          <p class="my-2">
             Welcome to my blog. This is where I publish longer-form writing and
             content that I consider to be more evergreen in nature.
