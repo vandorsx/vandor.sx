@@ -44,31 +44,35 @@ const blog = await getCollection("blog", ({ data }) => {
          </p>
       </div>
       <section>
-         <ul class="flex flex-col gap-7">
-            {
-               blog.map((entry) => (
-                  <li class="post-list-item flex flex-col gap-1">
-                     <span class="font-serif text-xs italic text-black/[.72]">
-                        Published{" "}
-                        <time>
-                           {new Date(entry.data.datePublished).toLocaleString(
-                              "en-US",
-                              {
-                                 year: "numeric",
-                                 month: "long",
-                                 day: "numeric",
-                              }
-                           )}
-                        </time>
-                     </span>
-                     <p>
-                        <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
-                     </p>
-                     <p>{entry.data.description}</p>
-                  </li>
-               ))
-            }
-         </ul>
+         {
+            blog.length ?
+               <ul class="flex flex-col gap-7">
+                  {blog.map((entry) => (
+                     <li class="post-list-item flex flex-col gap-1">
+                        <span class="font-serif text-xs italic text-black/[.72]">
+                           Published{" "}
+                           <time>
+                              {new Date(entry.data.datePublished).toLocaleString(
+                                 "en-US",
+                                 {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                 }
+                              )}
+                           </time>
+                        </span>
+                        <p>
+                           <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                        </p>
+                        <p>{entry.data.description}</p>
+                     </li>
+                  ))}
+               </ul>
+            :  <p class="text-black/50">
+                  No posts yet! Soon, this won't be the case {"^_^"}
+               </p>
+         }
       </section>
    </div>
 </Layout>
