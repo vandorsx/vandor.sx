@@ -10,6 +10,9 @@ export default defineConfig({
    integrations: [tailwind(), solidJs(), mdx()],
    output: "hybrid",
    adapter: cloudflare(),
+   build: {
+      format: "file",
+   },
    prefetch: {
       prefetchAll: true,
       defaultStrategy: "hover",
