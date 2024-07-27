@@ -86,6 +86,7 @@ const transformImage = (
          .attr("class", "image-link")
          .attr("href", initialSrc)
          .attr("target", "_blank")
+         .attr("aria-label", "Open image in new tab");
       img.wrap(a);
 
       // Wrap in a div
