@@ -14,5 +14,5 @@ export default defineConfig({
       prefetchAll: true,
       defaultStrategy: "hover",
    },
-   site: import.meta.env.SITE,
+   site: "https://inthetrees.me",
 });
