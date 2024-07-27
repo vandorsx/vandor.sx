@@ -38,6 +38,9 @@ importers:
       cheerio:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
