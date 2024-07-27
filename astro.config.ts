@@ -13,6 +13,9 @@ export default defineConfig({
    build: {
       format: "file",
    },
+   experimental: {
+      serverIslands: true,
+   },
    prefetch: {
       prefetchAll: true,
       defaultStrategy: "hover",
