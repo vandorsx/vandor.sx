@@ -3,6 +3,8 @@ import { createSignal, onCleanup, For } from "solid-js";
 import { formatTimeRelatively } from "~libs/relative-time";
 import sanitizeHtml from "sanitize-html";
 
+const MY_USERNAME = "jade";
+
 function Reply(reply: MicrodotblogReply) {
    const [relativeTimestamp, setRelativeTimestamp] = createSignal(
       formatTimeRelatively(reply.date_published),
@@ -22,8 +24,7 @@ function Reply(reply: MicrodotblogReply) {
                   {reply.author.name}
                </a>
             :  <span>{reply.author.name}</span>}
-            {reply.author._microblog.username ===
-               import.meta.env.MICROBLOG_USERNAME && (
+            {reply.author._microblog.username === MY_USERNAME && (
                <span class="text-black/[.54]"> (me)</span>
             )}
             <span class="text-black/[.72]">
