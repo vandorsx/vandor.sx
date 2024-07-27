@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 
+import { SEO } from "astro-seo";
 import Layout from "~layouts/base.astro";
 import Back from "~components/back.astro";
 import "~styles/text.css";
@@ -35,12 +36,18 @@ posts = posts.filter((post) => {
 ---
 
 <Layout>
+   <SEO
+      slot="seo"
+      title="My microblog"
+      description="My place to share quick updates and musings in a tweet-like fashion."
+   />
+
    <header slot="header" class="leading-none">
       <Back href="/" text="index" />
    </header>
    <div class="flex flex-col gap-7">
       <div>
-         <h1 class="font-serif text-xl font-[354]">Microblog</h1>
+         <h1 class="font-serif text-xl font-[354]">My microblog</h1>
          <p class="my-2">
             Welcome to my microblog — my place to share quick updates and musings
             in a tweet-like fashion. By default, only posts within the last day
