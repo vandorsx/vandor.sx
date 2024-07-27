@@ -13,7 +13,7 @@ import {
    type Microdotblog,
 } from "~libs/microblog";
 import MicroblogPost from "~components/microblog/post.astro";
-import { ReplyArea } from "~components/microblog/reply-area";
+import ReplyArea from "~components/microblog/reply-area";
 
 const { slug } = Astro.params;
 const slugArray = slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
@@ -60,8 +60,8 @@ if (slugArray.length === 4) {
 
 const microdotblog: Microdotblog = await getMicrodotblog(post.url);
 
-const token = Astro.url.searchParams.get("token") || undefined;
-const username = Astro.url.searchParams.get("username") || undefined;
+const token = Astro.url.searchParams.get("token");
+const username = Astro.url.searchParams.get("username");
 ---
 
 <script>
@@ -83,7 +83,7 @@ const username = Astro.url.searchParams.get("username") || undefined;
    <section id="reply-area" class="pt-4">
       <ReplyArea
          postUrl={post.url}
-         initialMicrodotblog={microdotblog}
+         microdotblog={microdotblog}
          token={token}
          username={username}
          client:load
