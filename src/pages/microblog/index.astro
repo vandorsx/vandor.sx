@@ -8,10 +8,10 @@ import "~styles/text.css";
 
 import type { Microblog } from "~libs/microblog";
 import { getPosts } from "~libs/microblog";
-import MicroblogPost from "~components/microblog/post.astro";
+import Feed from "~components/microblog/feed.astro";
 
 let posts: Microblog[] = [];
-let error: Error | null = null;
+let error: Error | undefined = undefined;
 try {
    posts = await getPosts(
       `https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`
@@ -62,31 +62,6 @@ posts = posts.filter((post) => {
             >.
          </p>
       </div>
-      <div>
-         {
-            error ?
-               <p class="text-black/50">
-                  oops &gt;.&lt;
-                  <br />
-                  It looks like Micro.blog may be currently unavailable;{" "}
-                  <a href="https://status.micro.blog" target="_blank">
-                     check status
-                  </a>
-                  .
-               </p>
-            : posts.length ?
-               posts.map((post, index) => (
-                  <>
-                     <MicroblogPost post={post} inFeed />
-                     {index < posts.length - 1 && (
-                        <hr class="border-black/[.027] w-full mt-7 mb-5" />
-                     )}
-                  </>
-               ))
-            :  <p class="text-black/50">
-                  No posts yet today — check back later!
-               </p>
-         }
-      </div>
+      <Feed {posts} {error} />
    </div>
 </Layout>
