@@ -32,7 +32,7 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
    day: "numeric",
    hour: "2-digit",
    minute: "2-digit",
-   hour12: false,
+   hourCycle: "h23",
 };
 ---
 
@@ -67,7 +67,7 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
             </a>
          </header>
       :  <header class="font-serif italic text-black/[.72] mb-4">
-            Microblog post on{" "}
+            Posted{" "}
             <time datetime={post.date_published}>
                {new Date(post.date_published.slice(0, -5)).toLocaleString(
                   "en-US",
@@ -75,13 +75,12 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                )}
                {post.date_modified &&
                   post.categories?.includes("show_updated") && (
-                     <span class="text-black/[.54]">
-                        (updated{" "}
+                     <Fragment>
+                        & updated{" "}
                         {new Date(
                            post.date_modified.slice(0, -5)
                         ).toLocaleString("en-US", nonRelativeDateOptions)}
-                        )
-                     </span>
+                     </Fragment>
                   )}
             </time>
          </header>
