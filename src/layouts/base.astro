@@ -66,9 +66,22 @@ import "~styles/fonts.css";
             sessionStorage.setItem("current-path", path);
          }
 
-         window.addEventListener("pageshow", () => {
+         trackPath();
+
+         window.addEventListener("popstate", trackPath);
+         window.addEventListener("pageshow", trackPath);
+
+         const originalPushState = history.pushState;
+         history.pushState = function (...args) {
+            originalPushState.apply(this, args);
             trackPath();
-         });
+         };
+
+         const originalReplaceState = history.replaceState;
+         history.replaceState = function (...args) {
+            originalReplaceState.apply(this, args);
+            trackPath();
+         };
       </script>
 
       <style>
