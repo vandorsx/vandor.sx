@@ -9,6 +9,7 @@ import "~styles/text.css";
 import type { Microblog } from "~libs/microblog";
 import { getPosts } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
+import FeedSkeleton from "~components/microblog/feed-skeleton";
 
 let posts: Microblog[] = [];
 let error: Error | undefined = undefined;
@@ -40,6 +41,10 @@ try {
             day, posts get archived here.
          </p>
       </div>
-      <Feed {posts} {error} server:defer />
+      <Feed {posts} {error} server:defer>
+         <div slot="fallback">
+            <FeedSkeleton postCount={27} />
+         </div>
+      </Feed>
    </div>
 </Layout>
