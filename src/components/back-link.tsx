@@ -3,6 +3,18 @@ const mappings: {
    related: string[];
 }[] = [{ path: "/microblog", related: ["/microblog/archive"] }];
 
+function getPreviousPath(): string | null {
+   try {
+      const pathStack: string[] = JSON.parse(
+         sessionStorage.getItem("path-stack") || "[]",
+      );
+      return pathStack.length > 1 ? pathStack[pathStack.length - 2] : null;
+   } catch (e: unknown) {
+      console.error("Error getting previous path:", e);
+      return null;
+   }
+}
+
 export default function BackLink({
    href,
    text,
@@ -12,7 +24,7 @@ export default function BackLink({
 }) {
    const handleClick = (e: Event) => {
       const backLinkPath = href;
-      const previousPath = sessionStorage.getItem("previous-path");
+      const previousPath = getPreviousPath();
 
       if (!previousPath) return;
 
