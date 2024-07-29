@@ -56,33 +56,7 @@ import "~styles/fonts.css";
 
       <ViewTransitions />
 
-      <script>
-         function trackPath() {
-            const path = window.location.pathname;
-            const sessionPath = sessionStorage.getItem("current-path");
-            if (sessionPath && sessionPath !== path) {
-               sessionStorage.setItem("previous-path", sessionPath);
-            }
-            sessionStorage.setItem("current-path", path);
-         }
-
-         trackPath();
-
-         window.addEventListener("popstate", trackPath);
-         window.addEventListener("pageshow", trackPath);
-
-         const originalPushState = history.pushState;
-         history.pushState = function (...args) {
-            originalPushState.apply(this, args);
-            trackPath();
-         };
-
-         const originalReplaceState = history.replaceState;
-         history.replaceState = function (...args) {
-            originalReplaceState.apply(this, args);
-            trackPath();
-         };
-      </script>
+      <script src="../libs/path-tracker.ts"></script>
 
       <style>
          html {
