@@ -5,7 +5,7 @@ import Layout from "~layouts/base.astro";
 import { SEO } from "astro-seo";
 import "~styles/text.css";
 import "~styles/reply.css";
-import Back from "~components/back.astro";
+import BackLink from "~components/back-link";
 
 import {
    getMicrodotblog,
@@ -86,7 +86,7 @@ const username = Astro.url.searchParams.get("username");
    />
 
    <header slot="header" class="leading-none">
-      <Back href="/microblog" text="microblog" />
+      <BackLink href="/microblog" text="microblog" client:load/>
    </header>
 
    <MicroblogPost post={post} />

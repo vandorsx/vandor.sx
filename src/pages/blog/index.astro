@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "~layouts/base.astro";
 import { SEO } from "astro-seo";
-import Back from "~components/back.astro";
+import BackLink from "~components/back-link";
 import "~styles/text.css";
 
 const blog = await getCollection("blog", ({ data }) => {
@@ -32,7 +32,7 @@ const blog = await getCollection("blog", ({ data }) => {
    />
 
    <header slot="header" class="leading-none">
-      <Back href="/" text="index" />
+      <BackLink href="/" text="index" client:load/>
    </header>
 
    <div class="flex flex-col gap-7">

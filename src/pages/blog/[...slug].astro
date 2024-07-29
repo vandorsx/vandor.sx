@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~layouts/base.astro";
-import Back from "~components/back.astro";
+import BackLink from "~components/back-link";
 import "~styles/text.css";
 import "~styles/blog.css";
 
@@ -22,7 +22,7 @@ const { Content } = await entry.render();
 
 <Layout>
    <header slot="header" class="leading-none">
-      <Back href="/blog" text="blog" />
+      <BackLink href="/blog" text="blog" client:load/>
    </header>
 
    <article>

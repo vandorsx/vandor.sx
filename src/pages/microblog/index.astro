@@ -3,7 +3,7 @@ export const prerender = false;
 
 import { SEO } from "astro-seo";
 import Layout from "~layouts/base.astro";
-import Back from "~components/back.astro";
+import BackLink from "~components/back-link";
 import "~styles/text.css";
 
 import type { Microblog } from "~libs/microblog";
@@ -43,7 +43,7 @@ posts = posts.filter((post) => {
    />
 
    <header slot="header" class="leading-none">
-      <Back href="/" text="index" />
+      <BackLink href="/" text="index" client:load/>
    </header>
    <div class="flex flex-col gap-7">
       <div>
