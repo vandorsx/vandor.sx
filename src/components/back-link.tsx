@@ -44,12 +44,14 @@ export default function BackLink({
    };
 
    return (
-      <a
-         href={href}
-         class="inline-block font-serif text-xs italic text-black/[.27] no-underline hover:underline"
-         onClick={handleClick}
-      >
-         &#8592;&nbsp;&nbsp;{text}
-      </a>
+      <div id="back-link">
+         <a
+            href={href}
+            class="font-serif text-xs italic text-black/[.27] hover:underline"
+            onClick={handleClick}
+         >
+            &#8592;&nbsp;&nbsp;{text}
+         </a>
+      </div>
    );
 }

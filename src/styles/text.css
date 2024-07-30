@@ -15,7 +15,8 @@ _:future,
 }
 
 @supports (font-variation-settings: normal) {
-   i, em {
+   i,
+   em {
       @apply not-italic;
       font-variation-settings: "ital" 0.5;
    }
@@ -27,14 +28,14 @@ _:future,
 }
 
 .image-wrapper img {
-   @apply max-w-full max-h-[605px];
+   @apply max-h-[605px] max-w-full;
    @apply object-contain;
    @apply bg-black/[.027];
 }
 
 blockquote {
    @apply border-l border-black;
-   @apply pl-4 ml-4;
+   @apply ml-4 pl-4;
    font-variation-settings: "ital" 0.5;
    @apply text-slightly-smaller;
 }
@@ -42,7 +43,7 @@ blockquote {
 .rich-link {
    @apply not-italic;
    font-variation-settings: "ital" 0;
-   @apply ml-0 p-2 my-[1em];
+   @apply my-[1em] ml-0 p-2;
    @apply border border-black/[.54];
    @apply flex flex-col gap-1;
 
@@ -70,7 +71,12 @@ blockquote {
 }
 
 @supports (font-variation-settings: normal) {
-   blockquote i, blockquote em {
+   blockquote i,
+   blockquote em {
       font-variation-settings: "ital" 1;
    }
+}
+
+#back-link > a {
+   @apply no-underline hover:underline;
 }
