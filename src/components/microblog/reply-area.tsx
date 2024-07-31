@@ -90,7 +90,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
 
    return (
       <div id="reply-area">
-         {token() && username() ?
+         {token() && username() ? (
             <form
                class="mb-5 text-slightly-smaller"
                onSubmit={handleReply}
@@ -121,7 +121,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   </button>
                </div>
             </form>
-         :  null}
+         ) : null}
          {microdotblog() && microdotblog().items.length > 0 && (
             <div class="mb-3" id="reply-area-conversation">
                <Conversation {...microdotblog()} />

@@ -15,7 +15,7 @@ let posts: Microblog[] = [];
 let error: Error | undefined = undefined;
 try {
    posts = await getPosts(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`
+      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`,
    );
 } catch (e) {
    error = e as Error;

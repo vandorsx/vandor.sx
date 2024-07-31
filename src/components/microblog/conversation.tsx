@@ -19,11 +19,13 @@ function Reply(reply: MicrodotblogReply) {
    return (
       <div class="flex flex-col">
          <div class="reply-metadata font-serif italic">
-            {reply.author.url ?
+            {reply.author.url ? (
                <a href={reply.author.url} target="_blank">
                   {reply.author.name}
                </a>
-            :  <span>{reply.author.name}</span>}
+            ) : (
+               <span>{reply.author.name}</span>
+            )}
             {reply.author._microblog.username === MY_USERNAME && (
                <span class="text-black/[.54]"> (me)</span>
             )}

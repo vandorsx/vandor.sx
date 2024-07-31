@@ -14,7 +14,7 @@ let posts: Microblog[] = [];
 let error: Error | undefined = undefined;
 try {
    posts = await getPosts(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`
+      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`,
    );
 } catch (e) {
    error = e as Error;
@@ -25,10 +25,9 @@ try {
 const now = new Date();
 const cutoff = 24;
 posts = posts.filter((post) => {
-   const dateToCompare =
-      post.date_modified ?
-         new Date(post.date_modified)
-      :  new Date(post.date_published);
+   const dateToCompare = post.date_modified
+      ? new Date(post.date_modified)
+      : new Date(post.date_published);
    const timeDiff = now.getTime() - dateToCompare.getTime();
    const hoursDiff = timeDiff / (1000 * 3600);
    return hoursDiff <= cutoff;

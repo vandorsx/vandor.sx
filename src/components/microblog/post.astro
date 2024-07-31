@@ -21,7 +21,7 @@ let contentHtml = post.content_html;
 contentHtml = transformImage(
    post.content_html,
    post.photos,
-   lazyImages ? "lazy" : undefined
+   lazyImages ? "lazy" : undefined,
 );
 contentHtml = createRichLinks(contentHtml);
 contentHtml = createLegacyRichLinks(contentHtml);
