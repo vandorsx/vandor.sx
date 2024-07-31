@@ -1,26 +1,11 @@
 ---
 import Layout from "~layouts/base.astro";
-import IHeader from "~components/iheader.astro";
 import "~styles/text.css";
 ---
 
 <Layout>
-   <IHeader
-      slot="header"
-      title={{
-         text: "inthetrees",
-         italic: true,
-      }}
-      links={[
-         { href: "/microblog", text: "microblog" },
-         { href: "/blog", text: "blog" },
-         {
-            href: "https://github.com/in-the-trees/inthetrees.me",
-            text: "source",
-            target: "_blank",
-         },
-      ]}
-   />
+   <h1 class="font-serif text-xl italic font-[327] pb-1.5">inthetrees</h1>
+
    <p>
       Hi there, welcome to my website.<br />My name is Jade&nbsp;<span
          class="text-black/[.27] text-xs">(he/him)</span
