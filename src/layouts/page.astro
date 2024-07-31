@@ -1,0 +1,35 @@
+---
+import Layout from "./base.astro";
+import { SEO } from "astro-seo";
+import BackLink from "~components/back-link";
+import "~styles/text.css";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+   <SEO
+      slot="seo"
+      title={frontmatter.title}
+      description={frontmatter.description}
+   />
+
+   {
+      frontmatter.backlink && frontmatter.backtext && (
+         <header slot="header" class="leading-none">
+            <BackLink
+               href={frontmatter.backlink}
+               text={frontmatter.backtext}
+               client:load
+            />
+         </header>
+      )
+   }
+
+   <div class="flex flex-col gap-3">
+      <h1 class="font-serif text-xl font-[354]">{frontmatter.title}</h1>
+      <div>
+         <slot />
+      </div>
+   </div>
+</Layout>
