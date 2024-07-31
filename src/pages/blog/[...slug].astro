@@ -22,10 +22,24 @@ const { Content } = await entry.render();
 
 <Layout>
    <header slot="header" class="leading-none">
-      <BackLink href="/blog" text="blog" client:load/>
+      <BackLink href="/blog" text="blog" client:load />
    </header>
 
    <article>
+      <div id="blog-metadata" class="pb-0.5 flex flex-col gap-1">
+         <h1>{entry.data.title}</h1>
+         <span class="font-serif italic text-black/[.72]"
+            >Published<time>
+               {
+                  new Date(entry.data.datePublished).toLocaleString("en-US", {
+                     year: "numeric",
+                     month: "long",
+                     day: "numeric",
+                  })
+               }
+            </time></span
+         >
+      </div>
       <Content />
    </article>
 </Layout>
