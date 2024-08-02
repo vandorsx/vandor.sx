@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~layouts/base.astro";
+import { SEO } from "astro-seo";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 import "~styles/blog.css";
@@ -21,6 +22,12 @@ const { Content } = await entry.render();
 ---
 
 <Layout>
+   <SEO
+      slot="seo"
+      title={entry.data.title}
+      description={entry.data.description}
+   />
+
    <header slot="header" class="leading-none">
       <BackLink href="/blog" text="blog" client:load />
    </header>
