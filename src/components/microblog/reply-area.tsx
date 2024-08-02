@@ -104,7 +104,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   name="text"
                   placeholder="Some nice words..."
                   class="w-full border border-black/[.27] p-2 placeholder-black/[.27] outline-none"
-               ></textarea>
+               />
                <div class="flex items-center justify-between">
                   <div class="font-serif text-xs italic text-black/[.54]">
                      Replying as{" "}
