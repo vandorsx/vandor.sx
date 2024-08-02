@@ -3,12 +3,12 @@
    "printWidth": 81,
    "tabWidth": 3,
    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-astro"],
-   overrides: [
+   "overrides": [
       {
-         files: '*.astro',
-         options: {
-            parser: 'astro',
-         },
-      },
-   ],
+         "files": "*.astro",
+         "options": {
+            "parser": "astro"
+         }
+      }
+   ]
 }

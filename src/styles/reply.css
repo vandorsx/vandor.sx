@@ -1,5 +1,5 @@
 #reply-area > *:first-child:not(#reply-area-buttons) {
-   @apply border-t pt-7 pb-4 border-black/[.054];
+   @apply border-t border-black/[.054] pb-4 pt-7;
 }
 
 #reply-area-buttons a {

@@ -71,14 +71,14 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
             <time datetime={post.date_published}>
                {new Date(post.date_published.slice(0, -5)).toLocaleString(
                   "en-US",
-                  nonRelativeDateOptions
+                  nonRelativeDateOptions,
                )}
                {post.date_modified &&
                   post.categories?.includes("show_updated") && (
                      <Fragment>
                         & updated{" "}
                         {new Date(
-                           post.date_modified.slice(0, -5)
+                           post.date_modified.slice(0, -5),
                         ).toLocaleString("en-US", nonRelativeDateOptions)}
                      </Fragment>
                   )}
