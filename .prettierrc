@@ -2,5 +2,13 @@
    "experimentalTernaries": true,
    "printWidth": 81,
    "tabWidth": 3,
-   "plugins": ["prettier-plugin-tailwindcss"]
+   "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-astro"],
+   overrides: [
+      {
+         files: '*.astro',
+         options: {
+            parser: 'astro',
+         },
+      },
+   ],
 }
