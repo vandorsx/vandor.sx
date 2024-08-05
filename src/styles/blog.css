@@ -28,3 +28,14 @@ h3 {
 h4 {
    @apply text-[1.03125rem];
 }
+
+picture {
+   @apply flex justify-center;
+   @apply my-[1.5em];
+}
+
+picture img {
+   @apply max-h-[605px] max-w-full;
+   @apply object-contain;
+   @apply bg-black/[.027];
+}
