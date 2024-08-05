@@ -1,13 +1,10 @@
 import type { APIRoute } from "astro";
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import MarkdownIt from "markdown-it";
-import sanitizeHtml from "sanitize-html";
 
 const SITE = "inthetrees.me";
 const AUTHOR = "jade@inthetrees.me";
 
-const parser = new MarkdownIt();
 export const GET: APIRoute = async () => {
    const blog = await getCollection("blog");
    return rss({
@@ -24,11 +21,6 @@ export const GET: APIRoute = async () => {
                   link: `https://${SITE}/blog/${entry.slug}`,
                   author: AUTHOR,
                   pubDate: entry.data.datePublished,
-                  content: sanitizeHtml(parser.render(entry.body), {
-                     allowedTags: sanitizeHtml.defaults.allowedTags.concat([
-                        "img",
-                     ]),
-                  }),
                };
             }),
          )
