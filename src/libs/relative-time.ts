@@ -20,14 +20,13 @@ export const formatTimeRelatively = (date: Date | string): string => {
 
    const diff = (date.getTime() - now.getTime()) / 1000;
 
+   if (Math.abs(diff) < 60) {
+      return "less than a minute ago";
+   }
+
    for (const { unit, seconds } of rel_units) {
-      if (Math.abs(diff) === 60) {
-         return "1 minute ago";
-      }
       if (Math.abs(diff) >= seconds) {
          return rel_format.format(Math.round(diff / seconds), unit);
-      } else if (Math.abs(diff) < 1) {
-         return "<1 second ago";
       }
    }
 
