@@ -29,14 +29,14 @@ const { Content } = await entry.render();
          description={entry.data.description}
          extend={{
             meta: [
-               { name: "og:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
-               { name: "og:title", content: entry.data.title },
-               { name: "og:description", content: entry.data.description },
-               { name: "og:image", content: entry.data.image },
-               { name: "og:type", content: "article" },
-               { name: "og:article:published_time", content: entry.data.datePublished.toISOString() },
-               { name: "og:article:author", content: "Jade van Dorsten" },
-               { name: "og:article:author", content: "inthetrees" },
+               { property: "og:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
+               { property: "og:title", content: entry.data.title },
+               { property: "og:description", content: entry.data.description },
+               { property: "og:image", content: entry.data.image },
+               { property: "og:type", content: "article" },
+               { property: "og:article:published_time", content: entry.data.datePublished.toISOString() },
+               { property: "og:article:author", content: "Jade van Dorsten" },
+               { property: "og:article:author", content: "inthetrees" },
                { name: "twitter:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
                { name: "twitter:title", content: entry.data.title },
                { name: "twitter:description", content: entry.data.description },
@@ -52,13 +52,13 @@ const { Content } = await entry.render();
          description={entry.data.description}
          extend={{
             meta: [
-               { name: "og:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
-               { name: "og:title", content: entry.data.title },
-               { name: "og:description", content: entry.data.description },
-               { name: "og:type", content: "article" },
-               { name: "og:article:published_time", content: entry.data.datePublished.toISOString() },
-               { name: "og:article:author", content: "Jade van Dorsten" },
-               { name: "og:article:author", content: "inthetrees" },
+               { property: "og:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
+               { property: "og:title", content: entry.data.title },
+               { property: "og:description", content: entry.data.description },
+               { property: "og:type", content: "article" },
+               { property: "og:article:published_time", content: entry.data.datePublished.toISOString() },
+               { property: "og:article:author", content: "Jade van Dorsten" },
+               { property: "og:article:author", content: "inthetrees" },
                { name: "twitter:url", content: new URL(Astro.url.pathname, Astro.site).toString() },
                { name: "twitter:title", content: entry.data.title },
                { name: "twitter:description", content: entry.data.description },
