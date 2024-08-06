@@ -77,6 +77,12 @@ blockquote {
    }
 }
 
+.astro-code {
+   @apply grayscale hover:grayscale-0 transition-all duration-[189ms];
+   @apply border border-black/[.54];
+   @apply my-[1em] p-2;
+}
+
 #back-link > a {
    @apply no-underline hover:underline;
 }
