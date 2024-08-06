@@ -21,4 +21,9 @@ export default defineConfig({
       defaultStrategy: "hover",
    },
    site: "https://inthetrees.me",
+   markdown: {
+      shikiConfig: {
+         theme: "slack-ochin",
+      },
+   },
 });
