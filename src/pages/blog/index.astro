@@ -5,9 +5,11 @@ import { SEO } from "astro-seo";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-const blog = await getCollection("blog", ({ data }) => {
-   return import.meta.env.PROD ? data.draft !== true : true;
-});
+const blog = await getCollection("blog", ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true
+).then(posts => // sort by datePublished
+  posts.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime())
+);
 ---
 
 <style>
