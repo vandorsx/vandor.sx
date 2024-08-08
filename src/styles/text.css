@@ -22,6 +22,18 @@ _:future,
    }
 }
 
+ul {
+   @apply list-disc;
+}
+
+ol {
+   @apply list-decimal;
+}
+
+ul, ol {
+   @apply pl-[1em] ml-[1em];
+}
+
 .image-wrapper {
    @apply flex justify-center;
    @apply my-[1.5em];
