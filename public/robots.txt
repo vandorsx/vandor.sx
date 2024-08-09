@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /microblog/archive
 
 User-agent: GPTBot
 Disallow: /
