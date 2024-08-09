@@ -5,7 +5,10 @@
   X-Frame-Options : DENY
   X-XSS-Protection : 0
 
-/fonts/* 
+/microblog/archive
+  X-Robots-Tag: noindex
+
+/*.woff2
   Cache-Control: max-age=2592000, public
 
 https://inthetrees.pages.dev/*
