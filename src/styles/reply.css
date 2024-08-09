@@ -3,7 +3,7 @@
 }
 
 #reply-area-buttons a {
-   @apply font-serif text-xs italic text-black/[.27] no-underline hover:underline;
+   @apply font-serif text-xs italic text-black/[.34] no-underline hover:underline;
    @apply inline-block;
 }
 
