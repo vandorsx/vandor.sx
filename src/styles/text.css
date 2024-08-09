@@ -22,15 +22,15 @@ _:future,
    }
 }
 
-ul {
+article ul {
    @apply list-disc;
 }
 
-ol {
+article ol {
    @apply list-decimal;
 }
 
-ul, ol {
+article ul, article ol {
    @apply pl-[1em] ml-[1em];
 }
 
