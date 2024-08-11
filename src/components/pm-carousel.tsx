@@ -6,12 +6,8 @@ interface Props {
    photos: {
       fallback: string;
       extensions: string[];
-      dimensions: {
-         width: number;
-         height: number;
-      };
-      title: string;
       alt: string;
+      title?: string;
    }[];
 }
 
@@ -58,8 +54,6 @@ export default function PMCarousel({ photos }: Props) {
                      <img
                         src={`https://picture-me.inthetrees.me/${photo.fallback}`}
                         alt={photo.alt}
-                        width={photo.dimensions.width}
-                        height={photo.dimensions.height}
                      />
                   </picture>
                </div>
