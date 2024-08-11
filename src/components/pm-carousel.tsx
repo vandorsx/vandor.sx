@@ -1,5 +1,5 @@
 import { onMount, createSignal } from "solid-js";
-import type { EmblaCarouselType } from "embla-carousel";
+import { type EmblaCarouselType, type EmblaOptionsType } from "embla-carousel";
 import createEmblaCarousel from "embla-carousel-solid";
 
 interface Props {
@@ -12,7 +12,10 @@ interface Props {
 }
 
 export default function PMCarousel({ photos }: Props) {
-   const [emblaRef, emblaApi] = createEmblaCarousel();
+   const [options, setOptions] = createSignal<EmblaOptionsType>({
+      container: ".embla__container",
+   });
+   const [emblaRef, emblaApi] = createEmblaCarousel(() => options());
    let api: EmblaCarouselType | undefined;
 
    const [canScrollNext, setCanScrollNext] = createSignal(false);
@@ -41,23 +44,25 @@ export default function PMCarousel({ photos }: Props) {
 
    return (
       <div class="embla" ref={emblaRef}>
-         <div class="embla__container">
-            {photos.map((photo) => (
-               <div class="embla__slide">
-                  <picture>
-                     {photo.extensions.map((extension) => (
-                        <source
-                           srcset={`https://picture-me.inthetrees.me/${photo.fallback.split(".")[0]}.${extension}`}
-                           type={`image/${extension}`}
+         <div>
+            <div class="embla__container">
+               {photos.map((photo) => (
+                  <div class="embla__slide">
+                     <picture>
+                        {photo.extensions.map((extension) => (
+                           <source
+                              srcset={`https://picture-me.inthetrees.me/${photo.fallback.split(".")[0]}.${extension}`}
+                              type={`image/${extension}`}
+                           />
+                        ))}
+                        <img
+                           src={`https://picture-me.inthetrees.me/${photo.fallback}`}
+                           alt={photo.alt}
                         />
-                     ))}
-                     <img
-                        src={`https://picture-me.inthetrees.me/${photo.fallback}`}
-                        alt={photo.alt}
-                     />
-                  </picture>
-               </div>
-            ))}
+                     </picture>
+                  </div>
+               ))}
+            </div>
          </div>
          <div class="embla__buttons">
             <button
