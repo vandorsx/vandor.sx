@@ -65,21 +65,23 @@ export default function PMCarousel({ photos }: Props) {
                ))}
             </div>
          </div>
-         <div class="embla__buttons">
-            <button
-               class="embla__prev"
-               onClick={scrollPrev}
-               disabled={!canScrollPrev()}
-            >
-               &larr;
-            </button>
-            <button
-               class="embla__next"
-               onClick={scrollNext}
-               disabled={!canScrollNext()}
-            >
-               &rarr;
-            </button>
+         <div class="embla__meta">
+            <div class="embla__buttons">
+               <button
+                  class="embla__prev"
+                  onClick={scrollPrev}
+                  disabled={!canScrollPrev()}
+               >
+                  &larr;
+               </button>
+               <button
+                  class="embla__next"
+                  onClick={scrollNext}
+                  disabled={!canScrollNext()}
+               >
+                  &rarr;
+               </button>
+            </div>
          </div>
       </div>
    );
