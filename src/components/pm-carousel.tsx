@@ -16,17 +16,16 @@ export default function PMCarousel() {
 
    onMount(() => {
       api = emblaApi();
-      updateCanScroll();
+
+      if (api) api.on("slidesInView", updateCanScroll);
    });
 
    const scrollPrev = () => {
       if (api) api.scrollPrev();
-      updateCanScroll();
    };
 
    const scrollNext = () => {
       if (api) api.scrollNext();
-      updateCanScroll();
    };
 
    return (
