@@ -47,7 +47,7 @@ export default function PMCarousel({ photos }: Props) {
       <div class="embla" ref={emblaRef}>
          <div>
             <div class="embla__container">
-               {photos.map((photo) => (
+               {photos.map((photo, index) => (
                   <div class="embla__slide">
                      <picture>
                         {photo.extensions.map((extension) => (
@@ -59,6 +59,7 @@ export default function PMCarousel({ photos }: Props) {
                         <img
                            src={`https://picture-me.inthetrees.me/${photo.fallback}`}
                            alt={photo.alt}
+                           loading={index === 0 ? "eager" : "lazy"}
                         />
                      </picture>
                   </div>
