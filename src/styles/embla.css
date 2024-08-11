@@ -1,0 +1,47 @@
+.embla {
+   overflow: hidden;
+   @apply my-[1em];
+}
+
+.embla__container {
+   display: flex;
+}
+
+.embla__slide {
+   flex: 0 0 auto;
+   min-width: 0;
+   max-width: 100%;
+   align-self: center;
+}
+
+.embla__container > .embla__slide:not(:last-of-type) {
+   margin-right: 1rem;
+}
+
+.embla picture {
+   @apply my-0 py-0;
+}
+
+.embla__meta {
+   @apply mt-3 flex items-center;
+}
+
+.embla__buttons {
+   @apply ml-auto flex gap-3;
+}
+
+.embla__prev,
+.embla__next {
+   touch-action: manipulation;
+   @apply p-2 font-serif leading-none;
+   transition: opacity 0.27s ease-in-out;
+}
+
+.embla__prev:disabled,
+.embla__next:disabled {
+   opacity: 0.27;
+}
+
+.embla__prev {
+   @apply -ml-2;
+}
