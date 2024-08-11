@@ -2,7 +2,20 @@ import { onMount, createSignal } from "solid-js";
 import type { EmblaCarouselType } from "embla-carousel";
 import createEmblaCarousel from "embla-carousel-solid";
 
-export default function PMCarousel() {
+interface Props {
+   photos: {
+      fallback: string;
+      extensions: string[];
+      dimensions: {
+         width: number;
+         height: number;
+      };
+      title: string;
+      alt: string;
+   }[];
+}
+
+export default function PMCarousel({ photos }: Props) {
    const [emblaRef, emblaApi] = createEmblaCarousel();
    let api: EmblaCarouselType | undefined;
 
@@ -33,9 +46,25 @@ export default function PMCarousel() {
    return (
       <div class="embla" ref={emblaRef}>
          <div class="embla__container">
-            <div class="embla__slide">Slide 1</div>
-            <div class="embla__slide">Slide 2</div>
-            <div class="embla__slide">Slide 3</div>
+            {photos.map((photo) => (
+               <div class="embla__slide">
+                  <picture>
+                     {photo.extensions.map((extension) => (
+                        <source
+                           srcset={`https://picture-me.inthetrees.me/${photo.fallback.split(".")[0]}.${extension}`}
+                           type={`image/${extension}`}
+                        />
+                     ))}
+                     <img
+                        src={`https://picture-me.inthetrees.me/${photo.fallback}`}
+                        alt={photo.alt}
+                        width={photo.dimensions.width}
+                        height={photo.dimensions.height}
+                     />
+                  </picture>
+               </div>
+            ))}
+         </div>
          <div class="embla__buttons">
             <button
                class="embla__prev"
