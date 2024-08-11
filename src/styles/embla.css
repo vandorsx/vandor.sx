@@ -30,11 +30,12 @@
 .embla__next {
    touch-action: manipulation;
    @apply px-2 py-1 font-serif leading-none;
+   transition: opacity 0.27s ease-in-out;
 }
 
 .embla__prev:disabled,
 .embla__next:disabled {
-   @apply text-black/[.27];
+   opacity: 0.27;
 }
 
 .embla__prev {
