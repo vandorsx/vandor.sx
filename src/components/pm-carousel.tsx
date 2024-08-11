@@ -25,6 +25,13 @@ export default function PMCarousel() {
             <div class="embla__slide">Slide 1</div>
             <div class="embla__slide">Slide 2</div>
             <div class="embla__slide">Slide 3</div>
+         <div class="embla__buttons">
+            <button class="embla__prev" onClick={scrollPrev}>
+               &larr;
+            </button>
+            <button class="embla__next" onClick={scrollNext}>
+               &rarr;
+            </button>
          </div>
          <button class="embla__prev" onClick={scrollPrev}>
             Prev
