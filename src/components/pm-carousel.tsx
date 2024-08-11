@@ -14,6 +14,7 @@ interface Props {
 export default function PMCarousel({ photos }: Props) {
    const [options, setOptions] = createSignal<EmblaOptionsType>({
       container: ".embla__container",
+      slides: ".embla__slide",
    });
    const [emblaRef, emblaApi] = createEmblaCarousel(() => options());
    let api: EmblaCarouselType | undefined;
