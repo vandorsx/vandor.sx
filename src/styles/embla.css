@@ -32,6 +32,11 @@
    @apply px-2 py-1 font-serif leading-none;
 }
 
+.embla__prev:disabled,
+.embla__next:disabled {
+   @apply text-black/[.27];
+}
+
 .embla__prev {
    @apply -ml-2;
 }
