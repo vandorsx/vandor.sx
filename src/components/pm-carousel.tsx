@@ -71,6 +71,7 @@ export default function PMCarousel({ photos }: Props) {
                   class="embla__prev"
                   onClick={scrollPrev}
                   disabled={!canScrollPrev()}
+                  aria-label="Slide to previous image"
                >
                   &larr;
                </button>
@@ -78,6 +79,7 @@ export default function PMCarousel({ photos }: Props) {
                   class="embla__next"
                   onClick={scrollNext}
                   disabled={!canScrollNext()}
+                  aria-label="Slide to next image"
                >
                   &rarr;
                </button>
