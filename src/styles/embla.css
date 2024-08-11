@@ -1,6 +1,6 @@
 .embla {
    overflow: hidden;
-   @apply my-[1em];
+   @apply my-[2em];
 }
 
 .embla__container {
