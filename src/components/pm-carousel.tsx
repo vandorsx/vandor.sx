@@ -17,7 +17,9 @@ export default function PMCarousel() {
    onMount(() => {
       api = emblaApi();
 
-      if (api) api.on("slidesInView", updateCanScroll);
+      if (api) api.on("init", updateCanScroll);
+      if (api) api.on("reInit", updateCanScroll);
+      if (api) api.on("select", updateCanScroll);
    });
 
    const scrollPrev = () => {
