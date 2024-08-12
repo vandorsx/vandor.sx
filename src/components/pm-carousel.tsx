@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function PMCarousel({ photos }: Props) {
-   const [options, setOptions] = createSignal<EmblaOptionsType>({
+   const [options, _] = createSignal<EmblaOptionsType>({
       container: ".embla__container",
       slides: ".embla__slide",
    });
@@ -59,7 +59,6 @@ export default function PMCarousel({ photos }: Props) {
                         <img
                            src={`https://picture-me.inthetrees.me/${photo.fallback}`}
                            alt={photo.alt}
-                           loading={index === 0 ? "eager" : "lazy"}
                         />
                      </picture>
                   </div>
