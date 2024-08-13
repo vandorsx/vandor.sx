@@ -47,7 +47,7 @@ export default function PMCarousel({ photos }: Props) {
       <div class="embla" ref={emblaRef}>
          <div>
             <div class="embla__container">
-               {photos.map((photo, index) => (
+               {photos.map((photo) => (
                   <div class="embla__slide">
                      <picture>
                         {photo.extensions.map((extension) => (
