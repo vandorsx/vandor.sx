@@ -42,6 +42,6 @@
    opacity: 0.27;
 }
 
-.embla__prev {
-   @apply -ml-2;
+.embla__next {
+   @apply -mr-2;
 }
