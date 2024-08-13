@@ -10,7 +10,7 @@
 .embla__slide {
    flex: 0 0 auto;
    min-width: 0;
-   max-width: 100%;
+   max-width: 85%;
    align-self: center;
 }
 
