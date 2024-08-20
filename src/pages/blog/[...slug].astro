@@ -47,7 +47,7 @@ const { Content } = await entry.render();
                      content: entry.data.datePublished.toISOString(),
                   },
                   { property: "og:article:author", content: "Jade van Dorsten" },
-                  { property: "og:article:author", content: "inthetrees" },
+                  { property: "og:article:author", content: "vandorsx" },
                   {
                      name: "twitter:url",
                      content: new URL(Astro.url.pathname, Astro.site).toString(),
@@ -59,6 +59,18 @@ const { Content } = await entry.render();
                   },
                   { name: "twitter:card", content: "summary_large_image" },
                   { name: "twitter:image", content: entry.data.image },
+                  {
+                     name: "twitter:description",
+                     content: entry.data.description,
+                  },
+                  {
+                     name: "twitter:site",
+                     content: "@vandorsx",
+                  },
+                  {
+                     name: "twitter:creator",
+                     content: "@vandorsx",
+                  },
                ],
             }}
          />
@@ -83,7 +95,7 @@ const { Content } = await entry.render();
                      content: entry.data.datePublished.toISOString(),
                   },
                   { property: "og:article:author", content: "Jade van Dorsten" },
-                  { property: "og:article:author", content: "inthetrees" },
+                  { property: "og:article:author", content: "vandorsx" },
                   {
                      name: "twitter:url",
                      content: new URL(Astro.url.pathname, Astro.site).toString(),
@@ -92,6 +104,14 @@ const { Content } = await entry.render();
                   {
                      name: "twitter:description",
                      content: entry.data.description,
+                  },
+                  {
+                     name: "twitter:site",
+                     content: "@vandorsx",
+                  },
+                  {
+                     name: "twitter:creator",
+                     content: "@vandorsx",
                   },
                ],
             }}
