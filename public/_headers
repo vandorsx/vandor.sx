@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy : default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://picture-me.inthetrees.me https://micro.blog https://jade.micro.blog; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; connect-src 'self' https://micro.blog https://jade.micro.blog; upgrade-insecure-requests
+  Content-Security-Policy : default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://picture-me.inthetrees.me https://micro.blog https://jade.micro.blog; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; connect-src 'self' https://micro.blog https://jade.micro.blog https://cloudflareinsights.com https://static.cloudflareinsights.com; upgrade-insecure-requests
   X-Content-Type-Options : nosniff
   Referrer-Policy : no-referrer
   X-Frame-Options : DENY
