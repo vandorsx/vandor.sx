@@ -16,7 +16,7 @@ export default function PMCarousel({ photos, startIndex }: Props) {
    const [options, _] = createSignal<EmblaOptionsType>({
       container: ".embla__container",
       slides: ".embla__slide",
-      startIndex: startIndex || undefined,
+      startIndex: startIndex || 0,
    });
    const [emblaRef, emblaApi] = createEmblaCarousel(() => options());
    let api: EmblaCarouselType | undefined;
@@ -24,9 +24,20 @@ export default function PMCarousel({ photos, startIndex }: Props) {
    const [canScrollNext, setCanScrollNext] = createSignal(false);
    const [canScrollPrev, setCanScrollPrev] = createSignal(false);
 
+   let doStartSnap = startIndex ? true : false;
    const initFunction = () => {
-      if (startIndex && api!.selectedScrollSnap() !== startIndex) {
+      if (
+         doStartSnap &&
+         startIndex &&
+         api!.selectedScrollSnap() !== startIndex
+      ) {
          api!.scrollTo(startIndex);
+      } else if (
+         doStartSnap &&
+         startIndex &&
+         api!.selectedScrollSnap() === startIndex
+      ) {
+         doStartSnap = false;
       }
 
       updateCanScroll();
