@@ -9,12 +9,14 @@ interface Props {
       alt: string;
       title?: string;
    }[];
+   startIndex?: number;
 }
 
-export default function PMCarousel({ photos }: Props) {
+export default function PMCarousel({ photos, startIndex }: Props) {
    const [options, _] = createSignal<EmblaOptionsType>({
       container: ".embla__container",
       slides: ".embla__slide",
+      startIndex: startIndex || undefined,
    });
    const [emblaRef, emblaApi] = createEmblaCarousel(() => options());
    let api: EmblaCarouselType | undefined;
@@ -22,17 +24,27 @@ export default function PMCarousel({ photos }: Props) {
    const [canScrollNext, setCanScrollNext] = createSignal(false);
    const [canScrollPrev, setCanScrollPrev] = createSignal(false);
 
+   const initFunction = () => {
+      if (startIndex && api!.selectedScrollSnap() !== startIndex) {
+         api!.scrollTo(startIndex);
+      }
+
+      updateCanScroll();
+   };
+
    const updateCanScroll = () => {
-      if (api) setCanScrollNext(api.canScrollNext());
-      if (api) setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api!.canScrollNext());
+      setCanScrollPrev(api!.canScrollPrev());
    };
 
    onMount(() => {
       api = emblaApi();
 
-      if (api) api.on("init", updateCanScroll);
-      if (api) api.on("reInit", updateCanScroll);
-      if (api) api.on("select", updateCanScroll);
+      if (api) {
+         api.on("init", initFunction);
+         api.on("reInit", initFunction);
+         api.on("select", updateCanScroll);
+      }
    });
 
    const scrollPrev = () => {
