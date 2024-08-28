@@ -47,7 +47,7 @@ export default function BackLink({
       <div id="back-link">
          <a
             href={href}
-            class="font-serif text-xs italic text-black/[.34] hover:underline"
+            class="text-charcoal-250 font-serif text-xs italic hover:underline"
             onClick={handleClick}
          >
             &#8592;&nbsp;&nbsp;{text}

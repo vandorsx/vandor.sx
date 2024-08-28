@@ -106,7 +106,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   class="w-full border border-black/[.27] p-2 placeholder-black/[.27] outline-none"
                />
                <div class="flex items-center justify-between">
-                  <div class="font-serif text-xs italic text-black/[.54]">
+                  <div class="text-charcoal-500 font-serif text-xs italic">
                      Replying as{" "}
                      <span class="font-[327]">
                         <span class="mr-[.03125rem]">@</span>
@@ -115,7 +115,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   </div>
                   <button
                      type="submit"
-                     class="border border-black/[.27] px-2.5 font-serif italic hover:border-black/[.54] hover:bg-black/[.027]"
+                     class="hover:border-charcoal-500 border border-black/[.27] px-2.5 font-serif italic hover:bg-black/[.027]"
                   >
                      Reply
                   </button>
@@ -130,7 +130,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
          {!token() && !username() && (
             <div
                id="reply-area-buttons"
-               class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
+               class="text-charcoal-500 pt-3 text-right font-serif text-xs italic"
             >
                reply with{" "}
                <a

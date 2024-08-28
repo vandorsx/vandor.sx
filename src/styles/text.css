@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-   @apply text-black/[.92];
+   @apply text-charcoal-900;
 }
 
 p {
@@ -13,7 +13,7 @@ p {
 
 a:not(.incognito) {
    @apply underline underline-offset-1;
-   @apply decoration-black/[.27] hover:decoration-raspberry;
+   @apply hover:decoration-matcha decoration-black/[.27];
 }
 
 /* wavy underline for webkit only */
