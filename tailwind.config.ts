@@ -11,6 +11,7 @@ export default {
          },
          colors: {
             raspberry: "#fdcbe2",
+            hye: "#f5f2ef",
          },
          fontSize: {
             "slightly-smaller": "calc(1em - 1px)",
