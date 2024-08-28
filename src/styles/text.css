@@ -45,13 +45,13 @@ article ol {
 }
 
 .image-wrapper {
-   @apply flex justify-center;
+   @apply flex;
    @apply my-[1.5em];
+   @apply max-h-[605px] max-w-full;
+   @apply object-contain;
 }
 
 .image-wrapper img {
-   @apply max-h-[605px] max-w-full;
-   @apply object-contain;
    @apply bg-black/[.027];
 }
 
