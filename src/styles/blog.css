@@ -37,5 +37,4 @@ picture {
 picture img {
    @apply max-h-[605px] max-w-full;
    @apply object-contain;
-   @apply bg-black/[.027];
 }
