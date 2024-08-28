@@ -13,7 +13,7 @@ p {
 
 a:not(.incognito) {
    @apply underline underline-offset-1;
-   @apply hover:decoration-matcha decoration-black/[.27];
+   @apply hover:decoration-matcha decoration-charcoal-250;
 }
 
 /* wavy underline for webkit only */
