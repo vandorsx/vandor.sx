@@ -64,9 +64,10 @@ blockquote {
 
 .rich-link {
    @apply not-italic;
+   @apply bg-white;
    font-variation-settings: "ital" 0;
    @apply my-[1em] ml-0 p-2;
-   @apply border border-black/[.54];
+   @apply border-charcoal-500 border;
    @apply flex flex-col gap-1;
 
    p {
