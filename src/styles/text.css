@@ -30,18 +30,19 @@ article ol {
    @apply list-decimal;
 }
 
-article ul, article ol {
-   @apply pl-[1em] ml-[1em];
+article ul,
+article ol {
+   @apply ml-[1em] pl-[1em];
 }
 
 .image-wrapper {
-   @apply flex justify-center;
+   @apply flex;
    @apply my-[1.5em];
+   @apply max-h-[605px] max-w-full;
+   @apply object-contain;
 }
 
 .image-wrapper img {
-   @apply max-h-[605px] max-w-full;
-   @apply object-contain;
    @apply bg-black/[.027];
 }
 
@@ -90,7 +91,7 @@ blockquote {
 }
 
 .astro-code {
-   @apply grayscale hover:grayscale-0 transition-all duration-[189ms];
+   @apply grayscale transition-all duration-[189ms] hover:grayscale-0;
    @apply border border-black/[.54];
    @apply my-[1em] p-2;
 }
