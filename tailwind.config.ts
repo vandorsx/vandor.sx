@@ -10,14 +10,7 @@ export default {
             serif: ["seven serif", ...defaultTheme.fontFamily.serif],
          },
          colors: {
-            matcha: "#7f9862",
-            charcoal: {
-               100: "#f5f2ef",
-               250: "#b5b3ae",
-               500: "#8c8c8c",
-               750: "#232323",
-               900: "#070707",
-            },
+            raspberry: "#fdcbe2",
          },
          fontSize: {
             "slightly-smaller": "calc(1em - 1px)",

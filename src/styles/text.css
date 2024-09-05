@@ -1,19 +1,10 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   @apply text-charcoal-900;
-}
-
 p {
    @apply my-[1em];
 }
 
 a:not(.incognito) {
    @apply underline underline-offset-1;
-   @apply hover:decoration-matcha decoration-charcoal-250;
+   @apply decoration-black/[.27] hover:decoration-raspberry;
 }
 
 /* wavy underline for webkit only */
@@ -64,10 +55,9 @@ blockquote {
 
 .rich-link {
    @apply not-italic;
-   @apply bg-white;
    font-variation-settings: "ital" 0;
    @apply my-[1em] ml-0 p-2;
-   @apply border-charcoal-500 border;
+   @apply border border-black/[.54];
    @apply flex flex-col gap-1;
 
    p {
