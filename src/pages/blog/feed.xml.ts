@@ -8,7 +8,7 @@ const AUTHOR = "jade@vandor.sx";
 export const GET: APIRoute = async () => {
    const blog = await getCollection("blog");
    return rss({
-      title: "inthetrees blog",
+      title: "Jade van Dörsten - Blog",
       description:
          "Where I publish longer-form writing and content that I consider to be more evergreen in nature.",
       site: `https://${SITE}/blog`,
