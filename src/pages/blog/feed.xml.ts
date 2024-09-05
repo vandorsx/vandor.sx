@@ -2,8 +2,8 @@ import type { APIRoute } from "astro";
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-const SITE = "jade.van-dorsten.net";
-const AUTHOR = "jade@van-dorsten.net";
+const SITE = "vandor.sx";
+const AUTHOR = "jade@vandor.sx";
 
 export const GET: APIRoute = async () => {
    const blog = await getCollection("blog");

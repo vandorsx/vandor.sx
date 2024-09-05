@@ -20,7 +20,7 @@ export default defineConfig({
       prefetchAll: true,
       defaultStrategy: "hover",
    },
-   site: "https://jade.van-dorsten.net",
+   site: "https://vandor.sx",
    markdown: {
       shikiConfig: {
          theme: "slack-ochin",
