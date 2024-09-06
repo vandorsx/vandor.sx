@@ -30,11 +30,12 @@ h4 {
 }
 
 picture {
-   @apply flex justify-center;
    @apply my-[1.5em];
+   @apply flex justify-center;
 }
 
 picture img {
-   @apply max-h-[605px] max-w-full;
+   @apply max-h-[605px] w-auto;
    @apply object-contain;
+   @apply bg-black/[.027];
 }
