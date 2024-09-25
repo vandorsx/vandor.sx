@@ -39,3 +39,16 @@ picture img {
    @apply object-contain;
    @apply bg-black/[.027];
 }
+
+figure {
+   @apply my-[1.5em];
+}
+
+figure > picture {
+   @apply my-0;
+}
+
+figcaption {
+   @apply mt-[0.75em];
+   font-variation-settings: "ital" 0.5;
+}
