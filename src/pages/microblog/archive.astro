@@ -83,6 +83,7 @@ const getPageNumber = (path: string) => {
                            "/microblog/archive"
                         :  `/microblog/archive?page=${getPageNumber(archive.previous_page)}`
                      }
+                     aria-label="Previous page in the archive"
                   >
                      &larr;
                   </a>
@@ -92,6 +93,7 @@ const getPageNumber = (path: string) => {
                archive.next_page && (
                   <a
                      href={`/microblog/archive?page=${getPageNumber(archive.next_page)}`}
+                     aria-label="Next page in the archive"
                   >
                      &rarr;
                   </a>
