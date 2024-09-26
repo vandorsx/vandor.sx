@@ -23,6 +23,16 @@ export type MicroblogPhoto = {
    height: number;
 };
 
+export type MicroblogArchive = {
+   page: number;
+   pages: number;
+   total_items: number;
+   items_per_page: number;
+   next_page: string | null;
+   previous_page: string | null;
+   items: Microblog[];
+};
+
 export type Microblog = {
    id: string;
    date_published: string;
@@ -51,7 +61,7 @@ export async function getArchive(archiveUrl: string) {
       throw new Error(`Failed to fetch microblog archive: ${res.status}`);
    } else {
       const json = await res.json();
-      return json.items;
+      return json;
    }
 }
 
