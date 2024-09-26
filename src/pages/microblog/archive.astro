@@ -9,9 +9,9 @@ import "~styles/text.css";
 import type { MicroblogArchive } from "~libs/microblog";
 import { getArchive } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
-import FeedSkeleton from "~components/microblog/feed-skeleton";
 
 const page = Number(Astro.url.searchParams.get("page"));
+
 let archive: MicroblogArchive;
 let error: Error | undefined = undefined;
 try {
@@ -30,6 +30,12 @@ try {
       items: [],
    };
 }
+
+const getPageNumber = (path: string) => {
+   const match = path.match(/\d+/);
+   if (!match && path === "/api/archive/list.json") return 1;
+   return match ? Number(match[0]) : null;
+};
 ---
 
 <Layout>
@@ -50,10 +56,35 @@ try {
             day, posts get archived here.
          </p>
       </div>
-      <Feed posts={archive.items} error={error} server:defer>
-         <div slot="fallback">
-            <FeedSkeleton postCount={27} />
+      <Feed posts={archive.items} error={error} />
+
+      <div class="flex justify-between font-serif w-full">
+         <div>
+            {
+               archive.previous_page && (
+                  <a
+                     href={
+                        getPageNumber(archive.previous_page) === 1 ?
+                           "/microblog/archive"
+                        :  `/microblog/archive?page=${getPageNumber(archive.previous_page)}`
+                     }
+                  >
+                     &larr;
+                  </a>
+               )
+            }
          </div>
-      </Feed>
+         <div class="text-right">
+            {
+               archive.next_page && (
+                  <a
+                     href={`/microblog/archive?page=${getPageNumber(archive.next_page)}`}
+                  >
+                     &rarr;
+                  </a>
+               )
+            }
+         </div>
+      </div>
    </div>
 </Layout>
