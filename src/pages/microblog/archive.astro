@@ -6,15 +6,23 @@ import Layout from "~layouts/base.astro";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-import type { Microblog } from "~libs/microblog";
-import { getPosts } from "~libs/microblog";
+import type { MicroblogArchive } from "~libs/microblog";
+import { getArchive } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
 import FeedSkeleton from "~components/microblog/feed-skeleton";
 
-let posts: Microblog[] = [];
+let archive: MicroblogArchive = {
+   page: 1,
+   pages: 1,
+   total_items: 0,
+   items_per_page: 0,
+   next_page: null,
+   previous_page: null,
+   items: [],
+};
 let error: Error | undefined = undefined;
 try {
-   posts = await getPosts(
+   archive = await getArchive(
       `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`,
    );
 } catch (e) {
@@ -41,7 +49,7 @@ try {
             day, posts get archived here.
          </p>
       </div>
-      <Feed {posts} {error} server:defer>
+      <Feed posts={archive.items} error={error} server:defer>
          <div slot="fallback">
             <FeedSkeleton postCount={27} />
          </div>
