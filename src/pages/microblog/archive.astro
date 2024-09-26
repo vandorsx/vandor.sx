@@ -6,22 +6,47 @@ import Layout from "~layouts/base.astro";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-import type { Microblog } from "~libs/microblog";
-import { getPosts } from "~libs/microblog";
+import type { MicroblogArchive } from "~libs/microblog";
+import { getArchive } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
-import FeedSkeleton from "~components/microblog/feed-skeleton";
 
-let posts: Microblog[] = [];
+const page = Number(Astro.url.searchParams.get("page"));
+
+let archive: MicroblogArchive;
 let error: Error | undefined = undefined;
 try {
-   posts = await getPosts(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`,
-   );
+   archive = await getArchive(page);
 } catch (e) {
    error = e as Error;
    console.error(error);
+
+   archive = {
+      page: 0,
+      pages: 0,
+      total_items: 0,
+      items_per_page: 0,
+      next_page: null,
+      previous_page: null,
+      items: [],
+   };
 }
+
+const getPageNumber = (path: string) => {
+   const match = path.match(/\d+/);
+   if (!match && path === "/api/archive/list.json") return 1;
+   return match ? Number(match[0]) : null;
+};
 ---
+
+<style>
+   #pagination-links > a {
+      @apply no-underline;
+   }
+
+   #pagination-links > a:hover {
+      @apply underline;
+   }
+</style>
 
 <Layout>
    <SEO
@@ -41,10 +66,38 @@ try {
             day, posts get archived here.
          </p>
       </div>
-      <Feed {posts} {error} server:defer>
-         <div slot="fallback">
-            <FeedSkeleton postCount={27} />
+      <Feed posts={archive.items} error={error} />
+
+      <div
+         id="reply-area-buttons"
+         class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
+      >
+         <span>Page {archive.page} of {archive.pages}</span>
+         <div id="pagination-links" class="pt-1">
+            {
+               archive.previous_page && (
+                  <a
+                     class="mr-2"
+                     href={
+                        getPageNumber(archive.previous_page) === 1 ?
+                           "/microblog/archive"
+                        :  `/microblog/archive?page=${getPageNumber(archive.previous_page)}`
+                     }
+                  >
+                     &larr;
+                  </a>
+               )
+            }
+            {
+               archive.next_page && (
+                  <a
+                     href={`/microblog/archive?page=${getPageNumber(archive.next_page)}`}
+                  >
+                     &rarr;
+                  </a>
+               )
+            }
          </div>
-      </Feed>
+      </div>
    </div>
 </Layout>

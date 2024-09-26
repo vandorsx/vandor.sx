@@ -1,8 +1,20 @@
+const pagesWithQueryParams: string[] = ["/microblog/archive"];
+
 function initializePathTracker() {
    if (!sessionStorage.getItem("path-stack")) {
       sessionStorage.setItem("path-stack", JSON.stringify([]));
    }
-   updatePathStack(window.location.pathname);
+   updatePathStack(getFullPath());
+}
+
+function getFullPath(): string {
+   const pathname = window.location.pathname;
+
+   if (pagesWithQueryParams.includes(pathname)) {
+      return pathname + window.location.search;
+   } else {
+      return pathname;
+   }
 }
 
 function updatePathStack(newPath: string) {
@@ -24,7 +36,7 @@ function updatePathStack(newPath: string) {
 
 function trackPath() {
    try {
-      const path = window.location.pathname;
+      const path = getFullPath();
       updatePathStack(path);
    } catch (e) {
       console.error("Error tracking path:", e);

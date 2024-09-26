@@ -23,6 +23,16 @@ export type MicroblogPhoto = {
    height: number;
 };
 
+export type MicroblogArchive = {
+   page: number;
+   pages: number;
+   total_items: number;
+   items_per_page: number;
+   next_page: string | null;
+   previous_page: string | null;
+   items: Microblog[];
+};
+
 export type Microblog = {
    id: string;
    date_published: string;
@@ -42,6 +52,27 @@ export async function getPosts(feed: string) {
    } else {
       const json = await res.json();
       return json.items;
+   }
+}
+
+export async function getArchive(page: number) {
+   let res: Response;
+
+   if (page <= 1) {
+      res = await fetch(
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/list.json`,
+      );
+   } else {
+      res = await fetch(
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/${page}/list.json`,
+      );
+   }
+
+   if (!res.ok) {
+      throw new Error(`Failed to fetch microblog archive: ${res.status}`);
+   } else {
+      const json = await res.json();
+      return json;
    }
 }
 
