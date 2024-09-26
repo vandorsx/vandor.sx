@@ -45,6 +45,16 @@ export async function getPosts(feed: string) {
    }
 }
 
+export async function getArchive(archiveUrl: string) {
+   const res = await fetch(archiveUrl);
+   if (!res.ok) {
+      throw new Error(`Failed to fetch microblog archive: ${res.status}`);
+   } else {
+      const json = await res.json();
+      return json.items;
+   }
+}
+
 export const getPost = async (
    id: string,
    dateParams?: { year: string; month: string; day: string },
