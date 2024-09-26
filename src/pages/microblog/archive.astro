@@ -38,6 +38,16 @@ const getPageNumber = (path: string) => {
 };
 ---
 
+<style>
+   #pagination-links > a {
+      @apply no-underline;
+   }
+
+   #pagination-links > a:hover {
+      @apply underline;
+   }
+</style>
+
 <Layout>
    <SEO
       slot="seo"
@@ -58,11 +68,16 @@ const getPageNumber = (path: string) => {
       </div>
       <Feed posts={archive.items} error={error} />
 
-      <div class="flex justify-between font-serif w-full">
-         <div>
+      <div
+         id="reply-area-buttons"
+         class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
+      >
+         <span>Page {archive.page} of {archive.pages}</span>
+         <div id="pagination-links" class="pt-1">
             {
                archive.previous_page && (
                   <a
+                     class="mr-2"
                      href={
                         getPageNumber(archive.previous_page) === 1 ?
                            "/microblog/archive"
@@ -73,8 +88,6 @@ const getPageNumber = (path: string) => {
                   </a>
                )
             }
-         </div>
-         <div class="text-right">
             {
                archive.next_page && (
                   <a
