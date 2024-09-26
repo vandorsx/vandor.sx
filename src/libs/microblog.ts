@@ -55,8 +55,19 @@ export async function getPosts(feed: string) {
    }
 }
 
-export async function getArchive(archiveUrl: string) {
-   const res = await fetch(archiveUrl);
+export async function getArchive(page: number) {
+   let res: Response;
+
+   if (page <= 1) {
+      res = await fetch(
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/list.json`,
+      );
+   } else {
+      res = await fetch(
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/${page}/list.json`,
+      );
+   }
+
    if (!res.ok) {
       throw new Error(`Failed to fetch microblog archive: ${res.status}`);
    } else {

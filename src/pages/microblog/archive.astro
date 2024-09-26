@@ -11,23 +11,24 @@ import { getArchive } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
 import FeedSkeleton from "~components/microblog/feed-skeleton";
 
-let archive: MicroblogArchive = {
-   page: 1,
-   pages: 1,
-   total_items: 0,
-   items_per_page: 0,
-   next_page: null,
-   previous_page: null,
-   items: [],
-};
+const page = Number(Astro.url.searchParams.get("page"));
+let archive: MicroblogArchive;
 let error: Error | undefined = undefined;
 try {
-   archive = await getArchive(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/all.json`,
-   );
+   archive = await getArchive(page);
 } catch (e) {
    error = e as Error;
    console.error(error);
+
+   archive = {
+      page: 0,
+      pages: 0,
+      total_items: 0,
+      items_per_page: 0,
+      next_page: null,
+      previous_page: null,
+      items: [],
+   };
 }
 ---
 
