@@ -90,6 +90,12 @@ blockquote {
    }
 }
 
+code {
+   @apply font-mono;
+   @apply text-[calc(1em-1.25px)];
+   @apply rounded-lg bg-black/[.027] px-1 py-[0.0625rem];
+}
+
 .astro-code {
    @apply grayscale transition-all duration-[189ms] hover:grayscale-0;
    @apply border border-black/[.54];
