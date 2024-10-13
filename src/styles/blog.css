@@ -37,7 +37,6 @@ picture {
 picture img {
    @apply max-h-[605px] w-auto;
    @apply object-contain;
-   @apply bg-black/[.027];
 }
 
 figure {
@@ -52,3 +51,18 @@ figcaption {
    @apply mt-[0.75em];
    font-variation-settings: "ital" 0.5;
 }
+
+/* START IMAGE EXTENSION */
+
+picture > img:not(.embla__slide picture > img),
+.embla {
+   width: calc(100% + 3.5rem);
+   @apply -mx-7;
+   @apply max-w-none;
+}
+
+.embla__meta {
+   @apply mr-7;
+}
+
+/* END IMAGE EXTENSION */
