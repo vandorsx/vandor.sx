@@ -47,7 +47,7 @@ article ol {
 }
 
 blockquote {
-   @apply border-l border-black;
+   @apply border-l border-black/[.54];
    @apply ml-4 pl-4;
    font-variation-settings: "ital" 0.5;
    @apply text-slightly-smaller;
