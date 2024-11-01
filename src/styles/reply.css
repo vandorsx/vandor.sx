@@ -15,7 +15,9 @@
    @apply my-[0.75em];
 }
 
-.reply-content a:first-of-type {
+.reply-content :first-child a[href^="https://micro.blog/"]:first-of-type
+{
    @apply no-underline;
+   font-variation-settings: "ital" 0.27;
    @apply font-[327];
 }
