@@ -29,7 +29,8 @@ h4 {
    @apply text-[1.03125rem];
 }
 
-picture {
+picture,
+video {
    @apply my-[1.5em];
    @apply flex justify-center;
 }
@@ -55,7 +56,8 @@ figcaption {
 /* START IMAGE EXTENSION */
 
 picture > img:not(.embla__slide picture > img),
-.embla {
+.embla,
+video {
    width: calc(100% + 3.5rem);
    @apply -mx-7;
    @apply max-w-none;
