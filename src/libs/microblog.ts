@@ -41,6 +41,7 @@ export type Microblog = {
    photos?: MicroblogPhoto[];
    url: string;
    content_html: string;
+   titled_post: boolean;
    title?: string;
    description?: string;
 };
