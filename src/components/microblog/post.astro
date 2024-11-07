@@ -77,8 +77,8 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                {post.titled_post && <h2>{post.title}</h2>}
             </a>
          </header>
-      :  <header class="font-serif mb-4 leading-none">
-            <div class="inline-flex flex-col gap-2">
+      :  <header class="font-serif mb-4 pt-1 leading-none">
+            <div class="inline-flex flex-col gap-3">
                <span
                   class="italic text-black/[.72]"
                   class:list={[{ "text-[calc(1em-1px)]": post.titled_post }]}
@@ -101,7 +101,7 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                   </time>
                </span>
                {post.titled_post && (
-                  <h2 class="inline-block leading-none text-[calc(1em+1px)]">
+                  <h2 class="inline-block pb-1 leading-none text-[calc(1em+1px)]">
                      {post.title}
                   </h2>
                )}
