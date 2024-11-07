@@ -2,7 +2,8 @@ p {
    @apply my-[1em];
 }
 
-a:not(.incognito) {
+a:not(.incognito),
+.anchor {
    @apply underline underline-offset-1;
    @apply decoration-black/[.27] hover:decoration-raspberry;
 }
@@ -10,7 +11,8 @@ a:not(.incognito) {
 /* wavy underline for webkit only */
 _::-webkit-full-page-media,
 _:future,
-:root a:not(.incognito) {
+:root a:not(.incognito),
+.anchor {
    @apply decoration-wavy underline-offset-2;
 }
 
