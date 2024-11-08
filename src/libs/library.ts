@@ -24,3 +24,20 @@ export type Bookshelf = {
       books_count: number;
    };
 };
+
+export async function getBooks(bookshelf_id: number) {
+   const res = await fetch(
+      `https://micro.blog/books/bookshelves/${bookshelf_id}`,
+      {
+         headers: {
+            Authorization: `Bearer ${import.meta.env.MICROBLOG_API_TOKEN}`,
+         },
+      },
+   );
+   if (!res.ok) {
+      throw new Error(`Failed to fetch bookshelf: ${res.status}`);
+   } else {
+      const json = await res.json();
+      return json.items;
+   }
+}
