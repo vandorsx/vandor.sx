@@ -107,19 +107,3 @@ code {
 #back-link > a {
    @apply no-underline hover:underline;
 }
-
-.wp-dl {
-   @apply py-[1em];
-}
-
-.wp-dl > dt {
-   @apply font-serif italic;
-}
-
-.wp-dl > dt:not(:first-child) {
-   @apply mt-[1em];
-}
-
-.wp-dl > dd {
-   @apply ml-[2em];
-}
