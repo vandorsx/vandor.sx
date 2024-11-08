@@ -1,4 +1,4 @@
-export type Bookshelf = {
+export type Book = {
    id: number;
    title: string;
    content_text?: string;
@@ -11,9 +11,9 @@ export type Bookshelf = {
    _microblog: {
       isbn: string;
    };
-}[];
+};
 
-export type Library = {
+export type Bookshelf = {
    id: number;
    title: string;
    content_text?: string;
@@ -23,4 +23,4 @@ export type Library = {
       type: string;
       books_count: number;
    };
-}[];
+};
