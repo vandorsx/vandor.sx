@@ -41,6 +41,7 @@ try {
    img {
       @apply h-auto max-w-12 object-cover;
       @apply bg-black/[.027];
+      aspect-ratio: 0.7;
    }
 </style>
 
@@ -67,7 +68,7 @@ try {
                                  src={`https://cdn.micro.blog/photos/96x/${encodeURIComponent(book.image)}`}
                                  alt={`Cover of ${book.title}`}
                                  width="48"
-                                 height="71"
+                                 loading="lazy"
                               />
                            </a>
                            <div class="flex flex-col">
