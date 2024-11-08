@@ -1,0 +1,50 @@
+---
+import Page from "~layouts/page.astro";
+import LinkTree from "./_linktree.json";
+---
+
+<style>
+   dl {
+      @apply py-[0.75em];
+   }
+
+   dl > dt {
+      @apply font-serif italic;
+   }
+
+   dl > dt:not(:first-child) {
+      @apply mt-[0.5em];
+   }
+
+   dl > dd {
+      @apply ml-[2em];
+   }
+</style>
+
+<Page
+   title="My web presence"
+   description="Outbound links to my presence on the web."
+   backlink="/"
+   backtext="index"
+   intro="I am found various places on the web — here are some of those places."
+>
+   {
+      LinkTree.tree.map((category) => (
+         <>
+            <h2 class="font-serif text-[calc(1em+1px)] font-[327] mt-[1em]">
+               {category.category}
+            </h2>
+            <dl class="wp-dl">
+               {category.links.map((link) => (
+                  <>
+                     <dt>{link.platform}</dt>
+                     <dd>
+                        <a href={link.url}>{link.username}</a>
+                     </dd>
+                  </>
+               ))}
+            </dl>
+         </>
+      ))
+   }
+</Page>
