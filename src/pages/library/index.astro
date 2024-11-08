@@ -1,7 +1,25 @@
 ---
-const shelfOrder = ["currently reading", "finished reading", "want to read"].map(
-   (s) => s.toLowerCase(),
-);
+type ShelfConfig = {
+   weight: number;
+   datePrefix: string;
+};
+
+type ShelfName = "currently reading" | "finished reading" | "want to read";
+
+const libraryConfig: Record<ShelfName, ShelfConfig> = {
+   "currently reading": {
+      weight: 0,
+      datePrefix: "Started",
+   },
+   "finished reading": {
+      weight: 1,
+      datePrefix: "Finished",
+   },
+   "want to read": {
+      weight: 2,
+      datePrefix: "Added",
+   },
+} as const;
 
 import {
    type Book,
