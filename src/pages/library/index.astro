@@ -1,4 +1,8 @@
 ---
+const shelfOrder = ["currently reading", "finished reading", "want to read"].map(
+   (s) => s.toLowerCase(),
+);
+
 import {
    type Book,
    type Bookshelf,
@@ -12,6 +16,12 @@ let booksByShelf: Record<number, Book[]> = {};
 
 try {
    bookshelves = await getBookshelves();
+
+   bookshelves.sort((a, b) => {
+      const indexA = shelfOrder.indexOf(a.title.toLowerCase());
+      const indexB = shelfOrder.indexOf(b.title.toLowerCase());
+      return indexA - indexB;
+   });
 
    for (const shelf of bookshelves) {
       try {
