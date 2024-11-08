@@ -1,0 +1,91 @@
+---
+import {
+   type Book,
+   type Bookshelf,
+   getBooks,
+   getBookshelves,
+} from "~libs/library";
+import Page from "~layouts/page.astro";
+
+let bookshelves: Bookshelf[] = [];
+let booksByShelf: Record<number, Book[]> = {};
+
+try {
+   bookshelves = await getBookshelves();
+
+   for (const shelf of bookshelves) {
+      try {
+         const books = await getBooks(shelf.id);
+         booksByShelf[shelf.id] = books;
+      } catch (error) {
+         console.error(`Error fetching books from shelf ${shelf.id}:`, error);
+         booksByShelf[shelf.id] = [];
+      }
+   }
+} catch (e) {
+   console.error(e as Error);
+}
+---
+
+<style>
+   img {
+      @apply h-auto max-w-12 object-cover;
+      @apply bg-black/[.027];
+   }
+</style>
+
+<Page
+   title="Library"
+   description="A list of books I've read, books I'm currently reading, and books I'd like to read."
+   backlink="/"
+   backtext="index"
+   intro="A list of books I've read, books I'm currently reading, and books I'd like to read."
+>
+   <div class="flex flex-col gap-5 mt-[1em]">
+      {
+         bookshelves.map((shelf) => (
+            <section>
+               <h2 class="font-serif text-[1.03125rem] font-[327]">
+                  {shelf.title}
+               </h2>
+               {booksByShelf[shelf.id]?.length > 0 ?
+                  <ul>
+                     {booksByShelf[shelf.id]?.map((book) => (
+                        <li class="flex gap-2 my-4">
+                           <a href={book.url}>
+                              <img
+                                 src={`https://cdn.micro.blog/photos/96x/${encodeURIComponent(book.image)}`}
+                                 alt={`Cover of ${book.title}`}
+                                 width="48"
+                                 height="71"
+                              />
+                           </a>
+                           <div class="flex flex-col">
+                              <h3 class="font-[327]">{book.title}</h3>
+                              <span>
+                                 <i>by</i>{" "}
+                                 {book.authors
+                                    .map((author) => author.name)
+                                    .join(", ")}
+                              </span>
+                              <span class="mt-2 text-xs text-black/[.72]">
+                                 <i>
+                                    {new Date(
+                                       book.date_published,
+                                    ).toLocaleString("en-US", {
+                                       year: "numeric",
+                                       month: "long",
+                                       day: "numeric",
+                                    })}
+                                 </i>
+                              </span>
+                           </div>
+                        </li>
+                     ))}
+                  </ul>
+               :  <p class="text-black/50">It appears this shelf is empty.</p>}
+            </section>
+         ))
+      }
+   </div>
+</Page>
