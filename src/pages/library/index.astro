@@ -116,6 +116,11 @@ try {
                               </span>
                               <span class="mt-2 text-xs text-black/[.72]">
                                  <i>
+                                    {
+                                       libraryConfig[
+                                          shelf.title.toLowerCase() as ShelfName
+                                       ].datePrefix
+                                    }{" "}
                                     {new Date(
                                        book.date_published,
                                     ).toLocaleString("en-US", {
