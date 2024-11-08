@@ -36,9 +36,9 @@ try {
    bookshelves = await getBookshelves();
 
    bookshelves.sort((a, b) => {
-      const indexA = shelfOrder.indexOf(a.title.toLowerCase());
-      const indexB = shelfOrder.indexOf(b.title.toLowerCase());
-      return indexA - indexB;
+      const weightA = libraryConfig[a.title.toLowerCase() as ShelfName].weight;
+      const weightB = libraryConfig[b.title.toLowerCase() as ShelfName].weight;
+      return weightA - weightB;
    });
 
    for (const shelf of bookshelves) {
