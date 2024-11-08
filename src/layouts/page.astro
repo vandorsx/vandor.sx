@@ -4,30 +4,42 @@ import { SEO } from "astro-seo";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-const { frontmatter } = Astro.props;
+import type { MarkdownLayoutProps } from "astro";
+
+type BaseProps = {
+   title: string;
+   description: string;
+   backlink?: string;
+   backtext?: string;
+   intro?: string;
+};
+
+type Props = MarkdownLayoutProps<BaseProps> | BaseProps;
+
+const props = Astro.props;
+const pageData = "frontmatter" in props ? props.frontmatter : props;
 ---
 
 <Layout>
-   <SEO
-      slot="seo"
-      title={frontmatter.title}
-      description={frontmatter.description}
-   />
+   <SEO slot="seo" title={pageData.title} description={pageData.description} />
 
    {
-      frontmatter.backlink && frontmatter.backtext && (
+      pageData.backlink && pageData.backtext && (
          <header slot="header" class="leading-none">
             <BackLink
-               href={frontmatter.backlink}
-               text={frontmatter.backtext}
+               href={pageData.backlink}
+               text={pageData.backtext}
                client:load
             />
          </header>
       )
    }
 
-   <div class="flex flex-col gap-3">
-      <h1 class="font-serif text-xl font-[354]">{frontmatter.title}</h1>
+   <div class="flex flex-col gap-3.5">
+      <div>
+         <h1 class="font-serif text-xl font-[354]">{pageData.title}</h1>
+         {pageData.intro && <p class="my-2">{pageData.intro}</p>}
+      </div>
       <div>
          <slot />
       </div>
