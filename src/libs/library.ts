@@ -12,3 +12,15 @@ export type Bookshelf = {
       isbn: string;
    };
 }[];
+
+export type Library = {
+   id: number;
+   title: string;
+   content_text?: string;
+   url: string;
+   date_published: string;
+   _microblog: {
+      type: string;
+      books_count: number;
+   };
+}[];
