@@ -38,6 +38,10 @@ try {
 ---
 
 <style>
+   .intro p {
+      @apply my-2;
+   }
+
    img {
       @apply h-auto max-w-12 object-cover;
       @apply bg-black/[.027];
@@ -51,11 +55,19 @@ try {
    backlink="/"
    backtext="index"
 >
-   <p slot="intro" class="my-2">
-      Welcome to my library. Here you'll find a list of books I've read, books
-      I'm currently reading, and books I'd like to read. As you can see, my
-      shelves are a bit sparse at the moment.
-   </p>
+   <div slot="intro" class="intro">
+      <p>
+         Welcome to my library. Here you'll find a list of books I've read, books
+         I'm currently reading, and books I'd like to read. As you can see, my
+         shelves are a bit sparse at the moment.
+      </p>
+
+      <p>
+         My library is proudly powered by <a
+            href="https://help.micro.blog/t/books-on-micro-blog/35"
+            >Micro.blog.</a>
+      </p>
+   </div>
 
    <div class="flex flex-col gap-5 mt-[1em]">
       {
