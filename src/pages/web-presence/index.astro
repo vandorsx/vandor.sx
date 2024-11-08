@@ -8,10 +8,6 @@ import LinkTree from "./_linktree.json";
       @apply py-[0.75em];
    }
 
-   dl > dt {
-      @apply font-serif italic;
-   }
-
    dl > dt:not(:first-child) {
       @apply mt-[0.5em];
    }
@@ -39,7 +35,9 @@ import LinkTree from "./_linktree.json";
                   <>
                      <dt>{link.platform}</dt>
                      <dd>
-                        <a href={link.url}>{link.username}</a>
+                        <a href={link.url}>
+                           <i>{link.username}</i>
+                        </a>
                      </dd>
                   </>
                ))}
