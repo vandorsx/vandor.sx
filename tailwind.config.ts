@@ -11,7 +11,7 @@ export default {
             mono: ["seven mono", ...defaultTheme.fontFamily.mono],
          },
          colors: {
-            raspberry: "#fdcbe2",
+            accent: "#85430D",
          },
          fontSize: {
             "slightly-smaller": "calc(1em - 1px)",
