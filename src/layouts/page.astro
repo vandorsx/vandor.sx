@@ -11,7 +11,6 @@ type BaseProps = {
    description: string;
    backlink?: string;
    backtext?: string;
-   intro?: string;
 };
 
 type Props = MarkdownLayoutProps<BaseProps> | BaseProps;
@@ -38,7 +37,7 @@ const pageData = "frontmatter" in props ? props.frontmatter : props;
    <div class="flex flex-col gap-3.5">
       <div>
          <h1 class="font-serif text-xl font-[354]">{pageData.title}</h1>
-         {pageData.intro && <p class="my-2">{pageData.intro}</p>}
+         <slot name="intro" />
       </div>
       <div>
          <slot />
