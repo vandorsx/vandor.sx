@@ -3,7 +3,6 @@ export const prerender = false;
 
 type ShelfConfig = {
    weight: number;
-   datePrefix: string;
 };
 
 type ShelfName = "currently reading" | "finished reading" | "want to read";
@@ -11,15 +10,12 @@ type ShelfName = "currently reading" | "finished reading" | "want to read";
 const libraryConfig: Record<ShelfName, ShelfConfig> = {
    "currently reading": {
       weight: 0,
-      datePrefix: "Started",
    },
    "finished reading": {
       weight: 1,
-      datePrefix: "Finished",
    },
    "want to read": {
       weight: 2,
-      datePrefix: "Added",
    },
 } as const;
 
@@ -119,21 +115,8 @@ try {
                                     .map((author) => author.name)
                                     .join(", ")}
                               </span>
-                              <span class="mt-2 text-xs text-black/[.72]">
-                                 <i>
-                                    {
-                                       libraryConfig[
-                                          shelf.title.toLowerCase() as ShelfName
-                                       ].datePrefix
-                                    }{" "}
-                                    {new Date(
-                                       book.date_published,
-                                    ).toLocaleString("en-US", {
-                                       year: "numeric",
-                                       month: "long",
-                                       day: "numeric",
-                                    })}
-                                 </i>
+                              <span class="mt-2 text-xs text-black/[.54]">
+                                 <i>{book._microblog.isbn}</i>
                               </span>
                            </div>
                         </li>
