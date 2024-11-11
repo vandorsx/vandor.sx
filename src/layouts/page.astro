@@ -11,6 +11,7 @@ type BaseProps = {
    description: string;
    backlink?: string;
    backtext?: string;
+   largerGap?: boolean;
 };
 
 type Props = MarkdownLayoutProps<BaseProps> | BaseProps;
@@ -34,7 +35,13 @@ const pageData = "frontmatter" in props ? props.frontmatter : props;
       )
    }
 
-   <div class="flex flex-col gap-3.5">
+   <div
+      class:list={[
+         "flex flex-col",
+         { "gap-3.5": !pageData.largerGap },
+         { "gap-7": pageData.largerGap },
+      ]}
+   >
       <div>
          <h1 class="font-serif text-xl font-[354]">{pageData.title}</h1>
          <slot name="intro" />
