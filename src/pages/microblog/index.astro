@@ -50,16 +50,23 @@ posts = posts.filter((post) => {
          <h1 class="font-serif text-xl font-[354]">My microblog</h1>
          <p class="my-2">
             Welcome to my microblog — my place to share quick updates and musings
-            in a tweet-like fashion. By default, only posts within the last day
-            are visible, however, all posts are available in the <a
-               href="/microblog/archive">archive</a
-            >. Additionally, my microblog is available as a <a
+            in a tweet-like fashion. Externally, my microblog is available as a <a
                href="https://microblog.vandor.sx/feed.json"
                target="_blank">JSON feed</a
             > and via <a
                href="https://micro.blog/jade?remote_follow=1"
                target="_blank">ActivityPub</a
+            >. And additionally, older posts can be found in the <a
+               href="/microblog/archive">archive</a
             >.
+         </p>
+
+         <p class="text-black/[.72] my-2">
+            <i>
+               My microblog is proudly powered by <a href="https://micro.blog"
+                  >Micro.blog</a
+               >.
+            </i>
          </p>
       </div>
       <Feed {posts} {error} />
