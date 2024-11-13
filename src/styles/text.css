@@ -5,7 +5,7 @@ p {
 a:not(.incognito),
 .anchor {
    @apply underline underline-offset-1;
-   @apply hover:decoration-accent decoration-black/[.27];
+   @apply decoration-black/[.27] hover:decoration-accent;
 }
 
 /* wavy underline for webkit only */
@@ -102,6 +102,31 @@ code {
    @apply grayscale transition-all duration-[189ms] hover:grayscale-0;
    @apply border border-black/[.54];
    @apply my-[1em] p-2;
+}
+
+a[id^="user-content-fnref-"] {
+   @apply no-underline hover:no-underline;
+}
+
+.footnotes {
+   @apply mt-[3em];
+}
+
+#footnote-label {
+   @apply mb-2.5 text-[1rem] italic leading-5;
+}
+
+.footnotes ol {
+   @apply text-[calc(1em-1px)];
+}
+
+.footnotes ol p {
+   @apply my-0;
+}
+
+a.data-footnote-backref {
+   @apply font-serif no-underline hover:no-underline;
+   font-size: 75%;
 }
 
 #back-link > a {
