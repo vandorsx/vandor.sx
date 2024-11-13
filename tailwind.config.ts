@@ -11,7 +11,7 @@ export default {
             mono: ["seven mono", ...defaultTheme.fontFamily.mono],
          },
          colors: {
-            accent: "#85430D",
+            accent: "#8abad3", // https://icolorpalette.com/color/pantone-14-4318-tcx
          },
          fontSize: {
             "slightly-smaller": "calc(1em - 1px)",
