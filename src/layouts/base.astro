@@ -79,12 +79,17 @@ import "~styles/fonts.css";
             font-size: 100%;
          }
 
+         html,
          body {
-            @apply mx-7 flex justify-center;
+            @apply bg-white md:bg-[#F0F0F0] dark:md:bg-[#323232];
+         }
+
+         body {
+            @apply flex justify-center;
             @apply text-sm font-light leading-[1.4rem];
          }
 
-         body > div:first-child {
+         body #page {
             @apply mt-[2.625rem] md:mt-[3.9375rem] lg:mt-[5.25rem];
             @apply mb-[1.75rem] md:mb-[2.625rem] lg:mb-[3.5rem];
          }
@@ -99,12 +104,16 @@ import "~styles/fonts.css";
       </style>
    </head>
    <body>
-      <div class="w-full max-w-[72ch] flex flex-col gap-3">
-         <slot name="header" />
-         <main>
-            <slot />
-         </main>
-         <slot name="footer" />
+      <div
+         class="bg-white md:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:md:shadow-[0_0_13px_rgba(0,0,0,0.72)] min-h-dvh lg:px-16 md:px-8"
+      >
+         <div class="w-full flex flex-col gap-3 px-7 max-w-[661px]" id="page">
+            <slot name="header" />
+            <main>
+               <slot />
+            </main>
+            <slot name="footer" />
+         </div>
       </div>
    </body>
 </html>
