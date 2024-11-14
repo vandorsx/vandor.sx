@@ -117,7 +117,7 @@ a[id^="user-content-fnref-"] {
 }
 
 .footnotes ol {
-   @apply text-[calc(1em-1px)];
+   @apply text-slightly-smaller;
 }
 
 .footnotes ol p {
