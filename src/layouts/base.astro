@@ -79,14 +79,19 @@ import "~styles/fonts.css";
             font-size: 100%;
          }
 
+         html,
+         body {
+            @apply bg-white lg:bg-[#F0F0F0] dark:lg:bg-[#323232];
+         }
+
          body {
             @apply flex justify-center;
             @apply text-sm font-light leading-[1.4rem];
          }
 
          #page {
-            @apply mt-[2.625rem] md:mt-[3.9375rem] lg:mt-[5.25rem];
-            @apply mb-[1.75rem] md:mb-[2.625rem] lg:mb-[3.5rem];
+            @apply pt-[2.625rem] md:pt-[3.9375rem] lg:pt-[5.25rem];
+            @apply pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem];
          }
 
          ::selection {
@@ -99,7 +104,10 @@ import "~styles/fonts.css";
       </style>
    </head>
    <body>
-      <div class="w-full max-w-[72ch] flex flex-col gap-3" id="page">
+      <div
+         class="w-full max-w-[661px] lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)] flex flex-col gap-3 bg-white min-h-dvh px-7 lg:px-[92px] lg:max-w-[789px]"
+         id="page"
+      >
          <slot name="header" />
          <main>
             <slot />
