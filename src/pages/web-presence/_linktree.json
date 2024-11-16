@@ -26,17 +26,12 @@
          ]
       },
       {
-         "category": "Other real-time communication",
+         "category": "Photography",
          "links": [
             {
-               "platform": "Matrix",
-               "username": "@vandorsx:matrix.org",
-               "url": "https://matrix.to/#/@vandorsx:matrix.org"
-            },
-            {
-               "platform": "Discord",
+               "platform": "Glass",
                "username": "vandorsx",
-               "url": "https://discord.com/users/1217558308798468106"
+               "url": "https://glass.photo/vandorsx"
             }
          ]
       },
@@ -57,6 +52,21 @@
                "platform": "Bluesky",
                "username": "@vandor.sx",
                "url": "https://bsky.app/profile/vandor.sx"
+            }
+         ]
+      },
+      {
+         "category": "Other real-time communication",
+         "links": [
+            {
+               "platform": "Matrix",
+               "username": "@vandorsx:matrix.org",
+               "url": "https://matrix.to/#/@vandorsx:matrix.org"
+            },
+            {
+               "platform": "Discord",
+               "username": "vandorsx",
+               "url": "https://discord.com/users/1217558308798468106"
             }
          ]
       },
