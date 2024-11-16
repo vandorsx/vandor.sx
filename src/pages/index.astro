@@ -3,55 +3,71 @@ import Layout from "~layouts/base.astro";
 import "~styles/text.css";
 ---
 
+<style>
+   section:not(:first-of-type) {
+      @apply mt-5 md:mt-6 lg:mt-7;
+   }
+</style>
+
 <Layout>
    <h1 class="font-serif text-xl italic font-[327] pb-1.5 lg:mt-7">
       Jade van Dörsten
    </h1>
 
-   <p>
-      Hi there, welcome to my website.<br />My name is Jade&nbsp;<span
-         class="text-black/[.54] text-xs">(21, he/him)</span
-      >, and, if you wish, please, <a
-         class="incognito"
-         href="https://en.wikipedia.org/wiki/Seven_(Taylor_Swift_song)"
-         target="_blank">picture me in the trees</a
-      >.
-   </p>
-   <p>
-      <a
-         class="incognito"
-         href="https://en.wikipedia.org/wiki/Long_Story_Short_(Taylor_Swift_song)"
-         target="_blank">long story short</a
-      >, I'm a human and a netizen, and currently, I'm based in Madison, WI. I'm
-      also a full-stack web developer.
-   </p>
-   <p>
-      I invite you to visit my <a href="/blog">blog</a> and <a href="/microblog"
-         >microblog</a
-      > pages; my blog is where I publish longer-form writing, and my microblog is
-      my place to share quick updates and musings. I also have a <a
-         href="/library">library</a
-      > page which logs my reading.
-   </p>
-
-   <p>
-      If you'd like to contact me for any reason, my preferred methods are via <a
-         href="mailto:jade@vandor.sx"
-         target="_blank">email</a
-      > or <a
-         href="https://signal.me/#eu/errmiQt29tEo_vb2l9uC46pI7pvbzNKDLFK6ckCc1Vh5QHy_pWFO84rRpwKWCVMz"
-         target="_blank">Signal</a
-      >. I'm happy to receive any and all inquiries.
-   </p>
-
-   <p>
-      Additionally, I can be found <a href="/web-presence"
-         >elsewhere on the web</a
-      >.
-   </p>
-
-   <p>
-      Lastly, if you picked up on the references in this copy, let's be friends
-      :)
-   </p>
+   <section>
+      <p>
+         Hi there, welcome to my website.<br />My name is Jade&nbsp;<span
+            class="text-black/[.54] text-xs">(21, he/him)</span
+         >, and, if you wish, please, <a
+            class="incognito"
+            href="https://en.wikipedia.org/wiki/Seven_(Taylor_Swift_song)"
+            target="_blank">picture me in the trees</a
+         >.
+      </p>
+      <p>
+         <a
+            class="incognito"
+            href="https://en.wikipedia.org/wiki/Long_Story_Short_(Taylor_Swift_song)"
+            target="_blank">long story short</a
+         >, I'm a human and a netizen, and currently, I'm based in Madison, WI.
+         I'm also a full-stack web developer.
+      </p>
+   </section>
+   <section>
+      <p>
+         I invite you to visit my <a href="/blog">blog</a> and <a
+            href="/microblog">microblog</a
+         > pages; my blog is where I publish longer-form writing, and my microblog
+         is my place to share quick updates and musings. And, in the same realm as
+         blogging, I share my photography on <a
+            href="https://glass.photo/vandorsx">Glass</a
+         >.
+      </p>
+      <p>
+         Furthermore, my <a href="/library">library</a> page logs my reading — feel
+         free to take a peek.
+      </p>
+   </section>
+   <section>
+      <p>
+         If you'd like to contact me for any reason, my preferred methods are via <a
+            href="mailto:jade@vandor.sx"
+            target="_blank">email</a
+         > or <a
+            href="https://signal.me/#eu/errmiQt29tEo_vb2l9uC46pI7pvbzNKDLFK6ckCc1Vh5QHy_pWFO84rRpwKWCVMz"
+            target="_blank">Signal</a
+         >. I'm happy to receive any and all inquiries.
+      </p>
+      <p>
+         Additionally, I can be found <a href="/web-presence"
+            >elsewhere on the web</a
+         >.
+      </p>
+   </section>
+   <section>
+      <p>
+         Lastly, if you picked up on the references in this copy, let's be
+         friends :)
+      </p>
+   </section>
 </Layout>
