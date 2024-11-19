@@ -62,6 +62,7 @@ article ol {
 
 .mb-image > div > div > img {
    @apply bg-black/[.027];
+   @apply grayscale transition-all duration-300 hover:grayscale-0;
 }
 
 blockquote {
