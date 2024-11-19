@@ -140,12 +140,33 @@ export const getPost = async (
 };
 
 export const getMicrodotblog = async (permalink: string) => {
-   const conversationUrl = `https://micro.blog/conversation.js?url=${permalink}&format=jsonfeed&nocache=${new Date().getTime()}`;
+   const getConversationUrl = (url: string) =>
+      `https://micro.blog/conversation.js?url=${url}&format=jsonfeed&nocache=${new Date().getTime()}`;
 
-   const res: Response = await fetch(conversationUrl);
-   if (!res.ok) {
-      console.error(res);
-   } else {
+   let res: Response = await fetch(getConversationUrl(permalink));
+
+   // If 404, try with the former hostname
+   if (res.status === 404) {
+      try {
+         const permalinkWithFormerHostname = permalink.replace(
+            /^https?:\/\/([^\/]+)/,
+            "https://jade.micro.blog",
+         );
+         const fallbackRes = await fetch(
+            getConversationUrl(permalinkWithFormerHostname),
+         );
+
+         if (fallbackRes.ok) {
+            return await fallbackRes.json();
+         }
+      } catch (error) {
+         console.error("Error in second attempt:", error);
+      }
+   }
+
+   if (res.ok) {
       return await res.json();
    }
+
+   console.error(res);
 };
