@@ -108,14 +108,11 @@ try {
                            </a>
                            <div class="flex flex-col">
                               <h3 class="font-[327]">{book.title}</h3>
-                              <span>
+                              <span class="text-slightly-smaller text-black/[.72]">
                                  <i>by</i>{" "}
                                  {book.authors
                                     .map((author) => author.name)
                                     .join(", ")}
-                              </span>
-                              <span class="mt-2.5 text-[calc(1em-3px)] leading-none text-black/[.54]">
-                                 <i>{book._microblog.isbn}</i>
                               </span>
                            </div>
                         </li>
