@@ -37,14 +37,30 @@ article ol {
    @apply ml-[1em] pl-[1em];
 }
 
-.image-wrapper {
-   @apply flex;
+.mb-image {
    @apply my-[1.5em];
+}
+
+.mb-image > div {
+   @apply inline-flex flex-col gap-2;
+}
+
+.mb-image > div > span {
+   @apply self-end;
+   @apply font-serif text-xs italic text-black/[.54];
+}
+
+.mb-image > div > span > a {
+   @apply text-black/[.34] no-underline hover:underline;
+}
+
+.mb-image > div > div {
+   @apply flex;
    @apply max-h-[605px] max-w-full;
    @apply object-contain;
 }
 
-.image-wrapper img {
+.mb-image > div > div > img {
    @apply bg-black/[.027];
 }
 

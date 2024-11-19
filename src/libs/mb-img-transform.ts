@@ -81,17 +81,26 @@ const transformImage = (
          parentP.remove();
       }
 
-      // Wrap image in a link
-      const a = $("<a>")
-         .attr("class", "image-link")
-         .attr("href", initialSrc)
-         .attr("target", "_blank")
-         .attr("aria-label", "Open image in new tab");
-      img.wrap(a);
+      // Wrap img in div
+      const imageWrapper = $("<div>");
+      img.wrap(imageWrapper);
 
-      // Wrap in a div
-      const div = $("<div>").attr("class", "image-wrapper");
-      a.wrap(div);
+      // Create view full image element
+      const viewImg = $("<span>")
+         .text("view ")
+         .append(
+            $("<a>")
+               .attr("href", initialSrc)
+               .attr("target", "_blank")
+               .attr("rel", "noopener noreferrer")
+               .text("full image"),
+         );
+
+      const mbImage = $("<div>").attr("class", "mb-image");
+      const mbImageDiv = $("<div>");
+      imageWrapper.wrap(mbImageDiv);
+      imageWrapper.after(viewImg);
+      mbImageDiv.wrap(mbImage);
    });
 
    return $(".html-wrapper").html() || "";
