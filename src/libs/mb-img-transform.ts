@@ -81,11 +81,8 @@ const transformImage = (
          parentP.remove();
       }
 
-      // Wrap img in div
-      const imageWrapper = $("<div>");
-      img.wrap(imageWrapper);
-
-      // Create view full image element
+      // Create elements
+      const imgDiv = $("<div>");
       const viewImg = $("<span>")
          .text("view ")
          .append(
@@ -95,12 +92,14 @@ const transformImage = (
                .attr("rel", "noopener noreferrer")
                .text("full image"),
          );
-
       const mbImage = $("<div>").attr("class", "mb-image");
-      const mbImageDiv = $("<div>");
-      imageWrapper.wrap(mbImageDiv);
-      imageWrapper.after(viewImg);
-      mbImageDiv.wrap(mbImage);
+      const innerDiv = $("<div>");
+
+      // Build structure
+      img.wrap(imgDiv);
+      imgDiv.wrap(innerDiv);
+      imgDiv.after(viewImg);
+      innerDiv.wrap(mbImage);
    });
 
    return $(".html-wrapper").html() || "";
