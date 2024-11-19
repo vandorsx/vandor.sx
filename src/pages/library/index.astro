@@ -59,7 +59,7 @@ try {
    }
 
    img {
-      @apply h-auto max-w-12 object-cover;
+      @apply h-auto max-w-9 object-cover;
       @apply bg-black/[.027];
       aspect-ratio: 0.7;
    }
@@ -101,10 +101,9 @@ try {
                         <li class="flex gap-2 my-4">
                            <a href={book.url}>
                               <img
-                                 src={`https://cdn.micro.blog/photos/96x/${encodeURIComponent(book.image)}`}
+                                 src={`https://cdn.micro.blog/photos/72x/${encodeURIComponent(book.image)}`}
                                  alt={`Cover of ${book.title}`}
-                                 width="48"
-                                 loading="lazy"
+                                 width="36"
                               />
                            </a>
                            <div class="flex flex-col">
