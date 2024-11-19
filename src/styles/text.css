@@ -61,7 +61,7 @@ article ol {
 }
 
 .mb-image > div > div > img {
-   @apply bg-black/[.027];
+   @apply border border-black/[.54] bg-black/[.054];
    @apply grayscale transition-all duration-300 hover:grayscale-0;
 }
 
