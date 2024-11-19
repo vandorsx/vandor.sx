@@ -97,13 +97,15 @@ try {
                </h2>
                {booksByShelf[shelf.id]?.length > 0 ?
                   <ul>
-                     {booksByShelf[shelf.id]?.map((book) => (
+                     {booksByShelf[shelf.id].map((book, index) => (
                         <li class="flex gap-2 my-4">
                            <a href={book.url}>
                               <img
                                  src={`https://cdn.micro.blog/photos/72x/${encodeURIComponent(book.image)}`}
                                  alt={`Cover of ${book.title}`}
                                  width="36"
+                                 loading={index >= 3 ? "lazy" : "eager"}
+                                 data-index={index}
                               />
                            </a>
                            <div class="flex flex-col">
