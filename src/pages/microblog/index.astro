@@ -67,6 +67,20 @@ const getPageNumber = (path: string) => {
          input.value = maxPages.toString();
       }
    });
+
+   document.addEventListener(
+      "blur",
+      (event) => {
+         const input = event.target as HTMLInputElement;
+         if (input.id !== "pagination-input") return;
+
+         const currentPage = input.dataset.page;
+         if (currentPage) {
+            input.value = currentPage;
+         }
+      },
+      true,
+   );
 </script>
 
 <style>
@@ -152,6 +166,7 @@ const getPageNumber = (path: string) => {
                   min="1"
                   max={PaginatedMicroblog.pages}
                   class="w-[1.75em] h-[32px] min-h-[32px] max-h-[32px] text-black/[0.34] border-none text-center appearance-none bg-transparent focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  data-page={page}
                   data-total-pages={PaginatedMicroblog.pages}
                />
             </form>
