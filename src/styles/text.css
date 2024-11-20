@@ -45,22 +45,31 @@ article ol {
    @apply inline-flex flex-col gap-2;
 }
 
-.mb-image > div > span {
+.mb-image-actions {
    @apply self-end;
+   @apply flex w-full justify-between;
+}
+
+.mb-image-actions:not(:has(* + *)) {
+   @apply justify-end;
+}
+
+.mb-image-actions * {
    @apply font-serif text-xs italic text-black/[.54];
 }
 
-.mb-image > div > span > a {
+.mb-image-actions a,
+.mb-image-actions button {
    @apply text-black/[.34] no-underline hover:underline;
 }
 
-.mb-image > div > div {
+.mb-image-img {
    @apply flex;
    @apply max-h-[605px] max-w-full;
    @apply object-contain;
 }
 
-.mb-image > div > div > img {
+.mb-image-img img {
    @apply border border-black/[.54] bg-black/[.054];
    @apply grayscale transition-all duration-300 hover:grayscale-0;
 }
