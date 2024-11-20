@@ -18,14 +18,16 @@ function getPreviousPath(): string | null {
 type BackLinkProps = {
    href: string;
    text: string;
+   bypass?: boolean;
 };
 
-export default function BackLink({ href, text }: BackLinkProps) {
+export default function BackLink({ href, text, bypass }: BackLinkProps) {
    const handleClick = (e: Event) => {
       const backLinkPath = href;
       const previousPath = getPreviousPath();
 
       if (!previousPath) return;
+      if (bypass) return;
 
       if (previousPath === backLinkPath) {
          e.preventDefault();
