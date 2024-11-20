@@ -58,11 +58,24 @@ const getPageNumber = (path: string) => {
    />
 
    <header slot="header" class="leading-none">
-      <BackLink href="/" text="index" client:load />
+      {
+         page > 0 ?
+            <BackLink href="/microblog" text="microblog (p. 1)" client:load />
+         :  <BackLink href="/" text="index" client:load />
+      }
    </header>
    <div class="flex flex-col gap-7">
       <div>
-         <h1 class="font-serif text-xl font-[354]">My microblog</h1>
+         <h1 class="font-serif text-xl font-[354]">
+            My microblog{
+               page > 0 && (
+                  <span class="text-[calc(1em-3px)] italic text-black/[0.54] font-[300]">
+                     {" "}
+                     (p. {page})
+                  </span>
+               )
+            }
+         </h1>
          <p class="my-2">
             Welcome to my microblog — my place to share quick updates and musings
             in a tweet-like fashion. Externally, my microblog is available as a <a
