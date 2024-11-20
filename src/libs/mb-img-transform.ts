@@ -1,6 +1,25 @@
 import * as cheerio from "cheerio";
 import type { MicroblogPhoto } from "~libs/microblog";
 
+// for alt text
+const htmlEntities: { [key: string]: string } = {
+   "&10;": "\n", // newline
+   "&13;": "\r", // carriage return
+   "&32;": " ", // space
+   "&quot;": '"', // straight quotation mark
+   "&amp;": "&", // ampersand
+   "&lt;": "<", // less than
+   "&gt;": ">", // greater than
+   "&nbsp;": " ", // non-breaking space
+   "&ldquo;": '"', // left double smart quote
+   "&rdquo;": '"', // right double smart quote
+   "&lsquo;": "'", // left single smart quote
+   "&rsquo;": "'", // right single smart quote
+   "&mdash;": "—", // em dash
+   "&ndash;": "–", // en dash
+   "&hellip;": "…", // ellipsis
+};
+
 const MAX_WIDTH = 605;
 const MAX_HEIGHT = 605;
 
@@ -16,6 +35,15 @@ const transformImage = (
       const img = $(this);
       const src = img.attr("src") || "";
       const initialSrc = src.toString();
+
+      const imgAlt = img.attr("alt")?.trim() || "";
+      const formattedImgAlt =
+         imgAlt ?
+            imgAlt.replace(/&\w+;/g, (entity) => htmlEntities[entity] || entity)
+         :  "";
+      if (imgAlt) {
+         img.attr("alt", formattedImgAlt);
+      }
 
       // Check if image is hosted via Micro.blog
       const isMicroblogPhoto = src.startsWith(
@@ -82,7 +110,9 @@ const transformImage = (
       }
 
       // Create elements
-      const imgDiv = $("<div>");
+      const imgDiv = $("<div>").attr("class", "mb-image-img");
+
+      const actionsDiv = $("<div>").attr("class", "mb-image-actions");
       const viewImg = $("<span>")
          .text("view ")
          .append(
@@ -92,13 +122,29 @@ const transformImage = (
                .attr("rel", "noopener noreferrer")
                .text("full image"),
          );
+      const readAlt =
+         formattedImgAlt ?
+            $("<span>")
+               .text("read ")
+               .append(
+                  $("<button>")
+                     .attr("data-alt", formattedImgAlt)
+                     .attr("class", "anchor")
+                     .text("alt text"),
+               )
+         :  null;
+
       const mbImage = $("<div>").attr("class", "mb-image");
       const innerDiv = $("<div>");
 
       // Build structure
       img.wrap(imgDiv);
       imgDiv.wrap(innerDiv);
-      imgDiv.after(viewImg);
+      if (readAlt) {
+         actionsDiv.append(readAlt);
+      }
+      actionsDiv.append(viewImg);
+      imgDiv.after(actionsDiv);
       innerDiv.wrap(mbImage);
    });
 
