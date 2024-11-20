@@ -40,6 +40,36 @@ const getPageNumber = (path: string) => {
 
 <script src="../../libs/mb-alt-alert.ts"></script>
 
+<script>
+   const form = document.getElementById("pageForm") as HTMLFormElement;
+   const input = form.querySelector("input");
+
+   if (input) {
+      input.addEventListener("input", (e) => {
+         const input = e.target as HTMLInputElement;
+         const maxPages = parseInt(input.dataset.totalPages || "1");
+         const value = parseInt(input.value);
+         if (value > maxPages) {
+            input.value = maxPages.toString();
+         }
+      });
+   }
+
+   form.addEventListener("submit", (event: SubmitEvent) => {
+      event.preventDefault();
+      const input = form.querySelector("input");
+
+      if (!input) return;
+
+      const page = parseInt(input.value);
+      const totalPages = parseInt(input.dataset.totalPages!);
+
+      if (page >= 1 && page <= totalPages) {
+         window.location.href = `/microblog?page=${page}`;
+      }
+   });
+</script>
+
 <style>
    #pagination-links > a {
       @apply no-underline;
@@ -110,10 +140,24 @@ const getPageNumber = (path: string) => {
 
       <Feed posts={PaginatedMicroblog.items} error={error} />
 
-      <div class="pt-3 text-right font-serif text-xs italic text-black/[.54]">
-         <span>Page {PaginatedMicroblog.page} of {PaginatedMicroblog.pages}</span
-         >
-         <div id="pagination-links" class="pt-1">
+      <div
+         class="pt-3 flex flex-col items-end gap-1 font-serif text-xs italic text-black/[.54]"
+      >
+         <div class="flex w-full justify-end gap-0 leading-none items-center">
+            <span>Page</span>
+            <form id="pageForm">
+               <input
+                  type="number"
+                  value={PaginatedMicroblog.page}
+                  min="1"
+                  max={PaginatedMicroblog.pages}
+                  class="w-[1.75em] h-[2em] text-black/[0.34] border-none text-center appearance-none bg-transparent focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  data-total-pages={PaginatedMicroblog.pages}
+               />
+            </form>
+            <span>of {PaginatedMicroblog.pages}</span>
+         </div>
+         <div id="pagination-links">
             {
                PaginatedMicroblog.previous_page && (
                   <a
