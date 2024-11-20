@@ -7,7 +7,7 @@ import BackLink from "~components/back-link";
 import "~styles/text.css";
 
 import type { PaginatedMicroblog } from "~libs/microblog";
-import { getArchive } from "~libs/microblog";
+import { getPaginatedMicroblog } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
 
 const page = Number(Astro.url.searchParams.get("page"));
@@ -33,7 +33,7 @@ try {
 
 const getPageNumber = (path: string) => {
    const match = path.match(/\d+/);
-   if (!match && path === "/api/archive/list.json") return 1;
+   if (!match && path === "/api/paginated/list.json") return 1;
    return match ? Number(match[0]) : null;
 };
 ---

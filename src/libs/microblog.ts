@@ -56,16 +56,16 @@ export async function getPosts(feed: string) {
    }
 }
 
-export async function getArchive(page: number) {
+export async function getPaginatedMicroblog(page: number) {
    let res: Response;
 
    if (page <= 1) {
       res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/list.json`,
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/list.json`,
       );
    } else {
       res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/${page}/list.json`,
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/${page}/list.json`,
       );
    }
 
