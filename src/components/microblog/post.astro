@@ -42,6 +42,13 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
    minute: "2-digit",
    hourCycle: "h23",
 };
+
+function formatDate(dateString: string): string {
+   return new Date(dateString.slice(0, -5)).toLocaleString(
+      "en-US",
+      nonRelativeDateOptions,
+   );
+}
 ---
 
 <style>
@@ -75,10 +82,7 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                               date={post.date_published}
                               client:load
                            />
-                        :  new Date(
-                              post.date_published.slice(0, -5),
-                           ).toLocaleString("en-US", nonRelativeDateOptions)
-                        }
+                        :  formatDate(post.date_published)}
                      </time>
                   </Fragment>
                   {post.date_modified &&
@@ -95,13 +99,7 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                                     date={post.date_modified}
                                     client:load
                                  />
-                              :  new Date(
-                                    post.date_modified.slice(0, -5),
-                                 ).toLocaleString(
-                                    "en-US",
-                                    nonRelativeDateOptions,
-                                 )
-                              }
+                              :  formatDate(post.date_modified)}
                            </span>
                         </Fragment>
                      )}
@@ -117,17 +115,11 @@ const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
                >
                   Posted{" "}
                   <time datetime={post.date_published}>
-                     {new Date(post.date_published.slice(0, -5)).toLocaleString(
-                        "en-US",
-                        nonRelativeDateOptions,
-                     )}
+                     {formatDate(post.date_published)}
                      {post.date_modified &&
                         post.categories?.includes("show_updated") && (
                            <Fragment>
-                              & updated{" "}
-                              {new Date(
-                                 post.date_modified.slice(0, -5),
-                              ).toLocaleString("en-US", nonRelativeDateOptions)}
+                              & updated {formatDate(post.date_modified)}
                            </Fragment>
                         )}
                   </time>
