@@ -110,7 +110,9 @@ const transformImage = (
       }
 
       // Create elements
-      const imgDiv = $("<div>");
+      const imgDiv = $("<div>").attr("class", "mb-image-img");
+
+      const actionsDiv = $("<div>").attr("class", "mb-image-actions");
       const viewImg = $("<span>")
          .text("view ")
          .append(
@@ -120,13 +122,29 @@ const transformImage = (
                .attr("rel", "noopener noreferrer")
                .text("full image"),
          );
+      const readAlt =
+         formattedImgAlt ?
+            $("<span>")
+               .text("read ")
+               .append(
+                  $("<button>")
+                     .attr("data-alt", formattedImgAlt)
+                     .attr("class", "anchor")
+                     .text("alt text"),
+               )
+         :  null;
+
       const mbImage = $("<div>").attr("class", "mb-image");
       const innerDiv = $("<div>");
 
       // Build structure
       img.wrap(imgDiv);
       imgDiv.wrap(innerDiv);
-      imgDiv.after(viewImg);
+      if (readAlt) {
+         actionsDiv.append(readAlt);
+      }
+      actionsDiv.append(viewImg);
+      imgDiv.after(actionsDiv);
       innerDiv.wrap(mbImage);
    });
 
