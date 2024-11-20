@@ -41,7 +41,7 @@ const getPageNumber = (path: string) => {
 <script src="../../libs/mb-alt-alert.ts"></script>
 
 <script>
-   const form = document.getElementById("pageForm") as HTMLFormElement;
+   const form = document.getElementById("pagination-form") as HTMLFormElement;
    const input = form.querySelector("input");
 
    if (input) {
@@ -141,13 +141,13 @@ const getPageNumber = (path: string) => {
       >
          <div class="flex w-full justify-end gap-0 leading-none items-center">
             <span>Page</span>
-            <form id="pageForm">
+            <form id="pagination-form" class="m-0 p-0">
                <input
                   type="number"
                   value={PaginatedMicroblog.page}
                   min="1"
                   max={PaginatedMicroblog.pages}
-                  class="w-[1.75em] h-[2em] text-black/[0.34] border-none text-center appearance-none bg-transparent focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  class="w-[1.75em] h-[32px] min-h-[32px] max-h-[32px] text-black/[0.34] border-none text-center appearance-none bg-transparent focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                   data-total-pages={PaginatedMicroblog.pages}
                />
             </form>
