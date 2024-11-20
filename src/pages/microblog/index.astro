@@ -76,7 +76,7 @@ const getPageNumber = (path: string) => {
 
          const currentPage = input.dataset.page;
          if (currentPage) {
-            input.value = currentPage;
+            input.value = Number(currentPage) > 0 ? currentPage : "1";
          }
       },
       true,
