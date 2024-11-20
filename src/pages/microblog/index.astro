@@ -41,24 +41,12 @@ const getPageNumber = (path: string) => {
 <script src="../../libs/mb-alt-alert.ts"></script>
 
 <script>
-   const form = document.getElementById("pagination-form") as HTMLFormElement;
-   const input = form.querySelector("input");
-
-   if (input) {
-      input.addEventListener("input", (e) => {
-         const input = e.target as HTMLInputElement;
-         const maxPages = parseInt(input.dataset.totalPages || "1");
-         const value = parseInt(input.value);
-         if (value > maxPages) {
-            input.value = maxPages.toString();
-         }
-      });
-   }
-
-   form.addEventListener("submit", (event: SubmitEvent) => {
+   document.addEventListener("submit", (event) => {
+      const form = document.getElementById("pagination-form") as HTMLFormElement;
+      if (!form) return;
       event.preventDefault();
-      const input = form.querySelector("input");
 
+      const input = form.querySelector("input");
       if (!input) return;
 
       const page = parseInt(input.value);
@@ -66,6 +54,17 @@ const getPageNumber = (path: string) => {
 
       if (page >= 1 && page <= totalPages) {
          window.location.href = `/microblog?page=${page}`;
+      }
+   });
+
+   document.addEventListener("input", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.id !== "pagination-input") return;
+
+      const maxPages = parseInt(input.dataset.totalPages || "1");
+      const value = parseInt(input.value);
+      if (value > maxPages) {
+         input.value = maxPages.toString();
       }
    });
 </script>
@@ -147,6 +146,7 @@ const getPageNumber = (path: string) => {
             <span>Page</span>
             <form id="pagination-form" class="m-0 p-0">
                <input
+                  id="pagination-input"
                   type="number"
                   value={PaginatedMicroblog.page}
                   min="1"
