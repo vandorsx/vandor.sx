@@ -78,10 +78,6 @@ const getPageNumber = (path: string) => {
    #pagination-links > a:hover {
       @apply underline;
    }
-
-   #pagination-links > a:only-child {
-      @apply m-0;
-   }
 </style>
 
 <Layout>
@@ -157,11 +153,13 @@ const getPageNumber = (path: string) => {
             </form>
             <span>of {PaginatedMicroblog.pages}</span>
          </div>
-         <div id="pagination-links">
+         <div
+            id="pagination-links"
+            class="flex items-center leading-none w-full justify-end gap-2"
+         >
             {
                PaginatedMicroblog.previous_page && (
                   <a
-                     class="mr-2"
                      href={
                         getPageNumber(PaginatedMicroblog.previous_page) === 1 ?
                            "/microblog"
