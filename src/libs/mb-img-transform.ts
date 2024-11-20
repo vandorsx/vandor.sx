@@ -1,6 +1,25 @@
 import * as cheerio from "cheerio";
 import type { MicroblogPhoto } from "~libs/microblog";
 
+// for alt text
+const htmlEntities: { [key: string]: string } = {
+   "&10;": "\n", // newline
+   "&13;": "\r", // carriage return
+   "&32;": " ", // space
+   "&quot;": '"', // straight quotation mark
+   "&amp;": "&", // ampersand
+   "&lt;": "<", // less than
+   "&gt;": ">", // greater than
+   "&nbsp;": " ", // non-breaking space
+   "&ldquo;": '"', // left double smart quote
+   "&rdquo;": '"', // right double smart quote
+   "&lsquo;": "'", // left single smart quote
+   "&rsquo;": "'", // right single smart quote
+   "&mdash;": "—", // em dash
+   "&ndash;": "–", // en dash
+   "&hellip;": "…", // ellipsis
+};
+
 const MAX_WIDTH = 605;
 const MAX_HEIGHT = 605;
 
@@ -16,6 +35,15 @@ const transformImage = (
       const img = $(this);
       const src = img.attr("src") || "";
       const initialSrc = src.toString();
+
+      const imgAlt = img.attr("alt")?.trim() || "";
+      const formattedImgAlt =
+         imgAlt ?
+            imgAlt.replace(/&\w+;/g, (entity) => htmlEntities[entity] || entity)
+         :  "";
+      if (imgAlt) {
+         img.attr("alt", formattedImgAlt);
+      }
 
       // Check if image is hosted via Micro.blog
       const isMicroblogPhoto = src.startsWith(
