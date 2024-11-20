@@ -12,15 +12,15 @@ import Feed from "~components/microblog/feed.astro";
 
 const page = Number(Astro.url.searchParams.get("page"));
 
-let archive: PaginatedMicroblog;
+let PaginatedMicroblog: PaginatedMicroblog;
 let error: Error | undefined = undefined;
 try {
-   archive = await getArchive(page);
+   PaginatedMicroblog = await getPaginatedMicroblog(page);
 } catch (e) {
    error = e as Error;
    console.error(error);
 
-   archive = {
+   PaginatedMicroblog = {
       page: 0,
       pages: 0,
       total_items: 0,
@@ -104,18 +104,20 @@ const getPageNumber = (path: string) => {
          </p>
       </div>
 
-      <Feed posts={archive.items} error={error} />
+      <Feed posts={PaginatedMicroblog.items} error={error} />
 
       <div class="pt-3 text-right font-serif text-xs italic text-black/[.54]">
-         <span>Page {archive.page} of {archive.pages}</span>
+         <span>Page {PaginatedMicroblog.page} of {PaginatedMicroblog.pages}</span
+         >
          <div id="pagination-links" class="pt-1">
             {
-               archive.previous_page && (
+               PaginatedMicroblog.previous_page && (
                   <a
                      class="mr-2"
                      href={
-                        getPageNumber(archive.previous_page) === 1 ? "/microblog"
-                        :  `/microblog?page=${getPageNumber(archive.previous_page)}`
+                        getPageNumber(PaginatedMicroblog.previous_page) === 1 ?
+                           "/microblog"
+                        :  `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
                      }
                      aria-label="Previous page"
                   >
@@ -124,9 +126,9 @@ const getPageNumber = (path: string) => {
                )
             }
             {
-               archive.next_page && (
+               PaginatedMicroblog.next_page && (
                   <a
-                     href={`/microblog?page=${getPageNumber(archive.next_page)}`}
+                     href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
                      aria-label="Next page"
                   >
                      &rarr;
