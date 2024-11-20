@@ -23,7 +23,7 @@ export type MicroblogPhoto = {
    height: number;
 };
 
-export type MicroblogArchive = {
+export type PaginatedMicroblog = {
    page: number;
    pages: number;
    total_items: number;

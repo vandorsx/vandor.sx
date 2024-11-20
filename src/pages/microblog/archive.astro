@@ -6,13 +6,13 @@ import Layout from "~layouts/base.astro";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-import type { MicroblogArchive } from "~libs/microblog";
+import type { PaginatedMicroblog } from "~libs/microblog";
 import { getArchive } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
 
 const page = Number(Astro.url.searchParams.get("page"));
 
-let archive: MicroblogArchive;
+let archive: PaginatedMicroblog;
 let error: Error | undefined = undefined;
 try {
    archive = await getArchive(page);
