@@ -78,6 +78,10 @@ const getPageNumber = (path: string) => {
    #pagination-links > a:hover {
       @apply underline;
    }
+
+   #pagination-links > a:only-child {
+      @apply -mr-1;
+   }
 </style>
 
 <Layout>
@@ -155,7 +159,7 @@ const getPageNumber = (path: string) => {
          </div>
          <div
             id="pagination-links"
-            class="flex items-center leading-none w-full justify-end gap-2"
+            class="flex items-center leading-none w-full justify-end gap-1"
          >
             {
                PaginatedMicroblog.previous_page && (
@@ -166,6 +170,7 @@ const getPageNumber = (path: string) => {
                         :  `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
                      }
                      aria-label="Previous page"
+                     class="px-1 pb-[0.125rem]"
                   >
                      &larr;
                   </a>
@@ -176,6 +181,7 @@ const getPageNumber = (path: string) => {
                   <a
                      href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
                      aria-label="Next page"
+                     class="px-1 -mr-1 pb-[0.125rem]"
                   >
                      &rarr;
                   </a>
