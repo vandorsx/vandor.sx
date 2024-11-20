@@ -15,13 +15,12 @@ function getPreviousPath(): string | null {
    }
 }
 
-export default function BackLink({
-   href,
-   text,
-}: {
+type BackLinkProps = {
    href: string;
    text: string;
-}) {
+};
+
+export default function BackLink({ href, text }: BackLinkProps) {
    const handleClick = (e: Event) => {
       const backLinkPath = href;
       const previousPath = getPreviousPath();
