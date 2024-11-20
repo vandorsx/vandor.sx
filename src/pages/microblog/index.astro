@@ -169,7 +169,7 @@ const getPageNumber = (path: string) => {
                            "/microblog"
                         :  `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
                      }
-                     aria-label="Previous page"
+                     aria-label={`To page ${getPageNumber(PaginatedMicroblog.previous_page)}`}
                      class="px-1 pb-[0.125rem]"
                   >
                      &larr;
@@ -180,7 +180,7 @@ const getPageNumber = (path: string) => {
                PaginatedMicroblog.next_page && (
                   <a
                      href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
-                     aria-label="Next page"
+                     aria-label={`To page ${getPageNumber(PaginatedMicroblog.next_page)}`}
                      class="px-1 -mr-1 pb-[0.125rem]"
                   >
                      &rarr;
