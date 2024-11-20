@@ -143,8 +143,9 @@ const getPageNumber = (path: string) => {
 <Layout>
    <SEO
       slot="seo"
-      title="My microblog"
+      title={page <= 0 ? "My microblog" : `My microblog (p. ${page})`}
       description="My place to share quick updates and musings in a tweet-like fashion."
+      noindex={page > 0}
    />
 
    <header slot="header" class="leading-none">
