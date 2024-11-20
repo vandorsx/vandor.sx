@@ -70,7 +70,7 @@ export async function getPaginatedMicroblog(page: number) {
    }
 
    if (!res.ok) {
-      throw new Error(`Failed to fetch microblog archive: ${res.status}`);
+      throw new Error(`Failed to fetch paginated microblog: ${res.status}`);
    } else {
       const json = await res.json();
       return json;
