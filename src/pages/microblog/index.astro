@@ -68,6 +68,28 @@ const getPageNumber = (path: string) => {
       }
    });
 
+   document.addEventListener("keydown", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.id !== "pagination-input") return;
+
+      const allowedKeys = [
+         "Backspace",
+         "Delete",
+         "Tab",
+         "Escape",
+         "Enter",
+         "ArrowLeft",
+         "ArrowRight",
+         "Home",
+         "End",
+      ];
+      if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+         return;
+      }
+
+      event.preventDefault();
+   });
+
    document.addEventListener(
       "blur",
       (event) => {
@@ -163,6 +185,7 @@ const getPageNumber = (path: string) => {
                   id="pagination-input"
                   type="number"
                   inputmode="numeric"
+                  pattern="[0-9]*"
                   value={PaginatedMicroblog.page}
                   min="1"
                   max={PaginatedMicroblog.pages}
