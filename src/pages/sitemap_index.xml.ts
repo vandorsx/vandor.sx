@@ -42,6 +42,9 @@ export const GET: APIRoute = async (context) => {
    const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <sitemap>
+         <loc>${SITE}/pages.xml</loc>
+      </sitemap>
+      <sitemap>
         <loc>https://microblog.vandor.sx/sitemap.xml</loc>
         ${microblog_lastmod.lastmod ? `<lastmod>${microblog_lastmod.lastmod}</lastmod>` : ""}
       </sitemap>
