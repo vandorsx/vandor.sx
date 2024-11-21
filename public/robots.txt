@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://vandor.sx/sitemap.xml
+Sitemap: https://vandor.sx/pages.xml
+Sitemap: https://microblog.vandor.sx/sitemap.xml
+Sitemap: https://vandor.sx/blog/sitemap.xml
