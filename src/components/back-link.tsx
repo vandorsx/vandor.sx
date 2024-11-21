@@ -1,7 +1,7 @@
 const mappings: {
    path: string;
-   related: string[];
-}[] = [{ path: "/microblog", related: ["/microblog/archive"] }];
+   related: (string | RegExp)[];
+}[] = [{ path: "/microblog", related: [/^\/microblog\?page=\d+$/] }];
 
 function getPreviousPath(): string | null {
    try {
@@ -15,18 +15,19 @@ function getPreviousPath(): string | null {
    }
 }
 
-export default function BackLink({
-   href,
-   text,
-}: {
+type BackLinkProps = {
    href: string;
    text: string;
-}) {
+   bypass?: boolean;
+};
+
+export default function BackLink({ href, text, bypass }: BackLinkProps) {
    const handleClick = (e: Event) => {
       const backLinkPath = href;
       const previousPath = getPreviousPath();
 
       if (!previousPath) return;
+      if (bypass) return;
 
       if (previousPath === backLinkPath) {
          e.preventDefault();
@@ -36,7 +37,14 @@ export default function BackLink({
             (mapping) => mapping.path === backLinkPath,
          );
 
-         if (mapping && mapping.related.includes(previousPath)) {
+         if (
+            mapping &&
+            mapping.related.some((pattern) =>
+               pattern instanceof RegExp ?
+                  pattern.test(previousPath)
+               :  pattern === previousPath,
+            )
+         ) {
             e.preventDefault();
             history.back();
          }

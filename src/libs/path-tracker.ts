@@ -1,4 +1,4 @@
-const pagesWithQueryParams: string[] = ["/microblog/archive"];
+const pagesWithQueryParams: string[] = ["/microblog"];
 
 function initializePathTracker() {
    if (!sessionStorage.getItem("path-stack")) {

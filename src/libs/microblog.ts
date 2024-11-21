@@ -23,7 +23,7 @@ export type MicroblogPhoto = {
    height: number;
 };
 
-export type MicroblogArchive = {
+export type PaginatedMicroblog = {
    page: number;
    pages: number;
    total_items: number;
@@ -56,21 +56,21 @@ export async function getPosts(feed: string) {
    }
 }
 
-export async function getArchive(page: number) {
+export async function getPaginatedMicroblog(page: number) {
    let res: Response;
 
    if (page <= 1) {
       res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/list.json`,
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/list.json`,
       );
    } else {
       res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/archive/${page}/list.json`,
+         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/${page}/list.json`,
       );
    }
 
    if (!res.ok) {
-      throw new Error(`Failed to fetch microblog archive: ${res.status}`);
+      throw new Error(`Failed to fetch paginated microblog: ${res.status}`);
    } else {
       const json = await res.json();
       return json;

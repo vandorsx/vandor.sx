@@ -6,50 +6,181 @@ import Layout from "~layouts/base.astro";
 import BackLink from "~components/back-link";
 import "~styles/text.css";
 
-import type { Microblog } from "~libs/microblog";
-import { getPosts } from "~libs/microblog";
+import type { PaginatedMicroblog } from "~libs/microblog";
+import { getPaginatedMicroblog } from "~libs/microblog";
 import Feed from "~components/microblog/feed.astro";
 
-let posts: Microblog[] = [];
+const page = Number(Astro.url.searchParams.get("page"));
+
+let PaginatedMicroblog: PaginatedMicroblog;
 let error: Error | undefined = undefined;
 try {
-   posts = await getPosts(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/recent.json`,
-   );
+   PaginatedMicroblog = await getPaginatedMicroblog(page);
 } catch (e) {
    error = e as Error;
    console.error(error);
+
+   PaginatedMicroblog = {
+      page: 0,
+      pages: 0,
+      total_items: 0,
+      items_per_page: 0,
+      next_page: null,
+      previous_page: null,
+      items: [],
+   };
 }
 
-// only posts within the last day
-const now = new Date();
-const cutoff = 24;
-posts = posts.filter((post) => {
-   const dateToCompare =
-      post.date_modified ?
-         new Date(post.date_modified)
-      :  new Date(post.date_published);
-   const timeDiff = now.getTime() - dateToCompare.getTime();
-   const hoursDiff = timeDiff / (1000 * 3600);
-   return hoursDiff <= cutoff;
-});
+const getPageNumber = (path: string) => {
+   const match = path.match(/\d+/);
+   if (!match && path === "/api/paginated/list.json") return 1;
+   return match ? Number(match[0]) : null;
+};
 ---
 
 <script src="../../libs/mb-alt-alert.ts"></script>
 
+<script>
+   document.addEventListener("submit", (event) => {
+      const form = document.getElementById("pagination-form") as HTMLFormElement;
+      if (!form) return;
+      event.preventDefault();
+
+      const input = form.querySelector("input");
+      if (!input) return;
+
+      const page = parseInt(input.value);
+      const totalPages = parseInt(input.dataset.totalPages!);
+
+      if (page >= 1 && page <= totalPages) {
+         const tempLink = document.createElement("a");
+         tempLink.id = "temp-redirect-link";
+         tempLink.href = `/microblog?page=${page}`;
+         document.body.appendChild(tempLink);
+         tempLink.click();
+         document.body.removeChild(tempLink);
+      }
+   });
+
+   document.addEventListener("input", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.id !== "pagination-input") return;
+
+      const maxPages = parseInt(input.dataset.totalPages || "1");
+      const value = parseInt(input.value);
+      if (value > maxPages) {
+         input.value = maxPages.toString();
+      }
+   });
+
+   document.addEventListener("keydown", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.id !== "pagination-input") return;
+
+      const allowedKeys = [
+         "Backspace",
+         "Delete",
+         "Tab",
+         "Escape",
+         "Enter",
+         "ArrowLeft",
+         "ArrowRight",
+         "Home",
+         "End",
+      ];
+      if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+         return;
+      }
+
+      event.preventDefault();
+   });
+
+   document.addEventListener(
+      "blur",
+      (event) => {
+         const input = event.target as HTMLInputElement;
+         if (input.id !== "pagination-input") return;
+
+         const currentPage = input.dataset.page;
+         if (currentPage) {
+            input.value = Number(currentPage) > 0 ? currentPage : "1";
+         }
+      },
+      true,
+   );
+</script>
+
+<style>
+   #temp-redirect-link {
+      @apply hidden;
+   }
+
+   #pagination-links > a {
+      @apply no-underline;
+   }
+
+   #pagination-links > a:hover {
+      @apply underline;
+   }
+
+   #pagination-links > a:only-child {
+      @apply -mr-1;
+   }
+
+   #pagination-input {
+      animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+      @keyframes pulse {
+         0%,
+         100% {
+            opacity: 1;
+         }
+         50% {
+            opacity: 0.65;
+         }
+      }
+   }
+
+   @media (prefers-reduced-motion) {
+      #pagination-input {
+         animation: none;
+         @apply text-black/[0.34];
+      }
+   }
+</style>
+
 <Layout>
    <SEO
       slot="seo"
-      title="My microblog"
+      title={page <= 0 ? "My microblog" : `My microblog (p. ${page})`}
       description="My place to share quick updates and musings in a tweet-like fashion."
+      noindex={page > 0}
    />
 
    <header slot="header" class="leading-none">
-      <BackLink href="/" text="index" client:load />
+      {
+         page > 0 ?
+            <BackLink
+               href="/microblog"
+               text="microblog (p. 1)"
+               bypass
+               client:load
+            />
+         :  <BackLink href="/" text="index" client:load />
+      }
    </header>
    <div class="flex flex-col gap-7">
       <div>
-         <h1 class="font-serif text-xl font-[354]">My microblog</h1>
+         <h1 class="font-serif text-xl font-[354]">
+            My microblog{
+               page > 0 && (
+                  <span class="text-[calc(1em-3px)] italic text-black/[0.54] font-[300]">
+                     {" "}
+                     (p. {page})
+                  </span>
+               )
+            }
+         </h1>
          <p class="my-2">
             Welcome to my microblog — my place to share quick updates and musings
             in a tweet-like fashion. Externally, my microblog is available as a <a
@@ -58,8 +189,9 @@ posts = posts.filter((post) => {
             > and via <a
                href="https://micro.blog/jade?remote_follow=1"
                target="_blank">ActivityPub</a
-            >. And additionally, older posts can be found in the <a
-               href="/microblog/archive">archive</a
+            >. In addition, I make an effort to cross-post to <a
+               href="https://bsky.app/profile/vandor.sx"
+               target="_blank">Bluesky</a
             >.
          </p>
 
@@ -71,6 +203,59 @@ posts = posts.filter((post) => {
             </i>
          </p>
       </div>
-      <Feed {posts} {error} />
+
+      <Feed posts={PaginatedMicroblog.items} error={error} />
+
+      <div
+         class="pt-3 flex flex-col items-end font-serif text-slightly-smaller italic text-black/[.54] md:-mr-4 md:-mb-1 lg:-mr-8 lg:-mb-2"
+      >
+         <div class="flex w-full justify-end leading-none items-center">
+            <span>Page</span>
+            <form id="pagination-form" class="m-0 p-0">
+               <input
+                  id="pagination-input"
+                  type="number"
+                  value={PaginatedMicroblog.page}
+                  min="1"
+                  max={PaginatedMicroblog.pages}
+                  class="w-[3ch] h-[32px] min-h-[32px] max-h-[32px] text-black/[0.39] border-none text-center appearance-none bg-transparent focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  data-page={page}
+                  data-total-pages={PaginatedMicroblog.pages}
+               />
+            </form>
+            <span>of {PaginatedMicroblog.pages}</span>
+         </div>
+         <div
+            id="pagination-links"
+            class="flex items-center leading-none w-full justify-end gap-1"
+         >
+            {
+               PaginatedMicroblog.previous_page && (
+                  <a
+                     href={
+                        getPageNumber(PaginatedMicroblog.previous_page) === 1 ?
+                           "/microblog"
+                        :  `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
+                     }
+                     aria-label={`To page ${getPageNumber(PaginatedMicroblog.previous_page)}`}
+                     class="px-1 pb-[0.125rem]"
+                  >
+                     &larr;
+                  </a>
+               )
+            }
+            {
+               PaginatedMicroblog.next_page && (
+                  <a
+                     href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
+                     aria-label={`To page ${getPageNumber(PaginatedMicroblog.next_page)}`}
+                     class="px-1 -mr-1 pb-[0.125rem]"
+                  >
+                     &rarr;
+                  </a>
+               )
+            }
+         </div>
+      </div>
    </div>
 </Layout>
