@@ -22,7 +22,7 @@
       "astro-seo": "^0.8.4",
       "cheerio": "1.0.0-rc.12",
       "clsx": "^2.1.1",
-      "embla-carousel-solid": "^8.4.0",
+      "embla-carousel-solid": "^8.5.1",
       "markdown-it": "^14.1.0",
       "sanitize-html": "^2.13.1",
       "solid-js": "^1.9.3",
@@ -35,7 +35,7 @@
       "@types/sanitize-html": "^2.13.0",
       "prettier": "3.3.3",
       "prettier-plugin-astro": "^0.14.1",
-      "prettier-plugin-tailwindcss": "^0.6.8",
-      "wrangler": "^3.87.0"
+      "prettier-plugin-tailwindcss": "^0.6.9",
+      "wrangler": "^3.88.0"
    }
 }
