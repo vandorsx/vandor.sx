@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 const SITE = "https://vandor.sx";
 
-export const GET: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async () => {
    const blog = await getCollection("blog", ({ data }) =>
       import.meta.env.PROD ? data.draft !== true : true,
    ).then(
@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ request }) => {
       status: 200,
       headers: {
          "Content-Type": "application/xml",
-         "Cache-Control": "public, max-age=604800",
+         "Cache-Control": "public, max-age=86400",
       },
    });
 };

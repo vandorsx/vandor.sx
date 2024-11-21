@@ -22,6 +22,7 @@ export const GET: APIRoute = async () => {
    return new Response(sitemap, {
       headers: {
          "Content-Type": "application/xml",
+         "Cache-Control": "public, max-age=86400",
       },
    });
 };

@@ -58,7 +58,7 @@ export const GET: APIRoute = async (context) => {
       status: 200,
       headers: {
          "Content-Type": "application/xml",
-         "Cache-Control": "public, max-age=300",
+         "Cache-Control": "public, max-age=3600",
       },
    });
 };
