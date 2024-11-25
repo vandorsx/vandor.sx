@@ -85,7 +85,7 @@ blockquote {
    @apply not-italic;
    font-variation-settings: "ital" 0;
    @apply my-[1em] ml-0 p-2;
-   @apply border border-black/[.54];
+   @apply border-[0.5px] border-black;
    @apply flex flex-col gap-1;
 
    p {
