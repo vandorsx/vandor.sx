@@ -126,7 +126,7 @@ export const getPost = async (
       } else {
          let urlParts = new URL(postUrl);
          urlParts.pathname = "/api" + urlParts.pathname;
-         const apiUrl = urlParts.toString();
+         const apiUrl = urlParts.toString() + "post.json";
 
          const res = await fetch(apiUrl);
          if (!res.ok) {
