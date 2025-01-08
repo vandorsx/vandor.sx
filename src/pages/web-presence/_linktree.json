@@ -52,6 +52,17 @@
                "platform": "Bluesky",
                "username": "@vandor.sx",
                "url": "https://bsky.app/profile/vandor.sx"
+            },
+            {
+               "platform": "X",
+               "username": "@vandorsx",
+               "url": "https://x.com/vandorsx"
+            },
+            {
+               "platform": "Threads",
+               "username": "@vandorsx",
+               "url": "https://www.threads.net/@vandorsx",
+               "rel": "me"
             }
          ]
       },
