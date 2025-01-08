@@ -40,7 +40,7 @@ import LinkTree from "./_linktree.json";
                   <>
                      <dt>{link.platform}</dt>
                      <dd>
-                        <a href={link.url}>
+                        <a href={link.url} rel={link.rel ? link.rel : undefined}>
                            <i>{link.username}</i>
                         </a>
                      </dd>
