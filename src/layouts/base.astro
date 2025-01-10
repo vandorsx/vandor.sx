@@ -1,6 +1,6 @@
 ---
 import PostHog from "~components/posthog.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "~styles/fonts.css";
 ---
@@ -70,7 +70,7 @@ import "~styles/fonts.css";
          <meta name="keywords" content="vandorsx, Jade van Dörsten" />
       </slot>
 
-      <ViewTransitions />
+      <ClientRouter />
 
       <script src="../libs/path-tracker.ts"></script>
 
