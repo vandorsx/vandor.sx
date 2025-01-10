@@ -9,6 +9,8 @@ import "~styles/fonts.css";
 <html lang="en">
    <head>
       <PostHog />
+      <script src="../libs/path-tracker.ts"></script>
+
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -71,8 +73,6 @@ import "~styles/fonts.css";
       </slot>
 
       <ClientRouter />
-
-      <script src="../libs/path-tracker.ts"></script>
 
       <style is:global>
          html {
