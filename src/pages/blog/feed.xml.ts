@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
                return {
                   title: entry.data.title,
                   description: entry.data.description,
-                  link: `https://${SITE}/blog/${entry.slug}`,
+                  link: `https://${SITE}/blog/${entry.id}`,
                   author: AUTHOR,
                   pubDate: entry.data.datePublished,
                };

@@ -8,13 +8,10 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
    integrations: [tailwind(), solidJs(), mdx()],
-   output: "hybrid",
+   output: "static",
    adapter: cloudflare(),
    build: {
       format: "file",
-   },
-   experimental: {
-      serverIslands: true,
    },
    prefetch: {
       prefetchAll: true,
