@@ -18,7 +18,7 @@
       "@astrojs/solid-js": "5.0.1",
       "@astrojs/tailwind": "^5.1.4",
       "@types/markdown-it": "^14.1.2",
-      "astro": "5.1.5",
+      "astro": "5.1.2",
       "astro-seo": "^0.8.4",
       "cheerio": "1.0.0-rc.12",
       "clsx": "^2.1.1",
