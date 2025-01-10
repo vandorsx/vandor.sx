@@ -6,9 +6,16 @@ import BackLink from "~components/back-link";
 import "~styles/text.css";
 
 const blog = await getCollection("blog", ({ data }) =>
-  import.meta.env.PROD ? data.draft !== true : true
-).then(posts => // sort by datePublished
-  posts.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime())
+   import.meta.env.PROD ? data.draft !== true : true,
+).then(
+   (
+      posts, // sort by datePublished
+   ) =>
+      posts.sort(
+         (a, b) =>
+            new Date(b.data.datePublished).getTime() -
+            new Date(a.data.datePublished).getTime(),
+      ),
 );
 ---
 
@@ -66,7 +73,7 @@ const blog = await getCollection("blog", ({ data }) =>
                            </time>
                         </span>
                         <p>
-                           <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                           <a href={`/blog/${entry.id}`}>{entry.data.title}</a>
                         </p>
                         <p>{entry.data.description}</p>
                      </li>
