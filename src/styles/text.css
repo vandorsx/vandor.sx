@@ -70,7 +70,7 @@ article ol {
 }
 
 .mb-image-img img {
-   @apply border border-black/[.54] bg-black/[.054];
+   @apply border-[0.5px] border-black bg-black/[.054];
    @apply grayscale transition-all duration-300 hover:grayscale-0;
 }
 
