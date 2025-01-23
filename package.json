@@ -16,9 +16,9 @@
       "@astrojs/mdx": "4.0.5",
       "@astrojs/rss": "^4.0.11",
       "@astrojs/solid-js": "5.0.1",
-      "@astrojs/tailwind": "^5.1.4",
+      "@astrojs/tailwind": "^5.1.5",
       "@types/markdown-it": "^14.1.2",
-      "astro": "5.1.2",
+      "astro": "^5.1.8",
       "astro-seo": "^0.8.4",
       "cheerio": "1.0.0-rc.12",
       "clsx": "^2.1.1",
@@ -31,11 +31,11 @@
    },
    "devDependencies": {
       "@tailwindcss/typography": "^0.5.16",
-      "@types/bun": "^1.1.16",
+      "@types/bun": "^1.2.0",
       "@types/sanitize-html": "^2.13.0",
       "prettier": "3.3.3",
       "prettier-plugin-astro": "^0.14.1",
-      "prettier-plugin-tailwindcss": "^0.6.9",
-      "wrangler": "^3.101.0"
+      "prettier-plugin-tailwindcss": "^0.6.10",
+      "wrangler": "^3.105.0"
    }
 }
