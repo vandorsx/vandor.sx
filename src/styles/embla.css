@@ -1,3 +1,5 @@
+@reference "~styles/globals.css";
+
 .embla {
    overflow: hidden;
    @apply my-[2em];

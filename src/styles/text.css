@@ -1,3 +1,5 @@
+@reference "~styles/globals.css";
+
 p {
    @apply my-[1em];
 }

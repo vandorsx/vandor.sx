@@ -1,3 +1,5 @@
+@reference "~styles/globals.css";
+
 #reply-area > *:first-child:not(#reply-area-buttons) {
    @apply border-t border-black/[.054] pb-4 pt-7;
 }
