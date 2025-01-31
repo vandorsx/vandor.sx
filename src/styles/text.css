@@ -7,7 +7,7 @@ p {
 a:not(.incognito),
 .anchor {
    @apply underline underline-offset-1;
-   @apply decoration-black/[.27] hover:decoration-accent;
+   @apply hover:decoration-accent decoration-black/[.27];
 }
 
 /* wavy underline for webkit only */
@@ -57,7 +57,7 @@ article ol {
 }
 
 .mb-image-actions * {
-   @apply font-serif text-xs italic text-black/[.54];
+   @apply font-serif text-xs text-black/[.54] italic;
 }
 
 .mb-image-actions a,
@@ -108,7 +108,7 @@ blockquote {
    }
 
    cite {
-      @apply not-italic text-black/[.72];
+      @apply text-black/[.72] not-italic;
       overflow-wrap: break-word;
    }
 }
@@ -141,7 +141,7 @@ a[id^="user-content-fnref-"] {
 }
 
 #footnote-label {
-   @apply mb-2.5 text-[1rem] italic leading-5;
+   @apply mb-2.5 text-[1rem] leading-5 italic;
 }
 
 .footnotes ol {
