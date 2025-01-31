@@ -93,16 +93,6 @@ import "~styles/fonts.css";
             overflow-wrap: break-word;
          }
 
-         #page {
-            @apply pt-[2.625rem] md:pt-[3.9375rem] lg:pt-14; /* lg:pt = 5.25rem - #page lg:mt (1.75rem) */
-            @apply pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem];
-            @apply flex flex-col gap-3 bg-white;
-            @apply px-7 lg:mt-7 lg:px-[92px];
-            @apply w-full max-w-[661px] lg:max-w-[789px];
-            @apply lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)];
-            @apply lg:min-h-[calc(100dvh-1.75rem)];
-         }
-
          ::selection {
             background: rgba(149, 138, 122, 0.54);
          }
@@ -113,7 +103,18 @@ import "~styles/fonts.css";
       </style>
    </head>
    <body>
-      <div id="page">
+      <div
+         id="page"
+         class={`
+               pt-[2.625rem] md:pt-[3.9375rem] lg:pt-14
+               pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem]
+               flex flex-col gap-3 bg-white
+               px-7 lg:mt-7 lg:px-[92px]
+               w-full max-w-[661px] lg:max-w-[789px]
+               lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)]
+               lg:min-h-[calc(100dvh-1.75rem)]
+            `}
+      >
          <slot name="header" />
          <main>
             <slot />
