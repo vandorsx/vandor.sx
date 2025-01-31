@@ -7,7 +7,10 @@ import "~styles/fonts.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+   lang="en"
+   class="[&,_body]:bg-white [&,_body]:lg:bg-[#F0F0F0] [&,_body]:dark:lg:bg-[#323232]"
+>
    <head>
       <PostHog />
       <script src="../libs/path-tracker.ts"></script>
@@ -74,27 +77,8 @@ import "~styles/fonts.css";
       </slot>
 
       <ClientRouter />
-
-      <style is:global>
-         @reference "~styles/globals.css";
-
-         html {
-            font-size: 100%;
-         }
-
-         html,
-         body {
-            @apply bg-white lg:bg-[#F0F0F0] dark:lg:bg-[#323232];
-         }
-
-         body {
-            @apply flex justify-center;
-            @apply text-sm leading-[1.4rem] font-light;
-            overflow-wrap: break-word;
-         }
-      </style>
    </head>
-   <body>
+   <body class="flex justify-center text-sm leading-[1.4rem] font-light">
       <div
          id="page"
          class={`

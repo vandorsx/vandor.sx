@@ -18,3 +18,11 @@
 ::-moz-selection {
    background: rgba(149, 138, 122, 0.54);
 }
+
+html {
+   font-size: 100%;
+}
+
+body {
+   overflow-wrap: break-word;
+}
