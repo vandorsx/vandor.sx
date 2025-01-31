@@ -22,10 +22,6 @@ const blog = await getCollection("blog", ({ data }) =>
 <style>
    @reference "~styles/globals.css";
 
-   .post-list-item p {
-      @apply my-0;
-   }
-
    .post-list-item p:first-of-type {
       @apply my-0 pt-0.5 pb-1 font-serif text-[1.125em];
    }
@@ -74,10 +70,10 @@ const blog = await getCollection("blog", ({ data }) =>
                               )}
                            </time>
                         </span>
-                        <p>
+                        <p class="my-0">
                            <a href={`/blog/${entry.id}`}>{entry.data.title}</a>
                         </p>
-                        <p>{entry.data.description}</p>
+                        <p class="my-0">{entry.data.description}</p>
                      </li>
                   ))}
                </ul>
