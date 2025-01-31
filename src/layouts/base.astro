@@ -2,11 +2,15 @@
 import PostHog from "~components/posthog.astro";
 import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
+import "~styles/globals.css";
 import "~styles/fonts.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+   lang="en"
+   class="[&,_body]:bg-white [&,_body]:lg:bg-[#F0F0F0] [&,_body]:dark:lg:bg-[#323232]"
+>
    <head>
       <PostHog />
       <script src="../libs/path-tracker.ts"></script>
@@ -73,44 +77,20 @@ import "~styles/fonts.css";
       </slot>
 
       <ClientRouter />
-
-      <style is:global>
-         html {
-            font-size: 100%;
-         }
-
-         html,
-         body {
-            @apply bg-white lg:bg-[#F0F0F0] dark:lg:bg-[#323232];
-         }
-
-         body {
-            @apply flex justify-center;
-            @apply text-sm font-light leading-[1.4rem];
-            overflow-wrap: break-word;
-         }
-
-         #page {
-            @apply pt-[2.625rem] md:pt-[3.9375rem] lg:pt-14; /* lg:pt = 5.25rem - #page lg:mt (1.75rem) */
-            @apply pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem];
-            @apply flex flex-col gap-3 bg-white;
-            @apply px-7 lg:mt-7 lg:px-[92px];
-            @apply w-full max-w-[661px] lg:max-w-[789px];
-            @apply lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)];
-            @apply lg:min-h-[calc(100dvh-1.75rem)];
-         }
-
-         ::selection {
-            background: rgba(149, 138, 122, 0.54);
-         }
-         /* https://encycolorpedia.com/958a7a */
-         ::-moz-selection {
-            background: rgba(149, 138, 122, 0.54);
-         }
-      </style>
    </head>
-   <body>
-      <div id="page">
+   <body class="flex justify-center text-sm leading-[1.4rem] font-light">
+      <div
+         id="page"
+         class={`
+               pt-[2.625rem] md:pt-[3.9375rem] lg:pt-14
+               pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem]
+               flex flex-col gap-3 bg-white
+               px-7 lg:mt-7 lg:px-[92px]
+               w-full max-w-[661px] lg:max-w-[789px]
+               lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)]
+               lg:min-h-[calc(100dvh-1.75rem)]
+            `}
+      >
          <slot name="header" />
          <main>
             <slot />

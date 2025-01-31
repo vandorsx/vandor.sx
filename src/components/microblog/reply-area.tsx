@@ -92,7 +92,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
       <div id="reply-area">
          {token() && username() ?
             <form
-               class="mb-5 text-slightly-smaller"
+               class="text-slightly-smaller mb-5"
                onSubmit={handleReply}
                id="reply-area-form"
             >
@@ -103,10 +103,10 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   id="reply-field"
                   name="text"
                   placeholder="Some nice words..."
-                  class="w-full border border-black/[.27] p-2 placeholder-black/[.27] outline-none"
+                  class="w-full border border-black/[.27] p-2 placeholder-black/[.27] outline-hidden"
                />
                <div class="flex items-center justify-between">
-                  <div class="font-serif text-xs italic text-black/[.54]">
+                  <div class="font-serif text-xs text-black/[.54] italic">
                      Replying as{" "}
                      <span class="font-[327]">
                         <span class="mr-[.03125rem]">@</span>
@@ -130,7 +130,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
          {!token() && !username() && (
             <div
                id="reply-area-buttons"
-               class="pt-3 text-right font-serif text-xs italic text-black/[.54]"
+               class="pt-3 text-right font-serif text-xs text-black/[.54] italic"
             >
                reply with{" "}
                <a

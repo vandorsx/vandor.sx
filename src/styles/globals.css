@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+   --color-accent: #8abad3;
+
+   --font-sans: "seven sans", ui-sans-serif, system-ui, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+   --font-serif: "seven serif", ui-serif, Georgia, Cambria, "Times New Roman",
+      Times, serif;
+   --font-mono: "seven mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, "Liberation Mono", "Courier New", monospace;
+
+   --text-slightly-smaller: calc(1em - 1px);
+   --font-bolder: bolder;
+}
+
+::selection {
+   background: rgba(149, 138, 122, 0.54);
+}
+/* https://encycolorpedia.com/958a7a */
+::-moz-selection {
+   background: rgba(149, 138, 122, 0.54);
+}
+
+html {
+   font-size: 100%;
+}
+
+body {
+   overflow-wrap: break-word;
+}
