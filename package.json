@@ -16,7 +16,6 @@
       "@astrojs/mdx": "4.0.8",
       "@astrojs/rss": "^4.0.11",
       "@astrojs/solid-js": "5.0.4",
-      "@astrojs/tailwind": "6.0.0",
       "@types/markdown-it": "^14.1.2",
       "astro": "5.2.3",
       "astro-seo": "^0.8.4",
