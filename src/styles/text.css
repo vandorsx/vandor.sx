@@ -1,6 +1,8 @@
 @reference "~styles/globals.css";
 
-p {
+p:not([class*="my-"]):not([class*="mt-"]):not([class*="mb-"]):not(
+      .rich-link *
+   ):not(.footnotes *) {
    @apply my-[1em];
 }
 
