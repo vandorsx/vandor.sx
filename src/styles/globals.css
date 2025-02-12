@@ -41,7 +41,7 @@
    }
 }
 
-@layer highlighter {
+@utility highlighter {
    position: relative;
    z-index: 1;
    padding-inline: 2px;
