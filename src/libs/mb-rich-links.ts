@@ -14,6 +14,7 @@ export const createRichLinks = (content_html: string): string => {
       const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
       linkElement.text(niceUrl);
       linkElement.attr("target", "_blank");
+      linkElement.addClass("rich-link-a");
    });
 
    return $(".content-wrapper").html() || content_html;
@@ -42,7 +43,7 @@ export const createLegacyRichLinks = (content_html: string): string => {
                      <footer>
                         ${title ? `<span>${title}</span>` : ""}
                         <div>
-                           <cite><a href="${url}" target="_blank">${niceUrl}</a></cite>
+                           <cite><a href="${url}" target="_blank" class="rich-link-a">${niceUrl}</a></cite>
                         </div>
                      </footer>
                   `;
