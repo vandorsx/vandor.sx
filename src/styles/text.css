@@ -120,8 +120,12 @@ code {
    @apply my-[1em] p-2;
 }
 
-a[id^="user-content-fnref-"] {
-   @apply no-underline hover:no-underline;
+[data-footnote-ref] {
+   @apply highlighted mx-0.5;
+}
+
+[data-footnote-backref] {
+   @apply ml-0.5 font-serif text-black/[.34] transition-colors duration-500 hover:animate-pulse hover:text-black/[.68] focus:animate-pulse focus:text-black/[.68] focus:outline-none;
 }
 
 .footnotes {
