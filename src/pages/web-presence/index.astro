@@ -16,7 +16,7 @@ import LinkTree from "./_linktree.json";
    }
 
    dl > dd {
-      @apply ml-[2em];
+      @apply ml-[1em];
    }
 </style>
 
@@ -42,7 +42,11 @@ import LinkTree from "./_linktree.json";
                   <>
                      <dt>{link.platform}</dt>
                      <dd>
-                        <a href={link.url} rel={link.rel ? link.rel : undefined}>
+                        <a
+                           href={link.url}
+                           rel={link.rel ? link.rel : undefined}
+                           class="highlighted"
+                        >
                            <i>{link.username}</i>
                         </a>
                      </dd>
