@@ -18,6 +18,20 @@
    --font-bolder: bolder;
 }
 
+@layer components {
+   .highlighter {
+      background-color: var(--color-highlight);
+      border: 1px solid var(--color-highlight-border);
+      border-radius: 3px;
+      padding-inline: 2px;
+      margin-inline: -2px;
+
+      @variant hover {
+         background-color: var(--color-highlight-hover);
+      }
+   }
+}
+
 @custom-variant hover-legacy (&:hover);
 
 ::selection {
