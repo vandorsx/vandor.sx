@@ -55,7 +55,7 @@ export default function BackLink({ href, text, bypass }: BackLinkProps) {
       <div id="back-link">
          <a
             href={href}
-            class="font-serif text-xs italic text-black/[.34] hover:underline"
+            class="focus:aniamte-pulse font-serif text-xs text-black/[.34] italic transition-colors duration-500 hover:animate-pulse hover:text-black/[.68] focus:text-black/[.68] focus:outline-none"
             onClick={handleClick}
          >
             &#8592;&nbsp;&nbsp;{text}
