@@ -48,6 +48,10 @@
       padding-inline: 2px;
       margin-inline: -2px;
 
+      @variant focus {
+         outline: none;
+      }
+
       &::before {
          content: "";
          position: absolute;
@@ -62,6 +66,14 @@
       }
 
       &:hover::before {
+         @apply scale-x-100;
+      }
+
+      &:focus::before {
+         @apply scale-x-100;
+      }
+
+      &:active::before {
          @apply scale-x-100;
       }
    }
