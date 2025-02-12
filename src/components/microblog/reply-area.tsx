@@ -103,7 +103,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   id="reply-field"
                   name="text"
                   placeholder="Some nice words..."
-                  class="w-full border border-black/[.27] p-2 placeholder-black/[.27] outline-hidden"
+                  class="w-full border-[0.5px] border-black p-2 placeholder-black/[.27] outline-hidden"
                />
                <div class="flex items-center justify-between">
                   <div class="font-serif text-xs text-black/[.54] italic">
@@ -115,9 +115,11 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   </div>
                   <button
                      type="submit"
-                     class="cursor-pointer border border-black/[.27] px-2.5 font-serif italic hover:border-black/[.54] hover:bg-black/[.027]"
+                     class="group cursor-pointer border-[0.5px] border-black px-2.5 font-serif italic focus:outline-none"
                   >
-                     Reply
+                     <span class="group-hover:animate-pulse group-focus:animate-pulse">
+                        Reply
+                     </span>
                   </button>
                </div>
             </form>
