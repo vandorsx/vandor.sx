@@ -51,10 +51,6 @@ function formatDate(dateString: string): string {
 }
 ---
 
-<style>
-   @reference "~styles/globals.css";
-</style>
-
 <article>
    {
       inFeed ?
@@ -135,5 +131,8 @@ function formatDate(dateString: string): string {
          </header>
    }
 
-   <Fragment set:html={contentHtml} />
+   <div
+      class="[&_a:not(.mb-view-img):not(.rich-link-a)]:highlighted"
+      set:html={contentHtml}
+   />
 </article>
