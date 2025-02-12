@@ -91,7 +91,7 @@ export default function PMCarousel({ photos, startIndex }: Props) {
          <div class="embla__meta">
             <div class="embla__buttons">
                <button
-                  class="embla__prev"
+                  class="embla__prev cursor-pointer"
                   onClick={scrollPrev}
                   disabled={!canScrollPrev()}
                   aria-label="Slide to previous image"
@@ -99,7 +99,7 @@ export default function PMCarousel({ photos, startIndex }: Props) {
                   &larr;
                </button>
                <button
-                  class="embla__next"
+                  class="embla__next cursor-pointer"
                   onClick={scrollNext}
                   disabled={!canScrollNext()}
                   aria-label="Slide to next image"

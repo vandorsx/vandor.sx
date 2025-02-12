@@ -115,7 +115,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                   </div>
                   <button
                      type="submit"
-                     class="border border-black/[.27] px-2.5 font-serif italic hover:border-black/[.54] hover:bg-black/[.027]"
+                     class="cursor-pointer border border-black/[.27] px-2.5 font-serif italic hover:border-black/[.54] hover:bg-black/[.027]"
                   >
                      Reply
                   </button>
