@@ -50,7 +50,7 @@ article ol {
 
 .mb-image-actions a,
 .mb-image-actions button {
-   @apply text-black/[.34] no-underline hover:underline;
+   @apply text-black/[.34] transition-colors duration-500 hover:animate-pulse hover:cursor-pointer hover:text-black/[.68] focus:animate-pulse focus:text-black/[.68] focus:outline-none;
 }
 
 .mb-image-img {
