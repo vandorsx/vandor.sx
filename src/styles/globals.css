@@ -2,6 +2,9 @@
 
 @theme {
    --color-accent: #8abad3;
+   --color-highlight: #fef9e7;
+   --color-highlight-hover: #fef6d8;
+   --color-highlight-border: rgba(0, 0, 0, 0.01);
 
    --font-sans: "seven sans", ui-sans-serif, system-ui, sans-serif,
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
