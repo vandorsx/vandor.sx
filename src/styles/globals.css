@@ -41,6 +41,30 @@
          border-color: rgba(0, 0, 0, 0.03);
       }
    }
+
+   .highlighter {
+      position: relative;
+      z-index: 1;
+      padding-inline: 2px;
+      margin-inline: -2px;
+
+      &::before {
+         content: "";
+         position: absolute;
+         inset: 0;
+         z-index: -1;
+         background-color: var(--color-highlight-hover);
+         border: 1px solid rgba(0, 0, 0, 0.03);
+         border-radius: 3px;
+         transform-origin: left;
+         @apply scale-x-0;
+         @apply transition-transform duration-300 ease-out;
+      }
+
+      &:hover::before {
+         @apply scale-x-100;
+      }
+   }
 }
 
 @custom-variant hover-legacy (&:hover);
@@ -59,28 +83,4 @@ html {
 
 body {
    overflow-wrap: break-word;
-}
-
-.highlighter {
-   position: relative;
-   z-index: 1;
-   padding-inline: 2px;
-   margin-inline: -2px;
-}
-
-.highlighter::before {
-   content: "";
-   position: absolute;
-   inset: 0;
-   z-index: -1;
-   background-color: var(--color-highlight-hover);
-   border: 1px solid rgba(0, 0, 0, 0.03);
-   border-radius: 3px;
-   transform-origin: left;
-   @apply scale-x-0;
-   @apply transition-transform duration-300 ease-out;
-}
-
-.highlighter:hover::before {
-   @apply scale-x-100;
 }
