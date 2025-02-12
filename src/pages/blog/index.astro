@@ -44,7 +44,9 @@ const blog = await getCollection("blog", ({ data }) =>
          <p class="my-2">
             Welcome to my blog. This is where I publish more thoughtful, or, at
             the very least, more crafted pieces. As is standard, my blog is
-            available as an <a href="/blog/feed.xml">RSS feed</a>.
+            available as an <a class="highlighted" href="/blog/feed.xml"
+               >RSS feed</a
+            >.
          </p>
       </div>
       <section>
@@ -67,7 +69,9 @@ const blog = await getCollection("blog", ({ data }) =>
                            </time>
                         </span>
                         <p class="my-0">
-                           <a href={`/blog/${entry.id}`}>{entry.data.title}</a>
+                           <a class="highlighter" href={`/blog/${entry.id}`}>
+                              {entry.data.title}
+                           </a>
                         </p>
                         <p class="my-0">{entry.data.description}</p>
                      </li>
