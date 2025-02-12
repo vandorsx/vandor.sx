@@ -6,20 +6,6 @@ p:not([class*="my-"]):not([class*="mt-"]):not([class*="mb-"]):not(
    @apply my-[1em];
 }
 
-a:not(.incognito),
-.anchor {
-   @apply underline underline-offset-1;
-   @apply hover:decoration-accent decoration-black/[.27];
-}
-
-/* wavy underline for webkit only */
-_::-webkit-full-page-media,
-_:future,
-:root a:not(.incognito),
-.anchor {
-   @apply decoration-wavy underline-offset-2;
-}
-
 @supports (font-variation-settings: normal) {
    i,
    em {
@@ -157,8 +143,4 @@ a[id^="user-content-fnref-"] {
 a.data-footnote-backref {
    @apply font-serif no-underline hover:no-underline;
    font-size: 75%;
-}
-
-#back-link > a {
-   @apply no-underline hover:underline;
 }

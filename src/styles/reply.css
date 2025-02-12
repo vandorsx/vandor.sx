@@ -9,10 +9,6 @@
    @apply inline-block;
 }
 
-.reply-metadata a {
-   @apply no-underline;
-}
-
 #reply-area p {
    @apply my-[0.75em];
 }
