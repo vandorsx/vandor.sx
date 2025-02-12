@@ -4,7 +4,6 @@
    --color-accent: #8abad3;
    --color-highlight: #fef9e7;
    --color-highlight-hover: #fef6d8;
-   --color-highlight-border: rgba(0, 0, 0, 0.01);
 
    --font-sans: "seven sans", ui-sans-serif, system-ui, sans-serif,
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
@@ -21,13 +20,25 @@
 @layer components {
    .highlighter {
       background-color: var(--color-highlight);
-      border: 1px solid var(--color-highlight-border);
+      border: 1px solid rgba(0, 0, 0, 0.01);
       border-radius: 3px;
       padding-inline: 2px;
       margin-inline: -2px;
 
       @variant hover {
          background-color: var(--color-highlight-hover);
+         border-color: rgba(0, 0, 0, 0.03);
+      }
+
+      @variant focus {
+         background-color: var(--color-highlight-hover);
+         outline: none;
+         border-color: rgba(0, 0, 0, 0.03);
+      }
+
+      @variant active {
+         background-color: var(--color-highlight-hover);
+         border-color: rgba(0, 0, 0, 0.03);
       }
    }
 }
