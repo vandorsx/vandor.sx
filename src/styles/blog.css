@@ -31,7 +31,7 @@ h4 {
    @apply text-[1.03125rem];
 }
 
-article a:not([data-footnote-backref]):not([data-footnote-ref]) {
+article a:not([data-footnote-backref]):not([data-footnote-ref]):not(.incognito) {
    @apply highlighted;
 }
 
