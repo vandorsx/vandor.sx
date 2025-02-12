@@ -117,8 +117,8 @@ const getPageNumber = (path: string) => {
       @apply hidden;
    }
 
-   #pagination-links > a:hover {
-      @apply underline;
+   #pagination-links > a {
+      @apply transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none;
    }
 
    #pagination-links > a:only-child {
