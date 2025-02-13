@@ -57,7 +57,7 @@ function formatDate(dateString: string): string {
          <header class="font-serif mb-4 leading-none">
             <a
                href={`/microblog/${year}/${month}/${day}/${post.id}`}
-               class="group inline-flex flex-col gap-2"
+               class="group inline-flex flex-col gap-2 focus:outline-none focus:highlighter"
             >
                <div class="inline">
                   <span class="italic text-xs text-black/[.72] anchor group-hover:highlighter">
@@ -101,7 +101,9 @@ function formatDate(dateString: string): string {
                   </span>
                </div>
                {post.titled_post && (
-                  <h2 class="group-hover:animate-pulse">{post.title}</h2>
+                  <h2 class="group-hover:animate-pulse group-focus:animate-pulse">
+                     {post.title}
+                  </h2>
                )}
             </a>
          </header>
