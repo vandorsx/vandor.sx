@@ -20,7 +20,11 @@ function Reply(reply: MicrodotblogReply) {
       <div class="flex flex-col">
          <div class="reply-metadata font-serif italic">
             {reply.author.url ?
-               <a href={reply.author.url} target="_blank">
+               <a
+                  href={reply.author.url}
+                  target="_blank"
+                  class="transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none"
+               >
                   {reply.author.name}
                </a>
             :  <span>{reply.author.name}</span>}
@@ -42,7 +46,7 @@ function Reply(reply: MicrodotblogReply) {
 
 export default function Conversation(microdotblog: Microdotblog) {
    return (
-      <div class="flex flex-col gap-4 text-slightly-smaller">
+      <div class="text-slightly-smaller flex flex-col gap-4">
          <For each={microdotblog.items}>{(reply) => <Reply {...reply} />}</For>
       </div>
    );

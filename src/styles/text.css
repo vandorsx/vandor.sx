@@ -6,20 +6,6 @@ p:not([class*="my-"]):not([class*="mt-"]):not([class*="mb-"]):not(
    @apply my-[1em];
 }
 
-a:not(.incognito),
-.anchor {
-   @apply underline underline-offset-1;
-   @apply hover:decoration-accent decoration-black/[.27];
-}
-
-/* wavy underline for webkit only */
-_::-webkit-full-page-media,
-_:future,
-:root a:not(.incognito),
-.anchor {
-   @apply decoration-wavy underline-offset-2;
-}
-
 @supports (font-variation-settings: normal) {
    i,
    em {
@@ -64,7 +50,7 @@ article ol {
 
 .mb-image-actions a,
 .mb-image-actions button {
-   @apply text-black/[.34] no-underline hover:underline;
+   @apply text-black/[.34] transition-colors duration-500 hover:animate-pulse hover:cursor-pointer hover:text-black/[.68] focus:animate-pulse focus:text-black/[.68] focus:outline-none;
 }
 
 .mb-image-img {
@@ -109,9 +95,10 @@ blockquote {
       @apply font-[354];
    }
 
-   cite {
+   cite a {
       @apply text-black/[.72] not-italic;
       overflow-wrap: break-word;
+      @apply transition-colors duration-500 hover:animate-pulse hover:text-black focus:animate-pulse focus:text-black focus:outline-none;
    }
 }
 
@@ -134,8 +121,12 @@ code {
    @apply my-[1em] p-2;
 }
 
-a[id^="user-content-fnref-"] {
-   @apply no-underline hover:no-underline;
+[data-footnote-ref] {
+   @apply highlighted mx-0.5;
+}
+
+[data-footnote-backref] {
+   @apply ml-0.5 font-serif text-black/[.34] transition-colors duration-500 hover:animate-pulse hover:text-black/[.68] focus:animate-pulse focus:text-black/[.68] focus:outline-none;
 }
 
 .footnotes {
@@ -157,8 +148,4 @@ a[id^="user-content-fnref-"] {
 a.data-footnote-backref {
    @apply font-serif no-underline hover:no-underline;
    font-size: 75%;
-}
-
-#back-link > a {
-   @apply no-underline hover:underline;
 }

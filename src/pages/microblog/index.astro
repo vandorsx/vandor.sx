@@ -118,11 +118,7 @@ const getPageNumber = (path: string) => {
    }
 
    #pagination-links > a {
-      @apply no-underline;
-   }
-
-   #pagination-links > a:hover {
-      @apply underline;
+      @apply transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none;
    }
 
    #pagination-links > a:only-child {
@@ -186,21 +182,25 @@ const getPageNumber = (path: string) => {
          <p class="my-2">
             Welcome to my microblog — my place to share quick updates and musings
             in a tweet-like fashion. Externally, my microblog is available as a <a
+               class="highlighted"
                href="https://microblog.vandor.sx/feed.json"
                target="_blank">JSON feed</a
             > and via <a
+               class="highlighted"
                href="https://micro.blog/jade?remote_follow=1"
                target="_blank">ActivityPub</a
             >. In addition, I make an effort to cross-post to <a
+               class="highlighted"
                href="https://bsky.app/profile/vandor.sx"
                target="_blank">Bluesky</a
             >.
          </p>
 
-         <p class="text-black/[.72] my-2">
+         <p class="text-black/[.54] my-2 text-slightly-smaller">
             <i>
-               My microblog is proudly powered by <a href="https://micro.blog"
-                  >Micro.blog</a
+               My microblog is proudly powered by <a
+                  class="transition-colors duration-500 hover:animate-pulse hover:text-black focus:animate-pulse focus:text-black/[.68] focus:outline-none"
+                  href="https://micro.blog">Micro.blog</a
                >.
             </i>
          </p>

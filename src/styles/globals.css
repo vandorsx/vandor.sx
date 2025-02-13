@@ -2,6 +2,8 @@
 
 @theme {
    --color-accent: #8abad3;
+   --color-highlight: #fef9e7;
+   --color-highlight-hover: #fef6d8;
 
    --font-sans: "seven sans", ui-sans-serif, system-ui, sans-serif,
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
@@ -13,6 +15,66 @@
 
    --text-slightly-smaller: calc(1em - 1px);
    --font-bolder: bolder;
+}
+
+@utility highlighted {
+   background-color: var(--color-highlight);
+   border: 1px solid rgba(0, 0, 0, 0.01);
+   border-radius: 3px;
+   padding-inline: 2px;
+   margin-inline: -2px;
+
+   @variant hover {
+      background-color: var(--color-highlight-hover);
+      border-color: rgba(0, 0, 0, 0.03);
+   }
+
+   @variant focus {
+      background-color: var(--color-highlight-hover);
+      outline: none;
+      border-color: rgba(0, 0, 0, 0.03);
+   }
+
+   @variant active {
+      background-color: var(--color-highlight-hover);
+      border-color: rgba(0, 0, 0, 0.03);
+   }
+}
+
+@utility highlighter {
+   position: relative;
+   z-index: 1;
+   padding-inline: 2px;
+   margin-inline: -2px;
+
+   @variant focus {
+      outline: none;
+   }
+
+   &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-highlight-hover);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      border-radius: 3px;
+      transform-origin: left;
+      @apply scale-x-0;
+      @apply transition-transform duration-300 ease-out;
+   }
+
+   &:hover::before {
+      @apply scale-x-100;
+   }
+
+   &:focus::before {
+      @apply scale-x-100;
+   }
+
+   &:active::before {
+      @apply scale-x-100;
+   }
 }
 
 @custom-variant hover-legacy (&:hover);

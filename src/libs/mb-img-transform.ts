@@ -120,6 +120,7 @@ const transformImage = (
                .attr("href", initialSrc)
                .attr("target", "_blank")
                .attr("rel", "noopener noreferrer")
+               .attr("class", "mb-view-img")
                .text("full image"),
          );
       const readAlt =

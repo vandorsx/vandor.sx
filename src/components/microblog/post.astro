@@ -51,62 +51,60 @@ function formatDate(dateString: string): string {
 }
 ---
 
-<style>
-   @reference "~styles/globals.css";
-
-   header a {
-      @apply no-underline;
-   }
-   header .anchor {
-      @apply no-underline hover:underline;
-   }
-</style>
-
 <article>
    {
       inFeed ?
          <header class="font-serif mb-4 leading-none">
             <a
                href={`/microblog/${year}/${month}/${day}/${post.id}`}
-               class="inline-flex flex-col gap-2"
+               class="group inline-flex flex-col gap-2 focus:outline-none focus:highlighter"
             >
-               <span class="italic text-xs text-black/[.72] anchor">
-                  <Fragment>
-                     Posted{" "}
-                     <time
-                        datetime={post.date_published}
-                        title={new Date(
-                           post.date_published.slice(0, -5),
-                        ).toLocaleString("en-US", nonRelativeDateOptions)}
-                     >
-                        {!isOlderThanWeek(post.date_published) ?
-                           <DynamicTimestamp
-                              date={post.date_published}
-                              client:load
-                           />
-                        :  formatDate(post.date_published)}
-                     </time>
-                  </Fragment>
-                  {post.date_modified &&
-                     post.categories?.includes("show_updated") && (
-                        <Fragment>
-                           & updated
-                           <span
-                              title={new Date(
-                                 post.date_modified.slice(0, -5),
-                              ).toLocaleString("en-US", nonRelativeDateOptions)}
-                           >
-                              {!isOlderThanWeek(post.date_modified) ?
-                                 <DynamicTimestamp
-                                    date={post.date_modified}
-                                    client:load
-                                 />
-                              :  formatDate(post.date_modified)}
-                           </span>
-                        </Fragment>
-                     )}
-               </span>
-               {post.titled_post && <h2>{post.title}</h2>}
+               <div class="inline">
+                  <span class="italic text-xs text-black/[.72] anchor group-hover:highlighter">
+                     <Fragment>
+                        Posted{" "}
+                        <time
+                           datetime={post.date_published}
+                           title={new Date(
+                              post.date_published.slice(0, -5),
+                           ).toLocaleString("en-US", nonRelativeDateOptions)}
+                        >
+                           {!isOlderThanWeek(post.date_published) ?
+                              <DynamicTimestamp
+                                 date={post.date_published}
+                                 client:load
+                              />
+                           :  formatDate(post.date_published)}
+                        </time>
+                     </Fragment>
+                     {post.date_modified &&
+                        post.categories?.includes("show_updated") && (
+                           <Fragment>
+                              & updated
+                              <span
+                                 title={new Date(
+                                    post.date_modified.slice(0, -5),
+                                 ).toLocaleString(
+                                    "en-US",
+                                    nonRelativeDateOptions,
+                                 )}
+                              >
+                                 {!isOlderThanWeek(post.date_modified) ?
+                                    <DynamicTimestamp
+                                       date={post.date_modified}
+                                       client:load
+                                    />
+                                 :  formatDate(post.date_modified)}
+                              </span>
+                           </Fragment>
+                        )}
+                  </span>
+               </div>
+               {post.titled_post && (
+                  <h2 class="group-hover:animate-pulse group-focus:animate-pulse">
+                     {post.title}
+                  </h2>
+               )}
             </a>
          </header>
       :  <header class="font-serif mb-4 pt-1 leading-none">
@@ -135,5 +133,8 @@ function formatDate(dateString: string): string {
          </header>
    }
 
-   <Fragment set:html={contentHtml} />
+   <div
+      class="[&_a:not(.mb-view-img):not(.rich-link-a)]:highlighted"
+      set:html={contentHtml}
+   />
 </article>

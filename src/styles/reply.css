@@ -5,12 +5,8 @@
 }
 
 #reply-area-buttons a {
-   @apply font-serif text-xs text-black/[.34] italic no-underline hover:underline;
+   @apply font-serif text-xs text-black/[.34] transition-colors duration-500 hover:animate-pulse hover:text-black/[.68] focus:animate-pulse focus:text-black/[.68] focus:outline-none;
    @apply inline-block;
-}
-
-.reply-metadata a {
-   @apply no-underline;
 }
 
 #reply-area p {
@@ -22,4 +18,5 @@
    @apply no-underline;
    font-variation-settings: "ital" 0.27;
    @apply font-[327];
+   @apply transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none;
 }
