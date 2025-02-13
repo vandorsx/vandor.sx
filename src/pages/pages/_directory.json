@@ -3,7 +3,7 @@
       {
          "route": "/library",
          "title": "Library",
-         "blurb": "A log of what books I'm currently reading, books I've finished reading, and books I want to read."
+         "blurb": "A log of which books I'm currently reading, books I've finished reading, and books I want to read."
       }
    ]
 }
