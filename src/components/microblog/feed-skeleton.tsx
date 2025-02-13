@@ -86,7 +86,7 @@ export default function FeedSkeleton({ postCount }: { postCount: number }) {
                      </div>
                   </div>
                   {index < postCount - 1 && (
-                     <hr class="mb-5 mt-7 w-full border-black/[.027]" />
+                     <hr class="mt-7 mb-5 w-full border-black/[.027]" />
                   )}
                </>
             );
