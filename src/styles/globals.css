@@ -14,7 +14,7 @@
       Consolas, "Liberation Mono", "Courier New", monospace;
 
    --text-slightly-smaller: calc(1em - 1px);
-   --font-bolder: bolder;
+   --font-weight-bolder: bolder;
 }
 
 @utility highlighted {
