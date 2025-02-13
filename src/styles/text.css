@@ -95,7 +95,7 @@ blockquote {
       @apply font-[354];
    }
 
-   cite {
+   cite a {
       @apply text-black/[.72] not-italic;
       overflow-wrap: break-word;
       @apply transition-colors duration-500 hover:animate-pulse hover:text-black focus:animate-pulse focus:text-black focus:outline-none;
