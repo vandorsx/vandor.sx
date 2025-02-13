@@ -11,16 +11,16 @@
       "astro": "astro"
    },
    "dependencies": {
-      "@astrojs/check": "0.9.4",
-      "@astrojs/cloudflare": "12.2.1",
-      "@astrojs/mdx": "4.0.8",
+      "@astrojs/check": "^0.9.4",
+      "@astrojs/cloudflare": "^12.2.1",
+      "@astrojs/mdx": "^4.0.8",
       "@astrojs/rss": "^4.0.11",
-      "@astrojs/solid-js": "5.0.4",
+      "@astrojs/solid-js": "^5.0.4",
       "@tailwindcss/vite": "^4.0.6",
       "@types/markdown-it": "^14.1.2",
-      "astro": "5.2.3",
+      "astro": "^5.2.6",
       "astro-seo": "^0.8.4",
-      "cheerio": "1.0.0-rc.12",
+      "cheerio": "^1.0.0",
       "clsx": "^2.1.1",
       "embla-carousel-solid": "^8.5.2",
       "markdown-it": "^14.1.0",
@@ -32,9 +32,9 @@
    "devDependencies": {
       "@types/bun": "^1.2.2",
       "@types/sanitize-html": "^2.13.0",
-      "prettier": "3.3.3",
+      "prettier": "^3.5.0",
       "prettier-plugin-astro": "^0.14.1",
       "prettier-plugin-tailwindcss": "^0.6.11",
-      "wrangler": "^3.107.3"
+      "wrangler": "^3.108.1"
    }
 }
