@@ -102,7 +102,10 @@ try {
                   <ul>
                      {booksByShelf[shelf.id].map((book, index) => (
                         <li class="flex gap-2 my-4">
-                           <a href={book.url}>
+                           <a
+                              href={book.url}
+                              class="focus:outline-none focus:border-[0.5px]"
+                           >
                               <img
                                  src={`https://cdn.micro.blog/photos/72x/${encodeURIComponent(book.image)}`}
                                  alt={`Cover of ${book.title}`}
