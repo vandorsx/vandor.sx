@@ -54,7 +54,7 @@ const transformImage = (
          `https://${import.meta.env.MICROBLOG_BASE_URL}/uploads`,
       );
 
-      // Optimize image if hosted via Micro.blog
+      // Optimize image if hosted via Micro.blog and not already optimized (e.g., a pre-optimized webp)
       if (isMicroblogPhoto && !NON_CDN_EXTS.includes(imgExt ?? "")) {
          const optimizedSrc = `https://cdn.micro.blog/photos/768x/${encodeURIComponent(src)}`;
          img.attr("src", optimizedSrc);
