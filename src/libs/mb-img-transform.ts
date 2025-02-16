@@ -23,6 +23,8 @@ const htmlEntities: { [key: string]: string } = {
 const MAX_WIDTH = 605;
 const MAX_HEIGHT = 605;
 
+const NON_CDN_EXTS = ["webp"];
+
 const transformImage = (
    content_html: string,
    photos?: MicroblogPhoto[],
