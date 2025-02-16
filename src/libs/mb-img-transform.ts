@@ -36,6 +36,8 @@ const transformImage = (
       const src = img.attr("src") || "";
       const initialSrc = src.toString();
 
+      const imgExt = src?.split(".").pop()?.toLowerCase();
+
       const imgAlt = img.attr("alt")?.trim() || "";
       const formattedImgAlt =
          imgAlt ?
