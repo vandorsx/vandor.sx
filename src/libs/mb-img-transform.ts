@@ -55,7 +55,7 @@ const transformImage = (
       );
 
       // Optimize image if hosted via Micro.blog
-      if (isMicroblogPhoto) {
+      if (isMicroblogPhoto && !NON_CDN_EXTS.includes(imgExt ?? "")) {
          const optimizedSrc = `https://cdn.micro.blog/photos/768x/${encodeURIComponent(src)}`;
          img.attr("src", optimizedSrc);
       }
