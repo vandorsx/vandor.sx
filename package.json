@@ -32,9 +32,9 @@
    "devDependencies": {
       "@types/bun": "^1.2.2",
       "@types/sanitize-html": "^2.13.0",
-      "prettier": "^3.5.0",
+      "prettier": "^3.5.1",
       "prettier-plugin-astro": "^0.14.1",
       "prettier-plugin-tailwindcss": "^0.6.11",
-      "wrangler": "^3.108.1"
+      "wrangler": "^3.109.1"
    }
 }
