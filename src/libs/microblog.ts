@@ -1,3 +1,5 @@
+import { MICROBLOG_BASE_URL } from "astro:env/client";
+
 export interface MicrodotblogReply {
    id: string;
    content_html: string;
@@ -60,13 +62,9 @@ export async function getPaginatedMicroblog(page: number) {
    let res: Response;
 
    if (page <= 1) {
-      res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/list.json`,
-      );
+      res = await fetch(`${MICROBLOG_BASE_URL}/api/paginated/list.json`);
    } else {
-      res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/paginated/${page}/list.json`,
-      );
+      res = await fetch(`${MICROBLOG_BASE_URL}/api/paginated/${page}/list.json`);
    }
 
    if (!res.ok) {
@@ -81,9 +79,7 @@ export const getPost = async (
    id: string,
    dateParams?: { year: string; month: string; day: string },
 ) => {
-   const idDataResponse = await fetch(
-      `https://${import.meta.env.MICROBLOG_BASE_URL}/api/ids.json`,
-   );
+   const idDataResponse = await fetch(`${MICROBLOG_BASE_URL}/api/ids.json`);
 
    if (!idDataResponse.ok) {
       throw new Error("Failed to fetch id data");

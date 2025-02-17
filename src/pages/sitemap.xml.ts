@@ -1,6 +1,7 @@
 export const prerender = false;
 import type { APIRoute } from "astro";
 import { GET as BlogGET } from "./blog/lastmod.json.ts";
+import { MICROBLOG_BASE_URL } from "astro:env/client";
 
 const SITE = "https://vandor.sx";
 
@@ -11,9 +12,7 @@ type lastmod = {
 export const GET: APIRoute = async (context) => {
    let microblog_lastmod: lastmod = { lastmod: "" };
    try {
-      const res = await fetch(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/api/lastmod.json`,
-      );
+      const res = await fetch(`${MICROBLOG_BASE_URL}/api/lastmod.json`);
 
       if (!res.ok) {
          throw new Error(`Failed to fetch microblog lastmod: ${res.status}`);
