@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import type { MicroblogPhoto } from "~libs/microblog";
+import { MICROBLOG_BASE_URL } from "astro:env/client";
 
 // for alt text
 const htmlEntities: { [key: string]: string } = {
@@ -50,9 +51,7 @@ const transformImage = (
       }
 
       // Check if image is hosted via Micro.blog
-      const isMicroblogPhoto = src.startsWith(
-         `https://${import.meta.env.MICROBLOG_BASE_URL}/uploads`,
-      );
+      const isMicroblogPhoto = src.startsWith(`${MICROBLOG_BASE_URL}/uploads`);
 
       // Optimize image if hosted via Micro.blog and not already optimized (e.g., a pre-optimized webp)
       if (isMicroblogPhoto && !NON_CDN_EXTS.includes(imgExt ?? "")) {

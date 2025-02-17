@@ -1,3 +1,5 @@
+import { MICROBLOG_API_TOKEN } from "astro:env/server";
+
 export type Book = {
    id: number;
    title: string;
@@ -30,7 +32,7 @@ export async function getBooks(bookshelf_id: number) {
       `https://micro.blog/books/bookshelves/${bookshelf_id}`,
       {
          headers: {
-            Authorization: `Bearer ${import.meta.env.MICROBLOG_API_TOKEN}`,
+            Authorization: `Bearer ${MICROBLOG_API_TOKEN}`,
          },
       },
    );
@@ -45,7 +47,7 @@ export async function getBooks(bookshelf_id: number) {
 export async function getBookshelves() {
    const res = await fetch(`https://micro.blog/books/bookshelves`, {
       headers: {
-         Authorization: `Bearer ${import.meta.env.MICROBLOG_API_TOKEN}`,
+         Authorization: `Bearer ${MICROBLOG_API_TOKEN}`,
       },
    });
    if (!res.ok) {
