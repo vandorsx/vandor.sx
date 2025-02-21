@@ -21,7 +21,8 @@
             {
                "platform": "GitHub",
                "username": "vandorsx",
-               "url": "https://github.com/vandorsx"
+               "url": "https://github.com/vandorsx",
+               "rel": "me"
             }
          ]
       },
@@ -31,7 +32,8 @@
             {
                "platform": "Glass",
                "username": "vandorsx",
-               "url": "https://glass.photo/vandorsx"
+               "url": "https://glass.photo/vandorsx",
+               "rel": "me"
             }
          ]
       },
@@ -41,7 +43,8 @@
             {
                "platform": "Micro.blog",
                "username": "@jade",
-               "url": "https://micro.blog/jade"
+               "url": "https://micro.blog/jade",
+               "rel": "me"
             },
             {
                "platform": "ActivityPub",
@@ -51,12 +54,14 @@
             {
                "platform": "Bluesky",
                "username": "@vandor.sx",
-               "url": "https://bsky.app/profile/vandor.sx"
+               "url": "https://bsky.app/profile/vandor.sx",
+               "rel": "me"
             },
             {
                "platform": "X",
                "username": "@vandorsx",
-               "url": "https://x.com/vandorsx"
+               "url": "https://x.com/vandorsx",
+               "rel": "me"
             }
          ]
       },
@@ -81,7 +86,8 @@
             {
                "platform": "Techlore Discussions",
                "username": "vandorsx",
-               "url": "https://discuss.techlore.tech/u/vandorsx"
+               "url": "https://discuss.techlore.tech/u/vandorsx",
+               "rel": "me"
             }
          ]
       }
