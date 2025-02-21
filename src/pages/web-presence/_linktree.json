@@ -64,14 +64,14 @@
          "category": "Other real-time communication",
          "links": [
             {
-               "platform": "Matrix",
-               "username": "@vandorsx:matrix.org",
-               "url": "https://matrix.to/#/@vandorsx:matrix.org"
-            },
-            {
                "platform": "Discord",
                "username": "vandorsx",
                "url": "https://discord.com/users/1217558308798468106"
+            },
+            {
+               "platform": "Matrix",
+               "username": "@vandorsx:matrix.org",
+               "url": "https://matrix.to/#/@vandorsx:matrix.org"
             }
          ]
       },
