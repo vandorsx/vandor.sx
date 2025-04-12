@@ -20,7 +20,9 @@ import "~styles/globals.css";
          crossorigin
       />
 	</head>
-	<body class="font-berkeley">
-		<slot />
+	<body class="font-berkeley flex justify-center">
+		<div class="mt-20 max-w-2xl w-full">
+			<slot />
+		</div>
 	</body>
 </html>
