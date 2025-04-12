@@ -23,9 +23,11 @@ import "~styles/globals.css";
             crossorigin
         />
     </head>
-    <body class="font-berkeley flex justify-center">
+    <body class="font-berkeley font-[370] font-stretch-94% flex justify-center">
         <div class="mt-20 max-w-2xl w-full">
-            <slot />
+            <slot name="header" />
+            <main><slot /></main>
+            <slot name="footer" />
         </div>
     </body>
 </html>
