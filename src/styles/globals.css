@@ -2,14 +2,13 @@
 
 @font-face {
     font-family: "Berkeley Mono";
-    src:
-        url("/fonts/TX-02.woff2") format("woff2 supports variations"),
-        url("/fonts/TX-02.woff2") format("woff2-variations");
+    src: url("/fonts/TX-02.otf") format("opentype");
     font-stretch: 60 100;
     font-weight: 100 900;
     font-style: oblique -16deg 0deg;
+    font-feature-settings: "ss05" on;
 }
 
 @theme {
-    --font-berkeley: "Berkeley Mono", sans-serif;
+    --font-berkeley: "Berkeley Mono", monospace;
 }
