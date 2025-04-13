@@ -2,7 +2,69 @@
 import BaseLayout from "../layouts/base.astro";
 ---
 
+<style>
+    h1::before {
+        content: "~ ";
+    }
+</style>
+
 <BaseLayout>
-    <h1>Jade van Dörsten</h1>
-    <p>hello world</p>
+    <div class="flex flex-col-reverse gap-7">
+        <div><h1>Jade van Dörsten</h1></div>
+
+        <div>
+            <section>
+                <p class="py-2">
+                    Hi there, welcome to my website.<br />
+                    My name is Jade (21, he/him), and, if you wish, please, <a
+                        href="https://en.wikipedia.org/wiki/Seven_(Taylor_Swift_song)"
+                        target="_blank">picture me in the trees</a
+                    >.
+                </p>
+                <p class="py-2">
+                    <a
+                        href="https://en.wikipedia.org/wiki/Long_Story_Short_(Taylor_Swift_song)"
+                        target="_blank">long story short</a
+                    >, I'm a human and a netizen, and currently, I'm based in
+                    Madison, WI. I'm also a full-stack web developer (and
+                    currently open to work).
+                </p>
+            </section>
+            <section class="mt-2 md:mt-4 lg:mt-6">
+                <p class="py-2">
+                    I invite you to visit my blog and microblog pages; my blog
+                    is where I publish longer-form writing, and my microblog is
+                    my place to share quick updates and musings. And, in the
+                    same realm as blogging, I share my photography on <a
+                        href="https://glass.photo/vandorsx">Glass</a
+                    >.
+                </p>
+                <p class="py-2">
+                    Furthermore, I have a directory of miscellaneous pages —
+                    feel free to explore them.
+                </p>
+            </section>
+            <section class="mt-2 md:mt-4 lg:mt-6">
+                <p class="py-2">
+                    If you'd like to contact me for any reason, my preferred
+                    methods are via <a
+                        href="mailto:jade@vandor.sx"
+                        target="_blank">email</a
+                    > or <a
+                        href="https://signal.me/#eu/errmiQt29tEo_vb2l9uC46pI7pvbzNKDLFK6ckCc1Vh5QHy_pWFO84rRpwKWCVMz"
+                        target="_blank">Signal</a
+                    >. I'm happy to receive any and all inquiries.
+                </p>
+                <p class="py-2">
+                    Additionally, I can be found elsewhere on the web.
+                </p>
+            </section>
+            <section class="mt-2 md:mt-4 lg:mt-6">
+                <p class="py-2">
+                    Lastly, if you picked up on the references in this copy,
+                    let's be friends ^_^
+                </p>
+            </section>
+        </div>
+    </div>
 </BaseLayout>
