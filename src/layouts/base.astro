@@ -23,8 +23,10 @@ import "~styles/globals.css";
             crossorigin
         />
     </head>
-    <body class="font-berkeley font-[370] font-stretch-94% flex justify-center">
-        <div class="mt-20 max-w-2xl w-full">
+    <body
+        class="font-berkeley font-[350] font-stretch-94% flex justify-center text-sm"
+    >
+        <div class="lg:pt-20 md:pt-10 pt-7 pb-7 max-w-2xl w-full p-4">
             <slot name="header" />
             <main><slot /></main>
             <slot name="footer" />
