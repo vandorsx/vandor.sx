@@ -9,6 +9,25 @@
     font-feature-settings: "ss05" on;
 }
 
+@font-face {
+    font-family: "Univers Next Variable";
+    src: url("/fonts/UniversNextVariable.woff2") format(woff2);
+    font-stretch: 75 150;
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: "Univers Next Variable";
+    src: url("/fonts/UniversNextVariable-Italic.woff2") format(woff2);
+    font-stretch: 75 150;
+    font-weight: 300 900;
+    font-style: italic;
+    font-display: swap;
+}
+
 @theme {
     --font-berkeley: "Berkeley Mono", monospace;
+    --font-univers: "Univers Next Variable", sans-serif;
 }
