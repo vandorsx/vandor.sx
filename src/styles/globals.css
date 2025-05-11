@@ -30,4 +30,19 @@
 @theme {
     --font-berkeley: "Berkeley Mono", monospace;
     --font-univers: "Univers Next Variable", sans-serif;
+    --color-*: initial;
+    --color-green: #00794c;
+}
+
+@media (color-gamut: p3) {
+    @theme {
+        --color-green: color(display-p3 0 0.43 0.316);
+    }
+}
+
+@layer components {
+    .hyperlink {
+        @apply text-green;
+        @apply hover:underline;
+    }
 }
