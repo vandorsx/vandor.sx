@@ -1,4 +1,5 @@
 ---
+import { SEO } from "astro-seo";
 import "~styles/globals.css";
 ---
 
@@ -8,12 +9,14 @@ import "~styles/globals.css";
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Jade van Dörsten</title>
-        <meta
-            name="description"
-            content="My personal website. long story short, I'm a human and a netizen."
-        />
-        <meta name="keywords" content="vandorsx, Jade van Dörsten" />
+        <slot name="seo">
+            <SEO
+                title="Jade van Dörsten"
+                description="My personal website. long story short, I'm a human and a netizen."
+            />
+
+            <meta name="keywords" content="vandorsx, Jade van Dörsten" />
+        </slot>
 
         <link
             rel="preload"
