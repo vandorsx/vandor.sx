@@ -3,7 +3,7 @@ import "~styles/globals.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="text-[100%]">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +23,8 @@ import "~styles/globals.css";
             crossorigin
         />
     </head>
-    <body
-        class="font-berkeley font-[350] font-stretch-94% flex justify-center text-sm"
-    >
-        <div class="lg:pt-20 md:pt-10 pt-7 pb-7 max-w-2xl w-full p-4">
+    <body class="font-univers font-[375] flex text-[15px] px-6 py-4">
+        <div class="w-full max-w-3xl">
             <slot name="header" />
             <main><slot /></main>
             <slot name="footer" />
