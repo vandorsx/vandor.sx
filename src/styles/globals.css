@@ -32,6 +32,7 @@
     --font-univers: "Univers Next Variable", sans-serif;
     --color-*: initial;
     --color-green: #00794c;
+    --color-grey-outline: #bfbfbf;
 }
 
 @media (color-gamut: p3) {
