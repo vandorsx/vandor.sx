@@ -23,9 +23,11 @@ import "~styles/globals.css";
             crossorigin
         />
     </head>
-    <body class="font-univers font-[375] flex flex-col text-[15px] py-4">
+    <body
+        class="font-univers flex flex-col text-[15px] px-1.5 py-3 md:px-5.5 md:py-3.5"
+    >
         <slot class="w-full" name="header" />
-        <main class="w-full max-w-3xl px-7"><slot /></main>
+        <main class="w-full max-w-3xl px-1.5 font-[375]"><slot /></main>
         <slot name="footer" />
     </body>
 </html>
