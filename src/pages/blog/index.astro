@@ -1,0 +1,78 @@
+---
+import { SEO } from "astro-seo";
+import { getCollection } from "astro:content";
+import Navigation from "~components/navigation";
+import BaseLayout from "~layouts/base.astro";
+
+const blog = await getCollection("blog", ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+).then(
+    (
+        posts, // sort by datePublished
+    ) =>
+        posts.sort(
+            (a, b) =>
+                new Date(b.data.datePublished).getTime() -
+                new Date(a.data.datePublished).getTime(),
+        ),
+);
+---
+
+<BaseLayout>
+    <SEO
+        slot="seo"
+        title="Blog"
+        description="Where I publish longer-form writing and content that I consider to be more evergreen in nature."
+    />
+
+    <header slot="header">
+        <Navigation
+            Links={[
+                { href: "/", text: "Home" },
+                { href: "/blog", text: "Blog" },
+            ]}
+        />
+    </header>
+
+    <h1 class="font-medium">Blog</h1>
+    <p class="py-2">
+        Welcome to my blog. This is where I publish more thoughtful, or, at the
+        very least, more crafted pieces. As is standard, my blog is available as
+        an RSS feed.
+    </p>
+
+    <table
+        class="w-full border-spacing-0 border-collapse text-left border border-grey-outline mt-4"
+    >
+        <thead class="border-b">
+            <tr>
+                <th class="px-2.5 pt-1.5 font-mediuj">Date</th>
+                <th class="px-2.5 pt-1.5 font-semibold">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                blog.map((entry) => (
+                    <tr class="border-b border-grey-outline">
+                        <td class="px-2.5 pt-1.5 text-nowrap">
+                            <time
+                                datetime={new Date(
+                                    entry.data.datePublished,
+                                ).toISOString()}
+                            >
+                                {new Date(entry.data.datePublished)
+                                    .toISOString()
+                                    .substring(0, 10)}
+                            </time>
+                        </td>
+                        <td class="px-2.5 pt-1.5">
+                            <a href={`/blog/${entry.id}`} class="hyperlink">
+                                {entry.data.title}
+                            </a>
+                        </td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+</BaseLayout>
