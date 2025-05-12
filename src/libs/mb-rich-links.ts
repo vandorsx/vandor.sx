@@ -4,10 +4,14 @@ export const createRichLinks = (content_html: string): string => {
     const $ = cheerio.load(
         `<div class="content-wrapper">${content_html}</div>`,
     );
-    const richLinks = $(".rich-link");
+    const richLinks = $(".rich-link"); // TO DO: change to mb-rlink
 
     richLinks.each(function () {
         const richLink = $(this);
+        richLink.removeClass("rich-link");
+        richLink.addClass("mb-rlink");
+
+        richLink.find("footer > p > b").contents().unwrap();
 
         const linkElement = richLink.find("cite a");
         const url =
@@ -18,7 +22,6 @@ export const createRichLinks = (content_html: string): string => {
         const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
         linkElement.text(niceUrl);
         linkElement.attr("target", "_blank");
-        linkElement.addClass("rich-link-a");
     });
 
     return $(".content-wrapper").html() || content_html;
