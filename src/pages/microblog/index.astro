@@ -186,5 +186,7 @@ const getPageNumber = (path: string) => {
         >.
     </p>
 
-    <Feed posts={PaginatedMicroblog.items} error={error} />
+    <div class="mt-4">
+        <Feed posts={PaginatedMicroblog.items} error={error} />
+    </div>
 </BaseLayout>
