@@ -29,7 +29,9 @@
 
 @theme {
     --font-berkeley: "Berkeley Mono", monospace;
-    --font-univers: "Univers Next Variable", sans-serif;
+    --font-univers:
+        "Univers Next Variable", apple-system, system-ui, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
     --color-*: initial;
     --color-black: black;
     --color-white: white;
