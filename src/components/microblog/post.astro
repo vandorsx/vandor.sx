@@ -1,0 +1,58 @@
+---
+import type { Microblog } from "~libs/microblog";
+import DynamicTimestamp from "~components/microblog/dynamic-timestamp";
+import transformImage from "~libs/mb-img-transform";
+import { createRichLinks, createLegacyRichLinks } from "~libs/mb-rich-links";
+
+interface Props {
+    post: Microblog;
+    inFeed?: boolean;
+    lazyImages?: boolean;
+}
+
+const { post, inFeed, lazyImages } = Astro.props;
+
+const [year, month, day] = post.date_published
+    .split("T")[0]
+    .split("-")
+    .map(Number);
+
+let contentHtml = post.content_html;
+contentHtml = transformImage(
+    post.content_html,
+    post.photos,
+    lazyImages ? "lazy" : undefined,
+);
+contentHtml = createRichLinks(contentHtml);
+contentHtml = createLegacyRichLinks(contentHtml);
+
+export function isOlderThanWeek(dateString: string): boolean {
+    const date = new Date(dateString.slice(0, -5));
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+    return date < oneWeekAgo;
+}
+
+const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+};
+
+function formatDate(dateString: string): string {
+    return new Date(dateString.slice(0, -5)).toLocaleString(
+        "en-US",
+        nonRelativeDateOptions,
+    );
+}
+---
+
+<article>
+    {inFeed ? <header>in feed</header> : <header>not in feed</header>}
+
+    <div set:html={contentHtml} />
+</article>
