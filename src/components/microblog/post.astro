@@ -68,12 +68,7 @@ function formatDate(dateString: string): string {
                 </h2>
                 <div class="text-[14px]">
                     <Fragment>
-                        <time
-                            datetime={post.date_published}
-                            title={new Date(
-                                post.date_published.slice(0, -5),
-                            ).toLocaleString("en-US", nonRelativeDateOptions)}
-                        >
+                        <time datetime={post.date_published}>
                             {!isOlderThanWeek(post.date_published) ?
                                 <DynamicTimestamp
                                     date={post.date_published}
@@ -84,110 +79,82 @@ function formatDate(dateString: string): string {
                     </Fragment>
                     {post.date_modified &&
                         post.categories?.includes("show_updated") && (
-                            <Fragment>
+                            <span class="font-normal">
                                 (updated:
-                                <span
-                                    title={new Date(
-                                        post.date_modified.slice(0, -5),
-                                    ).toLocaleString(
-                                        "en-US",
-                                        nonRelativeDateOptions,
-                                    )}
-                                >
+                                <Fragment>
                                     {!isOlderThanWeek(post.date_modified) ?
                                         <DynamicTimestamp
                                             date={post.date_modified}
                                             client:load
                                         />
                                     :   formatDate(post.date_modified)}
-                                </span>
-                                )
-                            </Fragment>
+                                </Fragment>
+                                <Fragment>)</Fragment>
+                            </span>
                         )}
                 </div>
             </header>
         :   <header>
-        {inFeed ?
-            <a
-                href={`/microblog/${year}/${month}/${day}/${post.id}`}
-                class="hyperlink font-medium"
-            >
-                <Fragment>
-                    <time
-                        datetime={post.date_published}
-                        title={new Date(
-                            post.date_published.slice(0, -5),
-                        ).toLocaleString("en-US", nonRelativeDateOptions)}
+                {inFeed ?
+                    <a
+                        href={`/microblog/${year}/${month}/${day}/${post.id}`}
+                        class="hyperlink font-medium"
                     >
-                        {!isOlderThanWeek(post.date_published) ?
-                            <DynamicTimestamp
-                                date={post.date_published}
-                                client:load
-                            />
-                        :   formatDate(post.date_published)}
-                    </time>
-                </Fragment>
-                {post.date_modified &&
-                    post.categories?.includes("show_updated") && (
                         <Fragment>
-                            (updated:
-                            <span
-                                title={new Date(
-                                    post.date_modified.slice(0, -5),
-                                ).toLocaleString(
-                                    "en-US",
-                                    nonRelativeDateOptions,
-                                )}
-                            >
-                                {!isOlderThanWeek(post.date_modified) ?
+                            <time datetime={post.date_published}>
+                                {!isOlderThanWeek(post.date_published) ?
                                     <DynamicTimestamp
-                                        date={post.date_modified}
+                                        date={post.date_published}
                                         client:load
                                     />
-                                :   formatDate(post.date_modified)}
-                            </span>
-                            )
+                                :   formatDate(post.date_published)}
+                            </time>
                         </Fragment>
-                    )}
-            </a>
-        :   <div class="font-medium"><Fragment>
-            <time
-                datetime={post.date_published}
-                title={new Date(
-                    post.date_published.slice(0, -5),
-                ).toLocaleString("en-US", nonRelativeDateOptions)}
-            >
-                {!isOlderThanWeek(post.date_published) ?
-                    <DynamicTimestamp
-                        date={post.date_published}
-                        client:load
-                    />
-                :   formatDate(post.date_published)}
-            </time>
-        </Fragment>
-        {post.date_modified &&
-            post.categories?.includes("show_updated") && (
-                <Fragment>
-                    (updated:
-                    <span
-                        title={new Date(
-                            post.date_modified.slice(0, -5),
-                        ).toLocaleString(
-                            "en-US",
-                            nonRelativeDateOptions,
-                        )}
-                    >
-                        {!isOlderThanWeek(post.date_modified) ?
-                            <DynamicTimestamp
-                                date={post.date_modified}
-                                client:load
-                            />
-                        :   formatDate(post.date_modified)}
-                    </span>
-                    )
-                </Fragment>
-            )}</div>
-        </header>
+                        {post.date_modified &&
+                            post.categories?.includes("show_updated") && (
+                                <span class="font-normal">
+                                    (updated:
+                                    <Fragment>
+                                        {!isOlderThanWeek(post.date_modified) ?
+                                            <DynamicTimestamp
+                                                date={post.date_modified}
+                                                client:load
+                                            />
+                                        :   formatDate(post.date_modified)}
+                                    </Fragment>
+                                    <Fragment>)</Fragment>
+                                </span>
+                            )}
+                    </a>
+                :   <div class="font-medium">
+                        <Fragment>
+                            <time datetime={post.date_published}>
+                                {!isOlderThanWeek(post.date_published) ?
+                                    <DynamicTimestamp
+                                        date={post.date_published}
+                                        client:load
+                                    />
+                                :   formatDate(post.date_published)}
+                            </time>
+                        </Fragment>
+                        {post.date_modified &&
+                            post.categories?.includes("show_updated") && (
+                                <span class="font-normal">
+                                    (updated:
+                                    <Fragment>
+                                        {!isOlderThanWeek(post.date_modified) ?
+                                            <DynamicTimestamp
+                                                date={post.date_modified}
+                                                client:load
+                                            />
+                                        :   formatDate(post.date_modified)}
+                                        <Fragment>)</Fragment>
+                                    </Fragment>
+                                </span>
+                            )}
+                    </div>
+                }
+            </header>
     }
 
     <div class="prose" set:html={contentHtml} />
