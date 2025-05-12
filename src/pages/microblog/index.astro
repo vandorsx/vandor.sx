@@ -46,15 +46,24 @@ const getPageNumber = (path: string) => {
         event.preventDefault();
 
         const input = form.querySelector("input");
-        if (!input) return;
+        if (!input || input.id !== "pagination-input") return;
 
-        const page = parseInt(input.value);
+        const currentPage = parseInt(input.dataset.page!);
+        const desiredPage = parseInt(input.value);
         const totalPages = parseInt(input.dataset.totalPages!);
 
-        if (page >= 1 && page <= totalPages) {
+        if (desiredPage === currentPage) return;
+
+        if (desiredPage >= 1 && desiredPage <= totalPages) {
             const tempLink = document.createElement("a");
             tempLink.id = "temp-redirect-link";
-            tempLink.href = `/microblog?page=${page}`;
+
+            if (desiredPage === 1) {
+                tempLink.href = `/microblog`;
+            } else {
+                tempLink.href = `/microblog?page=${desiredPage}`;
+            }
+
             document.body.appendChild(tempLink);
             tempLink.click();
             document.body.removeChild(tempLink);
