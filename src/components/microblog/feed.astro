@@ -1,0 +1,34 @@
+---
+import type { Microblog } from "~libs/microblog";
+import MicroblogPost from "~components/microblog/post.astro";
+
+interface Props {
+    posts: Microblog[];
+    error?: Error;
+}
+
+const { posts, error } = Astro.props;
+---
+
+<div>
+    {
+        error ?
+            <p>
+                oops &gt;.&lt;
+                <br />
+                It looks like Micro.blog may be currently unavailable;{" "}
+                <a href="https://status.micro.blog" target="_blank">
+                    check status
+                </a>
+                .
+            </p>
+        : posts.length ?
+            posts.map((post, index) => (
+                <>
+                    <MicroblogPost post={post} inFeed />
+                    {index < posts.length - 1 && <hr />}
+                </>
+            ))
+        :   <p>No posts yet today — check back later!</p>
+    }
+</div>
