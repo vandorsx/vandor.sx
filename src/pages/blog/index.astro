@@ -42,7 +42,7 @@ const blog = await getCollection("blog", ({ data }) =>
     </p>
 
     <table
-        class="w-full border-spacing-0 border-collapse text-left border border-grey-outline mt-4"
+        class="w-full border-spacing-0 border-collapse text-left border border-table-outline mt-4"
     >
         <thead class="border-b">
             <tr>
@@ -53,7 +53,7 @@ const blog = await getCollection("blog", ({ data }) =>
         <tbody>
             {
                 blog.map((entry) => (
-                    <tr class="border-b border-grey-outline">
+                    <tr class="border-b border-table-outline">
                         <td class="px-2.5 pt-1.5 text-nowrap">
                             <time
                                 datetime={new Date(entry.data.datePublished)
