@@ -36,17 +36,18 @@ export function isOlderThanWeek(dateString: string): boolean {
 
 const nonRelativeDateOptions: Intl.DateTimeFormatOptions = {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-    hourCycle: "h23",
+    hour12: false,
 };
 
 function formatDate(dateString: string): string {
-    return new Date(dateString.slice(0, -5)).toLocaleString(
-        "en-US",
-        nonRelativeDateOptions,
+    const date = new Date(dateString.slice(0, -5));
+
+    return new Intl.DateTimeFormat("en-US", nonRelativeDateOptions).format(
+        date,
     );
 }
 ---
