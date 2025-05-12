@@ -43,6 +43,11 @@
     @apply hover:underline;
 }
 
+.hidden-link {
+    @apply text-inherit;
+    @apply hover:no-underline;
+}
+
 @utility prose {
     p {
         @apply my-[1em];
@@ -71,5 +76,28 @@
     h5,
     h6 {
         @apply mt-[1em];
+    }
+
+    ul {
+        @apply ml-[1em] pl-[1em];
+        @apply list-disc;
+    }
+
+    ol {
+        @apply ml-[1em] pl-[1em];
+        @apply list-decimal;
+    }
+
+    section.footnotes {
+        @apply mt-12;
+        @apply text-[14px];
+    }
+
+    #footnote-label {
+        @apply m-0 mb-[0.5em];
+    }
+
+    .footnotes p {
+        @apply m-0;
     }
 }
