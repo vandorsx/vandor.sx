@@ -31,14 +31,11 @@
     --font-berkeley: "Berkeley Mono", monospace;
     --font-univers: "Univers Next Variable", sans-serif;
     --color-*: initial;
-    --color-green: #00794c;
+    --color-black: black;
+    --color-white: white;
+    --color-green: oklch(41.1% 0.127 170);
+    /* --color-green-dark: oklch(58% 0.127 170); */
     --color-grey-outline: #bfbfbf;
-}
-
-@media (color-gamut: p3) {
-    @theme {
-        --color-green: color(display-p3 0 0.43 0.316);
-    }
 }
 
 @layer components {
