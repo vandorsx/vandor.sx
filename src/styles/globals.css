@@ -50,7 +50,10 @@
 }
 
 @utility prose {
-    p {
+    p,
+    blockquote,
+    ol,
+    ul {
         @apply my-[1em];
     }
 
@@ -120,12 +123,12 @@
         @apply flex flex-col gap-1.5;
     }
 
-    .mb-rlink > p {
+    .mb-rlink p {
         @apply m-0;
     }
 
-    .mb-rlink footer > span {
-        @apply font-medium;
+    .mb-rlink footer > p {
+        @apply font-[450];
     }
 
     .mb-rlink footer cite {
