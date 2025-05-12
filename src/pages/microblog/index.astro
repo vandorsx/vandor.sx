@@ -117,32 +117,11 @@ const getPageNumber = (path: string) => {
     }
 
     #pagination-links > a {
-        @apply transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none;
+        @apply focus:outline-none;
     }
 
     #pagination-links > a:only-child {
         @apply -mr-1;
-    }
-
-    #pagination-input {
-        animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.65;
-            }
-        }
-    }
-
-    @media (prefers-reduced-motion) {
-        #pagination-input {
-            animation: none;
-            @apply text-black/[0.34];
-        }
     }
 </style>
 
@@ -188,5 +167,63 @@ const getPageNumber = (path: string) => {
 
     <div class="mt-4">
         <Feed posts={PaginatedMicroblog.items} error={error} />
+    </div>
+
+    <div class="pt-7 flex flex-col md:-mr-4 md:-mb-1 lg:-mr-8 lg:-mb-2">
+        <div class="flex w-full leading-none items-center">
+            <span>Page</span>
+            <form id="pagination-form" class="m-0 p-0">
+                <input
+                    id="pagination-input"
+                    type="number"
+                    value={PaginatedMicroblog.page}
+                    min="1"
+                    max={PaginatedMicroblog.pages}
+                    class="w-[3ch] h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none not-italic"
+                    data-page={page}
+                    data-total-pages={PaginatedMicroblog.pages}
+                />
+            </form>
+            <span>of {PaginatedMicroblog.pages}</span>
+        </div>
+        <div
+            id="pagination-links"
+            class="flex items-center justify-between leading-none w-full gap-1"
+        >
+            {
+                PaginatedMicroblog.previous_page && (
+                    <a
+                        href={
+                            (
+                                getPageNumber(
+                                    PaginatedMicroblog.previous_page,
+                                ) === 1
+                            ) ?
+                                "/microblog"
+                            :   `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
+                        }
+                        aria-label={`To page ${getPageNumber(PaginatedMicroblog.previous_page)}`}
+                        class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-start w-28"
+                    >
+                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                            &larr; Previous page
+                        </span>
+                    </a>
+                )
+            }
+            {
+                PaginatedMicroblog.next_page && (
+                    <a
+                        href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
+                        aria-label={`To page ${getPageNumber(PaginatedMicroblog.next_page)}`}
+                        class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-end w-28"
+                    >
+                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                            Next page &rarr;
+                        </span>
+                    </a>
+                )
+            }
+        </div>
     </div>
 </BaseLayout>
