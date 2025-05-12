@@ -105,4 +105,12 @@
     .data-footnote-backref {
         @apply text-[12px];
     }
+
+    .mb-image {
+        @apply border-figure-outline inline-block max-w-3/4 border p-1.5;
+    }
+
+    .mb-image img {
+        @apply h-auto max-h-[605px] w-auto;
+    }
 }
