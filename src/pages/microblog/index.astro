@@ -57,6 +57,7 @@ const getPageNumber = (path: string) => {
         if (desiredPage >= 1 && desiredPage <= totalPages) {
             const tempLink = document.createElement("a");
             tempLink.id = "temp-redirect-link";
+            tempLink.style.display = "hidden";
 
             if (desiredPage === 1) {
                 tempLink.href = `/microblog`;
@@ -120,14 +121,6 @@ const getPageNumber = (path: string) => {
     );
 </script>
 
-<style>
-    @reference "~styles/globals.css";
-
-    #temp-redirect-link {
-        @apply hidden;
-    }
-</style>
-
 <BaseLayout>
     <SEO
         slot="seo"
@@ -172,7 +165,7 @@ const getPageNumber = (path: string) => {
         <Feed posts={PaginatedMicroblog.items} error={error} />
     </div>
 
-    <div class="pt-7 flex flex-col md:-mr-4 md:-mb-1 lg:-mr-8 lg:-mb-2">
+    <div class="pt-10 flex flex-col md:-mr-4 md:-mb-1 lg:-mr-8 lg:-mb-2">
         <div
             class="flex items-center justify-between leading-none w-full gap-1"
         >
