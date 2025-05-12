@@ -65,6 +65,8 @@ const getPageNumber = (path: string) => {
         const input = event.target as HTMLInputElement;
         if (input.id !== "pagination-input") return;
 
+        input.style.width = `${input.value.length}ch`;
+
         const maxPages = parseInt(input.dataset.totalPages || "1");
         const value = parseInt(input.value);
         if (value > maxPages) {
@@ -194,7 +196,7 @@ const getPageNumber = (path: string) => {
                     </div>
             }
             <div class="flex items-center">
-                <span>Page</span>
+                <span>Page&nbsp;</span>
                 <form id="pagination-form" class="m-0 p-0">
                     <input
                         id="pagination-input"
@@ -202,12 +204,18 @@ const getPageNumber = (path: string) => {
                         value={PaginatedMicroblog.page}
                         min="1"
                         max={PaginatedMicroblog.pages}
-                        class="w-[3ch] h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-base scale-95"
+                        class="h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-base scale-95"
+                        class:list={[
+                            { "w-[1ch]": page.toString().length === 1 },
+                            { "w-[2ch]": page.toString().length === 2 },
+                            { "w-[3ch]": page.toString().length === 3 },
+                            { "w-[4ch]": page.toString().length === 4 },
+                        ]}
                         data-page={page}
                         data-total-pages={PaginatedMicroblog.pages}
                     />
                 </form>
-                <span>of {PaginatedMicroblog.pages}</span>
+                <span>&nbsp;of {PaginatedMicroblog.pages}</span>
             </div>
             {
                 PaginatedMicroblog.next_page ?
