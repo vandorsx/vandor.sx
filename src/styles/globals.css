@@ -38,9 +38,38 @@
     --color-grey-outline: #bfbfbf;
 }
 
-@layer components {
-    .hyperlink {
-        @apply text-green;
-        @apply hover:underline;
+@utility hyperlink {
+    @apply text-green;
+    @apply hover:underline;
+}
+
+@utility prose {
+    p {
+        @apply my-[1em];
+    }
+
+    a {
+        @apply hyperlink;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-medium;
+    }
+
+    h1,
+    h2 {
+        @apply mt-[2em];
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply mt-[1em];
     }
 }
