@@ -113,4 +113,22 @@
     .mb-image img {
         @apply h-auto max-h-[605px] w-auto;
     }
+
+    .mb-rlink {
+        @apply border-figure-outline border p-1.5;
+        @apply text-[calc(1em-1px)];
+        @apply flex flex-col gap-1.5;
+    }
+
+    .mb-rlink > p {
+        @apply m-0;
+    }
+
+    .mb-rlink footer > span {
+        @apply font-medium;
+    }
+
+    .mb-rlink footer cite {
+        @apply not-italic;
+    }
 }
