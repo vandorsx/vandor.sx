@@ -26,6 +26,6 @@ export const GET: APIRoute = async () => {
             )
         ).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
         trailingSlash: false,
-        customData: `<language>en-us</language>`,
+        customData: "<language>en-us</language>",
     });
 };
