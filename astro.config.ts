@@ -30,7 +30,7 @@ export default defineConfig({
     env: {
         schema: {
             MICROBLOG_BASE_URL: envField.string({
-                context: "server",
+                context: "client",
                 access: "public",
             }),
             MICROBLOG_API_TOKEN: envField.string({
