@@ -100,4 +100,8 @@
     .footnotes p {
         @apply m-0;
     }
+
+    .data-footnote-backref {
+        @apply text-[12px];
+    }
 }
