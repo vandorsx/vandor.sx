@@ -1,0 +1,25 @@
+---
+type Props = {
+    circle: number;
+};
+
+const { circle } = Astro.props;
+---
+
+{
+    circle === 0 && (
+        <>
+            <span class="inline-block w-2 h-2 rounded-full bg-[#958a7a] align-middle border-[0.5px] mr-0.5" />
+            <span class="inline-block w-2 h-2 rounded-full bg-[#8abad3] align-middle border-[0.5px] mr-0.5" />
+        </>
+    )
+}
+
+{
+    circle === 1 && (
+        <>
+            <span class="inline-block w-2 h-2 rounded-full bg-[#f2f0eb] align-middle border-[0.5px] mr-0.5" />
+            <span class="inline-block w-2 h-2 rounded-full bg-[#4e6866] align-middle border-[0.5px] mr-0.5" />
+        </>
+    )
+}
