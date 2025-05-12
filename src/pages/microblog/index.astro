@@ -1,0 +1,190 @@
+---
+export const prerender = false;
+
+import { SEO } from "astro-seo";
+import BaseLayout from "~layouts/base.astro";
+
+import type { PaginatedMicroblog } from "~libs/microblog";
+import { getPaginatedMicroblog } from "~libs/microblog";
+import Navigation from "~components/navigation";
+import Feed from "~components/microblog/feed.astro";
+
+const page = Number(Astro.url.searchParams.get("page"));
+
+let PaginatedMicroblog: PaginatedMicroblog;
+let error: Error | undefined = undefined;
+try {
+    PaginatedMicroblog = await getPaginatedMicroblog(page);
+} catch (e) {
+    error = e as Error;
+    console.error(error);
+
+    PaginatedMicroblog = {
+        page: 0,
+        pages: 0,
+        total_items: 0,
+        items_per_page: 0,
+        next_page: null,
+        previous_page: null,
+        items: [],
+    };
+}
+
+const getPageNumber = (path: string) => {
+    const match = path.match(/\d+/);
+    if (!match && path === "/api/paginated/list.json") return 1;
+    return match ? Number(match[0]) : null;
+};
+---
+
+<script>
+    document.addEventListener("submit", (event) => {
+        const form = document.getElementById(
+            "pagination-form",
+        ) as HTMLFormElement;
+        if (!form) return;
+        event.preventDefault();
+
+        const input = form.querySelector("input");
+        if (!input) return;
+
+        const page = parseInt(input.value);
+        const totalPages = parseInt(input.dataset.totalPages!);
+
+        if (page >= 1 && page <= totalPages) {
+            const tempLink = document.createElement("a");
+            tempLink.id = "temp-redirect-link";
+            tempLink.href = `/microblog?page=${page}`;
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+        }
+    });
+
+    document.addEventListener("input", (event) => {
+        const input = event.target as HTMLInputElement;
+        if (input.id !== "pagination-input") return;
+
+        const maxPages = parseInt(input.dataset.totalPages || "1");
+        const value = parseInt(input.value);
+        if (value > maxPages) {
+            input.value = maxPages.toString();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        const input = event.target as HTMLInputElement;
+        if (input.id !== "pagination-input") return;
+
+        const allowedKeys = [
+            "Backspace",
+            "Delete",
+            "Tab",
+            "Escape",
+            "Enter",
+            "ArrowLeft",
+            "ArrowRight",
+            "Home",
+            "End",
+        ];
+        if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+            return;
+        }
+
+        event.preventDefault();
+    });
+
+    document.addEventListener(
+        "blur",
+        (event) => {
+            const input = event.target as HTMLInputElement;
+            if (input.id !== "pagination-input") return;
+
+            const currentPage = input.dataset.page;
+            if (currentPage) {
+                input.value = Number(currentPage) > 0 ? currentPage : "1";
+            }
+        },
+        true,
+    );
+</script>
+
+<style>
+    @reference "~styles/globals.css";
+
+    #temp-redirect-link {
+        @apply hidden;
+    }
+
+    #pagination-links > a {
+        @apply transition-colors duration-500 hover:animate-pulse focus:animate-pulse focus:outline-none;
+    }
+
+    #pagination-links > a:only-child {
+        @apply -mr-1;
+    }
+
+    #pagination-input {
+        animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.65;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion) {
+        #pagination-input {
+            animation: none;
+            @apply text-black/[0.34];
+        }
+    }
+</style>
+
+<BaseLayout>
+    <SEO
+        slot="seo"
+        title={page <= 0 ? "Microblog" : `Microblog (p. ${page})`}
+        description="My place to share quick updates and musings in a tweet-like fashion."
+        noindex={page > 0}
+    />
+
+    <header slot="header">
+        <Navigation
+            Links={[
+                { href: "/", text: "Home" },
+                {
+                    href: "/microblog",
+                    text: `${page <= 0 ? "Microblog" : `Microblog (p. ${page})`}`,
+                },
+            ]}
+        />
+    </header>
+
+    <h1 class="font-medium">
+        Microblog{page > 0 && <span> (p. {page})</span>}
+    </h1>
+    <p class="py-2">
+        Welcome to my microblog — my place to share quick updates and musings in
+        a tweet-like fashion. Externally, my microblog is available as a <a
+            class="hyperlink"
+            href="https://microblog.vandor.sx/feed.json"
+            target="_blank">JSON feed</a
+        > and via <a
+            class="hyperlink"
+            href="https://micro.blog/jade?remote_follow=1"
+            target="_blank">ActivityPub</a
+        >. In addition, I make an effort to cross-post to <a
+            class="hyperlink"
+            href="https://bsky.app/profile/vandor.sx"
+            target="_blank">Bluesky</a
+        >.
+    </p>
+
+    <Feed posts={PaginatedMicroblog.items} error={error} />
+</BaseLayout>
