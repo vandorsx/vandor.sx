@@ -56,9 +56,9 @@ const blog = await getCollection("blog", ({ data }) =>
                     <tr class="border-b border-grey-outline">
                         <td class="px-2.5 pt-1.5 text-nowrap">
                             <time
-                                datetime={new Date(
-                                    entry.data.datePublished,
-                                ).toISOString()}
+                                datetime={new Date(entry.data.datePublished)
+                                    .toISOString()
+                                    .substring(0, 10)}
                             >
                                 {new Date(entry.data.datePublished)
                                     .toISOString()
