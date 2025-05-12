@@ -52,7 +52,44 @@ function formatDate(dateString: string): string {
 ---
 
 <article>
-    {inFeed ? <header>in feed</header> : <header>not in feed</header>}
+    {
+        inFeed ?
+            <header>
+                <a
+                    href={`/microblog/${year}/${month}/${day}/${post.id}`}
+                    class="hyperlink"
+                >
+                    <time
+                        datetime={post.date_published}
+                        title={new Date(
+                            post.date_published.slice(0, -5),
+                        ).toLocaleString("en-US", nonRelativeDateOptions)}
+                    >
+                        {!isOlderThanWeek(post.date_published) ?
+                            <DynamicTimestamp
+                                date={post.date_published}
+                                client:load
+                            />
+                        :   formatDate(post.date_published)}
+                    </time>
+                </a>
+            </header>
+        :   <header>
+                <time
+                    datetime={post.date_published}
+                    title={new Date(
+                        post.date_published.slice(0, -5),
+                    ).toLocaleString("en-US", nonRelativeDateOptions)}
+                >
+                    {!isOlderThanWeek(post.date_published) ?
+                        <DynamicTimestamp
+                            date={post.date_published}
+                            client:load
+                        />
+                    :   formatDate(post.date_published)}
+                </time>
+            </header>
+    }
 
-    <div set:html={contentHtml} />
+    <div class="prose" set:html={contentHtml} />
 </article>
