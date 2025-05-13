@@ -91,24 +91,28 @@ export default function ReplyArea(props: ReplyAreaProps) {
     return (
         <div>
             {token() && username() ?
-                <form onSubmit={handleReply}>
+                <form onSubmit={handleReply} class="mb-5">
                     <textarea
                         onInput={(e) => {
                             setReplyText(e.currentTarget.value);
                         }}
                         name="text"
                         placeholder="Some nice words..."
+                        class="border-figure-outline w-full border p-1.5 outline-hidden"
                     />
                     <div class="flex items-center justify-between">
                         <div>
                             Replying as{" "}
-                            <span>
+                            <span class="font-medium">
                                 <span class="mr-[.03125rem]">@</span>
                                 {username()}
                             </span>
                         </div>
-                        <button type="submit" class="cursor-pointer]">
-                            <span>Reply</span>
+                        <button
+                            type="submit"
+                            class="bg-green inline-flex cursor-pointer items-center justify-center border border-black px-1.5 text-white hover:bg-black"
+                        >
+                            <span class="relative top-[1px]">Reply</span>
                         </button>
                     </div>
                 </form>
