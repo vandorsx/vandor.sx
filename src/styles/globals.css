@@ -51,6 +51,11 @@
     @apply hover:underline;
 }
 
+@utility hidden-link {
+    @apply text-inherit;
+    @apply hover:no-underline;
+}
+
 .hidden-link {
     @apply text-inherit;
     @apply hover:no-underline;
