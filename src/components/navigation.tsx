@@ -12,12 +12,13 @@ export default function Navigation({ Links }: NavigationProps) {
                 <a href="mailto:jade@vandor.sx">jade@vandor.sx</a>
             </span>
             <nav class="text-even-slightly-smaller sm:text-base">
-                <ol class="flex items-center">
+                <div>
+                    {Links.length > 0 && <span>~&nbsp;/&nbsp;</span>}
+
                     {Links.map((link, index) => (
-                        <li class="flex items-center">
-                            {index === 0 && <span>~&nbsp;/&nbsp;</span>}
+                        <>
                             {index === Links.length - 1 ?
-                                <span>{link.text}</span>
+                                <span class="break-words">{link.text}</span>
                             :   <a href={link.href} class="hyperlink">
                                     {link.text}
                                 </a>
@@ -25,9 +26,9 @@ export default function Navigation({ Links }: NavigationProps) {
                             {index !== Links.length - 1 && (
                                 <span>&nbsp;/&nbsp;</span>
                             )}
-                        </li>
+                        </>
                     ))}
-                </ol>
+                </div>
             </nav>
         </div>
     );
