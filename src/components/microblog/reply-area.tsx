@@ -119,25 +119,28 @@ export default function ReplyArea(props: ReplyAreaProps) {
                 </div>
             )}
             {!token() && !username() && (
-                <div class="text-right">
-                    reply with{" "}
-                    <a
-                        href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
-                    >
-                        micro.blog
-                    </a>
-                    ,{" "}
-                    <a
-                        href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
-                    >
-                        bluesky
-                    </a>
-                    , or{" "}
-                    <a
-                        href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
-                    >
-                        mastodon
-                    </a>
+                <div class="pt-5">
+                    <div class="mb-1 font-medium">Reply with:</div>
+                    <div class="flex gap-1.5">
+                        <a
+                            href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
+                            class="inline-flex w-20 items-center justify-center border border-black bg-[#ff8800] px-1.5 text-white hover:bg-black"
+                        >
+                            <span class="relative top-[1px]">Micro.blog</span>
+                        </a>
+                        <a
+                            href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
+                            class="inline-flex w-20 items-center justify-center border border-black bg-[#0a7aff] px-1.5 text-white hover:bg-black"
+                        >
+                            <span class="relative top-[1px]">Bluesky</span>
+                        </a>
+                        <a
+                            href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
+                            class="inline-flex w-20 items-center justify-center border border-black bg-[#563ACC] px-1.5 text-white hover:bg-black"
+                        >
+                            <span class="relative top-[1px]">Mastodon</span>
+                        </a>
+                    </div>
                 </div>
             )}
         </div>
