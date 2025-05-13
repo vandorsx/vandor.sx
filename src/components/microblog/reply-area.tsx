@@ -122,9 +122,12 @@ export default function ReplyArea(props: ReplyAreaProps) {
                 <div class="pt-5">
                     <div class="mb-1 font-medium">Reply with:</div>
                     <div class="flex gap-1.5">
+                        <span class="absolute -translate-y-1.5 text-[24px] font-[250]">
+                            └
+                        </span>
                         <a
                             href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
-                            class="inline-flex w-20 items-center justify-center border border-black bg-[#ff8800] px-1.5 text-white hover:bg-black"
+                            class="ml-7 inline-flex w-20 items-center justify-center border border-black bg-[#ff8800] px-1.5 text-white hover:bg-black"
                         >
                             <span class="relative top-[1px]">Micro.blog</span>
                         </a>
