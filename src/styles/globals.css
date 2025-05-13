@@ -32,8 +32,11 @@
     --font-univers:
         "Univers Next Variable", apple-system, system-ui, BlinkMacSystemFont,
         "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --text-base: 15px;
     --text-slightly-smaller: calc(1em - 1px);
     --text-even-slightly-smaller: calc(1em - 2px);
+    --text-slightly-larger: calc(1em + 1px);
+    --text-even-slightly-larger: calc(1em + 2px);
     --color-*: initial;
     --color-black: black;
     --color-white: white;
