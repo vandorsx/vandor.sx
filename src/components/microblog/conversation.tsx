@@ -17,22 +17,31 @@ function Reply(reply: MicrodotblogReply) {
     onCleanup(() => clearInterval(interval));
 
     return (
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-1">
             <div>
                 {reply.author.url ?
-                    <a href={reply.author.url} target="_blank">
+                    <a
+                        href={reply.author.url}
+                        target="_blank"
+                        class="font-[450]"
+                    >
                         {reply.author.name}
                     </a>
-                :   <span>{reply.author.name}</span>}
+                :   <span class="font-[450]">{reply.author.name}</span>}
                 {reply.author._microblog.username === MY_USERNAME && (
-                    <span> (me)</span>
+                    <span class="italic"> (me)</span>
                 )}
                 <span>
                     {" "}
                     replied <span>{relativeTimestamp()}</span>
                 </span>
             </div>
-            <div innerHTML={sanitizeHtml(reply.content_html)} />
+            <div class="prose">
+                <div
+                    innerHTML={sanitizeHtml(reply.content_html)}
+                    class="mb-reply"
+                />
+            </div>
         </div>
     );
 }
