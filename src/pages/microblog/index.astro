@@ -184,7 +184,7 @@ const getPageNumber = (path: string) => {
                         aria-label={`To page ${getPageNumber(PaginatedMicroblog.previous_page)}`}
                         class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-start w-24"
                     >
-                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                        <span class="relative top-[1px] text-even-slightly-smaller">
                             &larr; Prev. page
                         </span>
                     </a>
@@ -192,7 +192,7 @@ const getPageNumber = (path: string) => {
                         class="bg-green border-black border text-white hover:bg-black cursor-not-allowed px-1.5 py-1 inline-flex items-center justify-start w-24 opacity-30"
                         aria-disabled="true"
                     >
-                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                        <span class="relative top-[1px] text-even-slightly-smaller">
                             &larr; Prev. page
                         </span>
                     </div>
@@ -206,7 +206,7 @@ const getPageNumber = (path: string) => {
                         value={PaginatedMicroblog.page}
                         min="1"
                         max={PaginatedMicroblog.pages}
-                        class="h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-base scale-95"
+                        class="h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-slightly-larger scale-95"
                         class:list={[
                             { "w-[1ch]": page.toString().length === 1 },
                             { "w-[2ch]": page.toString().length === 2 },
@@ -226,7 +226,7 @@ const getPageNumber = (path: string) => {
                         aria-label={`To page ${getPageNumber(PaginatedMicroblog.next_page)}`}
                         class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-end w-24"
                     >
-                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                        <span class="relative top-[1px] text-even-slightly-smaller">
                             Next page &rarr;
                         </span>
                     </a>
@@ -234,7 +234,7 @@ const getPageNumber = (path: string) => {
                         class="bg-green border-black border text-white hover:bg-black cursor-not-allowed px-1.5 py-1 inline-flex items-center justify-end w-24 opacity-30"
                         aria-disabled="true"
                     >
-                        <span class="relative top-[1px] text-[calc(1em-2px)]">
+                        <span class="relative top-[1px] text-even-slightly-smaller">
                             Next page &rarr;
                         </span>
                     </div>
