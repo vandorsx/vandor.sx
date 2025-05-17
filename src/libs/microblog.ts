@@ -137,20 +137,6 @@ export const getMicrodotblog = async (permalink: string) => {
     const getConversationUrl = (url: string) =>
         `https://micro.blog/conversation.js?url=${url}&format=jsonfeed&nocache=${new Date().getTime()}`;
 
-    // START FIX FOR FORMER .HTML PERMALINKS
-    const dateMatch = permalink.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
-    if (dateMatch) {
-        const [_, year, month, day] = dateMatch.map(Number);
-        const permalinkDate = new Date(year, month - 1, day);
-        const cutoffDate = new Date(2025, 0, 2); // January 2, 2025
-
-        // Check if the date is before January 2, 2025
-        if (permalinkDate < cutoffDate) {
-            permalink = permalink.replace(/\/$/, ".html");
-        }
-    }
-    // END FIX FOR FORMER .HTML PERMALINKS
-
     const res: Response = await fetch(getConversationUrl(permalink));
 
     // If 404, try with the former hostname
