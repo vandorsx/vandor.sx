@@ -118,7 +118,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
                 </form>
             :   null}
             {microdotblog() && microdotblog().items.length > 0 && (
-                <div>
+                <div class="py-5">
                     <Conversation {...microdotblog()} />
                 </div>
             )}
