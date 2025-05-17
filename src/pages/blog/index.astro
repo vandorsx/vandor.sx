@@ -1,86 +1,78 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "~layouts/base.astro";
 import { SEO } from "astro-seo";
-import BackLink from "~components/back-link";
-import "~styles/text.css";
+import { getCollection } from "astro:content";
+import Navigation from "~components/navigation";
+import BaseLayout from "~layouts/base.astro";
 
 const blog = await getCollection("blog", ({ data }) =>
-   import.meta.env.PROD ? data.draft !== true : true,
+    import.meta.env.PROD ? data.draft !== true : true,
 ).then(
-   (
-      posts, // sort by datePublished
-   ) =>
-      posts.sort(
-         (a, b) =>
-            new Date(b.data.datePublished).getTime() -
-            new Date(a.data.datePublished).getTime(),
-      ),
+    (
+        posts, // sort by datePublished
+    ) =>
+        posts.sort(
+            (a, b) =>
+                new Date(b.data.datePublished).getTime() -
+                new Date(a.data.datePublished).getTime(),
+        ),
 );
 ---
 
-<style>
-   @reference "~styles/globals.css";
+<BaseLayout>
+    <SEO
+        slot="seo"
+        title="Blog"
+        description="Where I publish more thoughtful, or, at the very least, more crafted writings."
+    />
 
-   .post-list-item p:first-of-type {
-      @apply my-0 pt-0.5 pb-1 font-serif text-[1.125em];
-   }
-</style>
+    <header slot="header">
+        <Navigation
+            Links={[
+                { href: "/", text: "Home" },
+                { href: "/blog", text: "Blog" },
+            ]}
+        />
+    </header>
 
-<Layout>
-   <SEO
-      slot="seo"
-      title="My blog"
-      description="Where I publish longer-form writing and content that I consider to be more evergreen in nature."
-   />
+    <h1 class="font-medium">Blog</h1>
+    <p class="py-2">
+        Welcome to my blog. This is where I publish more thoughtful, or, at the
+        very least, more crafted writings. As is standard, my blog is available
+        as an <a href="/blog/feed.xml" class="hyperlink">RSS feed</a>.
+    </p>
 
-   <header slot="header" class="leading-none">
-      <BackLink href="/" text="index" client:load />
-   </header>
-
-   <div class="flex flex-col gap-7">
-      <div>
-         <h1 class="font-serif text-xl font-[354]">My blog</h1>
-         <p class="my-2">
-            Welcome to my blog. This is where I publish more thoughtful, or, at
-            the very least, more crafted pieces. As is standard, my blog is
-            available as an <a class="highlighted" href="/blog/feed.xml"
-               >RSS feed</a
-            >.
-         </p>
-      </div>
-      <section>
-         {
-            blog.length ?
-               <ul class="flex flex-col gap-7">
-                  {blog.map((entry) => (
-                     <li class="post-list-item flex flex-col gap-1">
-                        <span class="font-serif text-xs italic text-black/[.72]">
-                           Published{" "}
-                           <time>
-                              {new Date(entry.data.datePublished).toLocaleString(
-                                 "en-US",
-                                 {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                 },
-                              )}
-                           </time>
-                        </span>
-                        <p class="my-0">
-                           <a class="highlighter" href={`/blog/${entry.id}`}>
-                              {entry.data.title}
-                           </a>
-                        </p>
-                        <p class="my-0">{entry.data.description}</p>
-                     </li>
-                  ))}
-               </ul>
-            :  <p class="text-black/50">
-                  No posts yet! Soon, this won't be the case {"^_^"}
-               </p>
-         }
-      </section>
-   </div>
-</Layout>
+    <table
+        class="w-full border-spacing-0 border-collapse text-left border border-table-outline mt-4"
+    >
+        <thead class="border-b">
+            <tr>
+                <th class="px-2.5 pt-1.5 font-medium">Date</th>
+                <th class="px-2.5 pt-1.5 font-medium">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                blog.map((entry) => (
+                    <tr class="border-b border-table-outline">
+                        <td class="px-2.5 pt-1.5 text-nowrap">
+                            <time
+                                datetime={new Date(entry.data.datePublished)
+                                    .toISOString()
+                                    .substring(0, 10)}
+                            >
+                                {new Date(entry.data.datePublished)
+                                    .toISOString()
+                                    .substring(0, 10)}
+                            </time>
+                        </td>
+                        <td class="px-2.5 pt-1.5">
+                            <a href={`/blog/${entry.id}`} class="hyperlink">
+                                {entry.data.title}
+                            </a>
+                        </td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+</BaseLayout>

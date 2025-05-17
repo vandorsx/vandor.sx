@@ -1,6 +1,3 @@
 [submodule "src/content/blog"]
 	path = src/content/blog
-	url = git@github.com:in-the-trees/blog-content.git
-[submodule "src/assets/blog"]
-	path = src/assets/blog
-	url = git@github.com:in-the-trees/blog-assets.git
+	url = git@github.com:vandorsx/blog-content.git

@@ -1,101 +1,49 @@
 ---
-import PostHog from "~components/posthog.astro";
-import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "~styles/globals.css";
-import "~styles/fonts.css";
 ---
 
 <!doctype html>
-<html
-   lang="en"
-   class="[&,_body]:bg-white [&,_body]:lg:bg-[#F0F0F0] [&,_body]:dark:lg:bg-[#323232]"
->
-   <head>
-      <PostHog />
-      <script src="../libs/path-tracker.ts"></script>
+<html lang="en" class="text-[100%]">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <slot name="seo">
+            <SEO
+                title="Jade van Dörsten"
+                description="My personal website. long story short, I'm a human and a netizen."
+            />
 
-      <link
-         rel="preload"
-         href="/fonts/sans-v.woff2"
-         as="font"
-         type="font/woff2"
-         crossorigin
-      />
-      <link
-         rel="preload"
-         href="/fonts/serif-v.woff2"
-         as="font"
-         type="font/woff2"
-         crossorigin
-      />
-      <link
-         rel="preload"
-         href="/fonts/serif-iv.woff2"
-         as="font"
-         type="font/woff2"
-         crossorigin
-      />
+            <meta name="keywords" content="vandorsx, Jade van Dörsten" />
+        </slot>
 
-      <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
-      <link
-         rel="apple-touch-icon"
-         type="image/png"
-         href="/apple-icon.png"
-         sizes="227x227"
-      />
+        <link
+            rel="preload"
+            href="/fonts/UniversNextVariable.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
 
-      <link rel="manifest" href="/manifest.json" />
-
-      <link
-         rel="alternate"
-         type="application/rss+xml"
-         title="Blog"
-         href="https://vandor.sx/blog/feed.xml"
-      />
-      <link
-         rel="alternate"
-         type="application/feed+json"
-         title="Microblog"
-         href="https://microblog.vandor.sx/feed.json"
-      />
-
-      <slot name="seo">
-         <SEO
-            title="Jade van Dörsten"
-            description="My personal website. long story short, I'm a human and a netizen."
-            twitter={{
-               creator: "@vandorsx",
-               site: "@vandorsx",
-            }}
-         />
-
-         <meta name="keywords" content="vandorsx, Jade van Dörsten" />
-      </slot>
-
-      <ClientRouter />
-   </head>
-   <body class="flex justify-center text-sm leading-[1.4rem] font-light">
-      <div
-         id="page"
-         class={`
-               pt-[2.625rem] md:pt-[3.9375rem] lg:pt-14
-               pb-[1.75rem] md:pb-[2.625rem] lg:pb-[3.5rem]
-               flex flex-col gap-3 bg-white
-               px-7 lg:mt-7 lg:px-[92px]
-               w-full max-w-[661px] lg:max-w-[789px]
-               lg:shadow-[0_0_13px_rgba(0,0,0,0.13)] dark:lg:shadow-[0_0_13px_rgba(0,0,0,0.72)]
-               lg:min-h-[calc(100dvh-1.75rem)]
-            `}
-      >
-         <slot name="header" />
-         <main>
-            <slot />
-         </main>
-         <slot name="footer" />
-      </div>
-   </body>
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Blog"
+            href="https://vandor.sx/blog/feed.xml"
+        />
+        <link
+            rel="alternate"
+            type="application/feed+json"
+            title="Microblog"
+            href="https://vandor.sx/microblog/feed.json"
+        />
+    </head>
+    <body
+        class="font-univers font-stretch-95% flex flex-col text-base px-1.5 py-3 mb-7 md:px-5.5 md:py-3.5"
+    >
+        <slot class="w-full" name="header" />
+        <main class="w-full max-w-3xl px-1.5"><slot /></main>
+        <slot name="footer" />
+    </body>
 </html>

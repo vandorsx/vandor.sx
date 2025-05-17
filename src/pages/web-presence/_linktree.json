@@ -1,95 +1,95 @@
 {
-   "tree": [
-      {
-         "category": "Preferred communication",
-         "links": [
-            {
-               "platform": "Email",
-               "username": "jade@vandor.sx",
-               "url": "mailto:jade@vandor.sx"
-            },
-            {
-               "platform": "Signal",
-               "username": "vandors.10",
-               "url": "https://signal.me/#eu/errmiQt29tEo_vb2l9uC46pI7pvbzNKDLFK6ckCc1Vh5QHy_pWFO84rRpwKWCVMz"
-            }
-         ]
-      },
-      {
-         "category": "Developer",
-         "links": [
-            {
-               "platform": "GitHub",
-               "username": "vandorsx",
-               "url": "https://github.com/vandorsx",
-               "rel": "me"
-            }
-         ]
-      },
-      {
-         "category": "Photography",
-         "links": [
-            {
-               "platform": "Glass",
-               "username": "vandorsx",
-               "url": "https://glass.photo/vandorsx",
-               "rel": "me"
-            }
-         ]
-      },
-      {
-         "category": "Microblogging",
-         "links": [
-            {
-               "platform": "Micro.blog",
-               "username": "@jade",
-               "url": "https://micro.blog/jade",
-               "rel": "me"
-            },
-            {
-               "platform": "ActivityPub",
-               "username": "@jade@microblog.vandor.sx",
-               "url": "https://micro.blog/jade?remote_follow=1"
-            },
-            {
-               "platform": "Bluesky",
-               "username": "@vandor.sx",
-               "url": "https://bsky.app/profile/vandor.sx",
-               "rel": "me"
-            },
-            {
-               "platform": "X",
-               "username": "@vandorsx",
-               "url": "https://x.com/vandorsx",
-               "rel": "me"
-            }
-         ]
-      },
-      {
-         "category": "Other real-time communication",
-         "links": [
-            {
-               "platform": "Discord",
-               "username": "vandorsx",
-               "url": "https://discord.com/users/1217558308798468106"
-            },
-            {
-               "platform": "Matrix",
-               "username": "@vandorsx:matrix.org",
-               "url": "https://matrix.to/#/@vandorsx:matrix.org"
-            }
-         ]
-      },
-      {
-         "category": "Forums",
-         "links": [
-            {
-               "platform": "Techlore Discussions",
-               "username": "vandorsx",
-               "url": "https://discuss.techlore.tech/u/vandorsx",
-               "rel": "me"
-            }
-         ]
-      }
-   ]
+    "tree": [
+        {
+            "category": "Preferred communication",
+            "links": [
+                {
+                    "platform": "Email",
+                    "username": "jade@vandor.sx",
+                    "url": "mailto:jade@vandor.sx"
+                },
+                {
+                    "platform": "Signal",
+                    "username": "vandors.10",
+                    "url": "https://signal.me/#eu/errmiQt29tEo_vb2l9uC46pI7pvbzNKDLFK6ckCc1Vh5QHy_pWFO84rRpwKWCVMz"
+                }
+            ]
+        },
+        {
+            "category": "Developer",
+            "links": [
+                {
+                    "platform": "GitHub",
+                    "username": "vandorsx",
+                    "url": "https://github.com/vandorsx",
+                    "rel": "me"
+                }
+            ]
+        },
+        {
+            "category": "Photography",
+            "links": [
+                {
+                    "platform": "Glass",
+                    "username": "vandorsx",
+                    "url": "https://glass.photo/vandorsx",
+                    "rel": "me"
+                }
+            ]
+        },
+        {
+            "category": "Microblogging",
+            "links": [
+                {
+                    "platform": "Micro.blog",
+                    "username": "@jade",
+                    "url": "https://micro.blog/jade",
+                    "rel": "me"
+                },
+                {
+                    "platform": "ActivityPub",
+                    "username": "@jade@microblog.vandor.sx",
+                    "url": "https://micro.blog/jade?remote_follow=1"
+                },
+                {
+                    "platform": "Bluesky",
+                    "username": "@vandor.sx",
+                    "url": "https://bsky.app/profile/vandor.sx",
+                    "rel": "me"
+                },
+                {
+                    "platform": "X",
+                    "username": "@vandorsx",
+                    "url": "https://x.com/vandorsx",
+                    "rel": "me"
+                }
+            ]
+        },
+        {
+            "category": "Other real-time communication",
+            "links": [
+                {
+                    "platform": "Discord",
+                    "username": "vandorsx",
+                    "url": "https://discord.com/users/1217558308798468106"
+                },
+                {
+                    "platform": "Matrix",
+                    "username": "@vandorsx:matrix.org",
+                    "url": "https://matrix.to/#/@vandorsx:matrix.org"
+                }
+            ]
+        },
+        {
+            "category": "Forums",
+            "links": [
+                {
+                    "platform": "Techlore Discussions",
+                    "username": "vandorsx",
+                    "url": "https://discuss.techlore.tech/u/vandorsx",
+                    "rel": "me"
+                }
+            ]
+        }
+    ]
 }

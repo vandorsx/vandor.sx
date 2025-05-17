@@ -3,60 +3,59 @@ export const prerender = false;
 
 import Layout from "~layouts/base.astro";
 import { SEO } from "astro-seo";
-import "~styles/text.css";
-import "~styles/reply.css";
-import BackLink from "~components/back-link";
 
 import {
-   getMicrodotblog,
-   getPost,
-   type Microblog,
-   type Microdotblog,
+    getMicrodotblog,
+    getPost,
+    type Microblog,
+    type Microdotblog,
 } from "~libs/microblog";
 import MicroblogPost from "~components/microblog/post.astro";
 import ReplyArea from "~components/microblog/reply-area";
+import Navigation from "~components/navigation";
 
 const { slug } = Astro.params;
-const slugArray = slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
+const slugArray =
+    slug && slug.length > 0 ? slug.split("/").filter(Boolean) : [];
 
 let post: Microblog = {} as Microblog;
 
 // check if slug length is valid
 if (slugArray.length !== 4 && slugArray.length !== 1) {
-   return new Response(null, { status: 404 });
+    return new Response(null, { status: 404 });
 }
 
 if (slugArray.length === 1) {
-   const postId = slugArray[0];
+    const postId = slugArray[0];
 
-   // check if slug is a valid post id
-   if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
+    // check if slug is a valid post id
+    if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
 
-   try {
-      post = await getPost(postId);
-   } catch {
-      return new Response(null, { status: 404 });
-   }
+    try {
+        post = await getPost(postId);
+    } catch {
+        return new Response(null, { status: 404 });
+    }
 }
 
 if (slugArray.length === 4) {
-   const [year, month, day, postId] = slugArray;
+    const [year, month, day, postId] = slugArray;
 
-   // check if slug ends with a valid post id
-   if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
+    // check if slug ends with a valid post id
+    if (!/^\d{7}$/.test(postId)) return new Response(null, { status: 404 });
 
-   // check if date is valid
-   if (!/^\d{4}$/.test(year)) return new Response(null, { status: 404 });
-   if (!/^(1[0-2]|[1-9])$/.test(month))
-      return new Response(null, { status: 404 });
-   if (!/^(3[01]|[12]\d|[1-9])$/.test(day))
-      return new Response(null, { status: 404 });
+    // check if date is valid
+    if (!/^\d{4}$/.test(year)) return new Response(null, { status: 404 });
+    if (!/^(1[0-2]|[1-9])$/.test(month))
+        return new Response(null, { status: 404 });
+    if (!/^(3[01]|[12]\d|[1-9])$/.test(day))
+        return new Response(null, { status: 404 });
 
-   try {
-      post = await getPost(postId, { year, month, day });
-   } catch {
-      return new Response(null, { status: 404 });
-   }
+    try {
+        post = await getPost(postId, { year, month, day });
+    } catch {
+        return new Response(null, { status: 404 });
+    }
 }
 
 const microdotblog: Microdotblog = await getMicrodotblog(post.url);
@@ -68,38 +67,44 @@ const token = Astro.url.searchParams.get("token");
 const username = Astro.url.searchParams.get("username");
 ---
 
-<script src="../../libs/mb-alt-alert.ts"></script>
-
 <script>
-   // remove query params from url
-   window.history.replaceState(
-      null,
-      "",
-      window.location.pathname + window.location.hash,
-   );
+    // remove query params from url
+    window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.hash,
+    );
 </script>
 
 <Layout>
-   <SEO
-      slot="seo"
-      title={post.title}
-      description={post.description}
-      canonical={canonical}
-   />
+    <SEO
+        slot="seo"
+        title={post.title}
+        description={post.description}
+        canonical={canonical}
+    />
 
-   <header slot="header" class="leading-none">
-      <BackLink href="/microblog" text="microblog" client:load />
-   </header>
+    <header slot="header">
+        <Navigation
+            Links={[
+                { href: "/", text: "Home" },
+                { href: "/microblog", text: "Microblog" },
+                { href: "", text: `${post.title}` },
+            ]}
+        />
+    </header>
 
-   <MicroblogPost post={post} />
+    <MicroblogPost post={post} />
 
-   <section class="pt-4">
-      <ReplyArea
-         postUrl={post.url}
-         microdotblog={microdotblog}
-         token={token}
-         username={username}
-         client:load
-      />
-   </section>
+    <section
+        class="border-t border-dashed border-t-[#999] mt-7 text-slightly-smaller"
+    >
+        <ReplyArea
+            postUrl={post.url}
+            microdotblog={microdotblog}
+            token={token}
+            username={username}
+            client:load
+        />
+    </section>
 </Layout>

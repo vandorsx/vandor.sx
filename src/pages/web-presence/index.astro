@@ -1,59 +1,76 @@
 ---
-import Page from "~layouts/page.astro";
+import BaseLayout from "~layouts/base.astro";
 import LinkTree from "./_linktree.json";
+import { SEO } from "astro-seo";
+import Navigation from "~components/navigation";
 ---
 
-<style>
-   @reference "~styles/globals.css";
+<BaseLayout>
+    <SEO
+        slot="seo"
+        title="Web presence"
+        description="Outbound links to my presence on the web."
+    />
 
-   dl {
-      @apply py-[0.75em];
-      @apply ml-[1em];
-   }
+    <header slot="header">
+        <Navigation
+            Links={[
+                { href: "/", text: "Home" },
+                {
+                    href: "/web-presence",
+                    text: "Web presence",
+                },
+            ]}
+        />
+    </header>
 
-   dl > dt:not(:first-child) {
-      @apply mt-[0.5em];
-   }
+    <h1 class="font-medium">Web presence</h1>
+    <p class="py-2">
+        I can be found various places on the web — here are some of those
+        places.
+    </p>
 
-   dl > dd {
-      @apply ml-[1em];
-   }
-</style>
-
-<Page
-   title="My web presence"
-   description="Outbound links to my presence on the web."
-   backlink="/"
-   backtext="index"
->
-   <p slot="intro" class="my-2">
-      I can be found various places on the web — here are some of those places.
-      And unlike Linktree, this page can be measured in mere kilobytes :^)
-   </p>
-
-   {
-      LinkTree.tree.map((category) => (
-         <>
-            <h2 class="font-serif text-[calc(1em+1px)] font-[327] mt-[1em]">
-               {category.category}
-            </h2>
-            <dl>
-               {category.links.map((link) => (
-                  <>
-                     <dt>{link.platform}</dt>
-                     <dd>
-                        <a
-                           href={link.url}
-                           rel={link.rel ? link.rel : undefined}
-                           class="highlighted"
-                        >
-                           <i>{link.username}</i>
-                        </a>
-                     </dd>
-                  </>
-               ))}
-            </dl>
-         </>
-      ))
-   }
-</Page>
+    <div class="mt-6">
+        {
+            LinkTree.tree.map((category) => (
+                <div class="mt-4">
+                    <h2 class="font-medium mb-2">{category.category}</h2>
+                    <table class="w-full table-fixed border-spacing-0 border-collapse text-left border border-table-outline">
+                        <colgroup>
+                            <col class="w-1/3" />
+                            <col />
+                        </colgroup>
+                        <thead class="border-b">
+                            <tr>
+                                <th class="px-2.5 pt-1.5 font-medium">
+                                    Platform
+                                </th>
+                                <th class="px-2.5 pt-1.5 font-medium">
+                                    Handle
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {category.links.map((link) => (
+                                <tr class="border-b border-table-outline">
+                                    <td class="px-2.5 pt-1.5">
+                                        {link.platform}
+                                    </td>
+                                    <td class="px-2.5 pt-1.5">
+                                        <a
+                                            href={link.url}
+                                            rel={link.rel || undefined}
+                                            class="hyperlink"
+                                        >
+                                            {link.username}
+                                        </a>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ))
+        }
+    </div>
+</BaseLayout>

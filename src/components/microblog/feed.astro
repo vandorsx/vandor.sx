@@ -3,34 +3,34 @@ import type { Microblog } from "~libs/microblog";
 import MicroblogPost from "~components/microblog/post.astro";
 
 interface Props {
-   posts: Microblog[];
-   error?: Error;
+    posts: Microblog[];
+    error?: Error;
 }
 
 const { posts, error } = Astro.props;
 ---
 
 <div>
-   {
-      error ?
-         <p class="text-black/50">
-            oops &gt;.&lt;
-            <br />
-            It looks like Micro.blog may be currently unavailable;{" "}
-            <a href="https://status.micro.blog" target="_blank">
-               check status
-            </a>
-            .
-         </p>
-      : posts.length ?
-         posts.map((post, index) => (
-            <>
-               <MicroblogPost post={post} inFeed />
-               {index < posts.length - 1 && (
-                  <hr class="border-t-[0.5px] border-black/[.13] w-full mt-7 mb-5" />
-               )}
-            </>
-         ))
-      :  <p class="text-black/50">No posts yet today — check back later!</p>
-   }
+    {
+        error ?
+            <p>
+                oops &gt;.&lt;
+                <br />
+                It looks like Micro.blog may be currently unavailable;{" "}
+                <a href="https://status.micro.blog" target="_blank">
+                    check status
+                </a>
+                .
+            </p>
+        : posts.length ?
+            posts.map((post, index) => (
+                <>
+                    <MicroblogPost post={post} inFeed />
+                    {index < posts.length - 1 && (
+                        <hr class="mt-3 mb-4 border-t-[#999] border-dashed" />
+                    )}
+                </>
+            ))
+        :   <p>No posts yet today — check back later!</p>
+    }
 </div>

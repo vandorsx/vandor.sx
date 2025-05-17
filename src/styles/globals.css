@@ -1,97 +1,158 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "Berkeley Mono";
+    src: url("/fonts/TX-02.otf") format("opentype");
+    font-stretch: 60 100;
+    font-weight: 100 900;
+    font-style: oblique -16deg 0deg;
+    font-feature-settings: "ss05" on;
+}
+
+@font-face {
+    font-family: "Univers Next Variable";
+    src: url("/fonts/UniversNextVariable.woff2") format(woff2);
+    font-stretch: 75 150;
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: "Univers Next Variable";
+    src: url("/fonts/UniversNextVariable-Italic.woff2") format(woff2);
+    font-stretch: 75 150;
+    font-weight: 300 900;
+    font-style: italic;
+    font-display: swap;
+}
+
 @theme {
-   --color-accent: #8abad3;
-   --color-highlight: #fef9e7;
-   --color-highlight-hover: #fef6d8;
-
-   --font-sans:
-      "seven sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-   --font-serif:
-      "seven serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-   --font-mono:
-      "seven mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      "Liberation Mono", "Courier New", monospace;
-
-   --text-slightly-smaller: calc(1em - 1px);
-   --font-weight-bolder: bolder;
+    --font-berkeley: "Berkeley Mono", monospace;
+    --font-univers:
+        "Univers Next Variable", apple-system, system-ui, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --text-base: 15px;
+    --text-slightly-smaller: calc(1em - 1px);
+    --text-even-slightly-smaller: calc(1em - 2px);
+    --text-slightly-larger: calc(1em + 1px);
+    --text-even-slightly-larger: calc(1em + 2px);
+    --color-*: initial;
+    --color-black: black;
+    --color-white: white;
+    --color-green: oklch(41.1% 0.127 170);
+    /* --color-green-dark: oklch(58% 0.127 170); */
+    --color-table-outline: #bfbfbf;
+    --color-figure-outline: #cccccc;
 }
 
-@utility highlighted {
-   background-color: var(--color-highlight);
-   border: 1px solid rgba(0, 0, 0, 0.01);
-   border-radius: 3px;
-   padding-inline: 2px;
-   margin-inline: -2px;
-
-   @variant hover {
-      background-color: var(--color-highlight-hover);
-      border-color: rgba(0, 0, 0, 0.03);
-   }
-
-   @variant focus {
-      background-color: var(--color-highlight-hover);
-      outline: none;
-      border-color: rgba(0, 0, 0, 0.03);
-   }
-
-   @variant active {
-      background-color: var(--color-highlight-hover);
-      border-color: rgba(0, 0, 0, 0.03);
-   }
+@utility hyperlink {
+    @apply text-green;
+    @apply hover:underline;
 }
 
-@utility highlighter {
-   position: relative;
-   z-index: 1;
-   padding-inline: 2px;
-   margin-inline: -2px;
-
-   @variant focus {
-      outline: none;
-   }
-
-   &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--color-highlight-hover);
-      border: 1px solid rgba(0, 0, 0, 0.03);
-      border-radius: 3px;
-      transform-origin: left;
-      @apply scale-x-0;
-      @apply transition-transform duration-300 ease-out;
-   }
-
-   &:hover::before {
-      @apply scale-x-100;
-   }
-
-   &:focus::before {
-      @apply scale-x-100;
-   }
-
-   &:active::before {
-      @apply scale-x-100;
-   }
+@utility hidden-link {
+    @apply text-inherit;
+    @apply hover:no-underline;
 }
 
-@custom-variant hover-legacy (&:hover);
-
-::selection {
-   background: rgba(149, 138, 122, 0.54);
-}
-/* https://encycolorpedia.com/958a7a */
-::-moz-selection {
-   background: rgba(149, 138, 122, 0.54);
+.hidden-link {
+    @apply text-inherit;
+    @apply hover:no-underline;
 }
 
-html {
-   font-size: 100%;
-}
+@utility prose {
+    p,
+    blockquote,
+    ol,
+    ul {
+        @apply my-[1em];
+    }
 
-body {
-   overflow-wrap: break-word;
+    a {
+        @apply hyperlink;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-medium;
+    }
+
+    h1,
+    h2 {
+        @apply mt-[2em];
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply mt-[1em];
+    }
+
+    ul {
+        @apply ml-[1em] pl-[1em];
+        @apply list-disc;
+    }
+
+    ol {
+        @apply ml-[1em] pl-[1em];
+        @apply list-decimal;
+    }
+
+    section.footnotes {
+        @apply mt-12;
+        @apply text-[14px];
+    }
+
+    #footnote-label {
+        @apply m-0 mb-[0.5em];
+    }
+
+    .footnotes p {
+        @apply m-0;
+    }
+
+    .data-footnote-backref {
+        @apply text-[12px];
+    }
+
+    .mb-image {
+        @apply border-figure-outline inline-block max-w-xl border p-1.5;
+    }
+
+    .mb-image img {
+        @apply h-auto max-h-[605px] w-auto;
+        @apply bg-figure-outline/25;
+    }
+
+    .mb-rlink {
+        @apply border-figure-outline border p-1.5;
+        @apply text-[calc(1em-1px)];
+        @apply flex flex-col gap-1.5;
+    }
+
+    .mb-rlink p {
+        @apply m-0;
+    }
+
+    .mb-rlink footer > p {
+        @apply font-[450];
+    }
+
+    .mb-rlink footer cite {
+        @apply not-italic;
+    }
+
+    .mb-reply * {
+        @apply m-0;
+    }
+
+    .mb-reply a:first-of-type {
+        @apply font-[450] text-inherit no-underline;
+    }
 }
