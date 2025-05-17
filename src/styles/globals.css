@@ -104,6 +104,15 @@
         @apply list-decimal;
     }
 
+    blockquote {
+        @apply border-l;
+        @apply py-1.5 pl-3;
+
+        p {
+            @apply first:mt-0 last:mb-0;
+        }
+    }
+
     section.footnotes {
         @apply mt-12;
         @apply text-[14px];
