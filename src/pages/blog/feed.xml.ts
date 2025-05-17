@@ -10,7 +10,7 @@ export const GET: APIRoute = async () => {
     return rss({
         title: "Jade van Dörsten - Blog",
         description:
-            "Where I publish longer-form writing and content that I consider to be more evergreen in nature.",
+            "Where I publish more thoughtful, or, at the very least, more crafted writings.",
         site: `https://${SITE}/blog`,
         items: (
             await Promise.all(
