@@ -11,15 +11,15 @@ import Feed from "~components/microblog/feed.astro";
 
 const page = Number(Astro.url.searchParams.get("page"));
 
-let PaginatedMicroblog: PaginatedMicroblog;
+let MicroblogPages: PaginatedMicroblog;
 let error: Error | undefined = undefined;
 try {
-    PaginatedMicroblog = await getPaginatedMicroblog(page);
+    MicroblogPages = await getPaginatedMicroblog(page);
 } catch (e) {
     error = e as Error;
     console.error(error);
 
-    PaginatedMicroblog = {
+    MicroblogPages = {
         page: 0,
         pages: 0,
         total_items: 0,
@@ -162,7 +162,7 @@ const getPageNumber = (path: string) => {
     </p>
 
     <div class="mt-4">
-        <Feed posts={PaginatedMicroblog.items} error={error} />
+        <Feed posts={MicroblogPages.items} error={error} />
     </div>
 
     <div class="pt-10 flex flex-col md:-mr-4 md:-mb-1 lg:-mr-8 lg:-mb-2">
@@ -170,18 +170,14 @@ const getPageNumber = (path: string) => {
             class="flex items-center justify-between leading-none w-full gap-1"
         >
             {
-                PaginatedMicroblog.previous_page ?
+                MicroblogPages.previous_page ?
                     <a
                         href={
-                            (
-                                getPageNumber(
-                                    PaginatedMicroblog.previous_page,
-                                ) === 1
-                            ) ?
+                            getPageNumber(MicroblogPages.previous_page) === 1 ?
                                 "/microblog"
-                            :   `/microblog?page=${getPageNumber(PaginatedMicroblog.previous_page)}`
+                            :   `/microblog?page=${getPageNumber(MicroblogPages.previous_page)}`
                         }
-                        aria-label={`To page ${getPageNumber(PaginatedMicroblog.previous_page)}`}
+                        aria-label={`To page ${getPageNumber(MicroblogPages.previous_page)}`}
                         class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-start w-24"
                     >
                         <span class="relative top-[1px] text-even-slightly-smaller">
@@ -203,9 +199,9 @@ const getPageNumber = (path: string) => {
                     <input
                         id="pagination-input"
                         type="number"
-                        value={PaginatedMicroblog.page}
+                        value={MicroblogPages.page}
                         min="1"
-                        max={PaginatedMicroblog.pages}
+                        max={MicroblogPages.pages}
                         class="h-[32px] min-h-[32px] max-h-[32px] border-none text-center appearance-none bg-transparent focus:outline-hidden [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-slightly-larger scale-95"
                         class:list={[
                             { "w-[1ch]": page.toString().length === 1 },
@@ -214,16 +210,16 @@ const getPageNumber = (path: string) => {
                             { "w-[4ch]": page.toString().length === 4 },
                         ]}
                         data-page={page}
-                        data-total-pages={PaginatedMicroblog.pages}
+                        data-total-pages={MicroblogPages.pages}
                     />
                 </form>
-                <span>&nbsp;of {PaginatedMicroblog.pages}</span>
+                <span>&nbsp;of {MicroblogPages.pages}</span>
             </div>
             {
-                PaginatedMicroblog.next_page ?
+                MicroblogPages.next_page ?
                     <a
-                        href={`/microblog?page=${getPageNumber(PaginatedMicroblog.next_page)}`}
-                        aria-label={`To page ${getPageNumber(PaginatedMicroblog.next_page)}`}
+                        href={`/microblog?page=${getPageNumber(MicroblogPages.next_page)}`}
+                        aria-label={`To page ${getPageNumber(MicroblogPages.next_page)}`}
                         class="bg-green border-black border text-white hover:bg-black px-1.5 py-1 inline-flex items-center justify-end w-24"
                     >
                         <span class="relative top-[1px] text-even-slightly-smaller">
