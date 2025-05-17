@@ -1,26 +1,26 @@
 {
-   "name": "Jade van Dörsten",
-   "short_name": "Jade van Dörsten",
-   "start_url": "/",
-   "description": "My personal website. long story short, I'm a human and a netizen.",
-   "icons": [
-      {
-         "src": "/pwa-icns/227.png",
-         "sizes": "227x227",
-         "type": "image/png",
-         "purpose": "any maskable"
-      },
-      {
-         "src": "/pwa-icns/454.png",
-         "sizes": "454x454",
-         "type": "image/png"
-      },
-      {
-         "src": "/pwa-icns/681.png",
-         "sizes": "681x681",
-         "type": "image/png"
-      }
-   ],
-   "display": "standalone",
-   "orientation": "portrait"
+    "name": "Jade van Dörsten",
+    "short_name": "Jade van Dörsten",
+    "start_url": "/",
+    "description": "My personal website. long story short, I'm a human and a netizen.",
+    "icons": [
+        {
+            "src": "/pwai-227.png",
+            "sizes": "227x227",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/pwai-454.png",
+            "sizes": "454x454",
+            "type": "image/png"
+        },
+        {
+            "src": "/pwai-681.png",
+            "sizes": "681x681",
+            "type": "image/png"
+        }
+    ],
+    "display": "standalone",
+    "orientation": "portrait"
 }
