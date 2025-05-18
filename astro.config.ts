@@ -39,4 +39,11 @@ export default defineConfig({
             }),
         },
     },
+
+    markdown: {
+        shikiConfig: {
+            theme: "light-plus",
+            defaultColor: false,
+        },
+    },
 });
