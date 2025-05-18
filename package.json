@@ -18,7 +18,8 @@
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "cf": "astro check && astro build && wrangler pages deploy dist"
     },
     "type": "module",
     "devDependencies": {
