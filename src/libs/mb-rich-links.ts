@@ -22,6 +22,7 @@ export const createRichLinks = (content_html: string): string => {
         const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
         linkElement.text(niceUrl);
         linkElement.attr("target", "_blank");
+        linkElement.attr("rel", "noopener noreferrer");
     });
 
     return $(".content-wrapper").html() || content_html;

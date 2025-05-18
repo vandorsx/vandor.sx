@@ -23,6 +23,7 @@ function Reply(reply: MicrodotblogReply) {
                     <a
                         href={reply.author.url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="font-[450]"
                     >
                         {reply.author.name}
