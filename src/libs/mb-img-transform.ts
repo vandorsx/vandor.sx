@@ -37,7 +37,6 @@ const transformImage = (
     images.each(function () {
         const img = $(this);
         const src = img.attr("src") || "";
-        const initialSrc = src.toString();
 
         const imgExt = src?.split(".").pop()?.toLowerCase();
 
@@ -65,25 +64,20 @@ const transformImage = (
         }
 
         // Apply width & height attributes
-        let imgData;
-        if (photos) {
-            imgData = photos.find((photo) => photo.url === src);
-        }
+        const imgData = photos?.find((photo) => photo.url === src);
         if (
             (imgData && imgData.width > 0 && imgData.height > 0) ||
             (Number(img.attr("width")) > 0 && Number(img.attr("height")) > 0)
         ) {
-            let aspectRatio;
-            if (imgData) {
-                aspectRatio = imgData.width / imgData.height;
-            } else {
-                aspectRatio =
-                    Number(img.attr("width")) / Number(img.attr("height"));
-            }
+            const aspectRatio =
+                imgData ?
+                    imgData.width / imgData.height
+                :   Number(img.attr("width")) / Number(img.attr("height"));
             const isTallImg = aspectRatio < 1;
             const isWideImg = aspectRatio > 1;
 
-            let width, height;
+            let width: number;
+            let height: number;
             if (imgData) {
                 width = imgData.width;
                 height = imgData.height;
