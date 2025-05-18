@@ -4,11 +4,10 @@ export const createRichLinks = (content_html: string): string => {
     const $ = cheerio.load(
         `<div class="content-wrapper">${content_html}</div>`,
     );
-    const richLinks = $(".rich-link"); // TO DO: change to mb-rlink
+    const richLinks = $(".mb-rlink");
 
     richLinks.each(function () {
         const richLink = $(this);
-        richLink.removeClass("rich-link");
         richLink.addClass("mb-rlink");
 
         richLink.find("footer > p > b").contents().unwrap();
