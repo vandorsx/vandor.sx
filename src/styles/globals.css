@@ -28,7 +28,9 @@
 }
 
 @theme {
-    --font-berkeley: "Berkeley Mono", monospace;
+    --font-berkeley:
+        "Berkeley Mono", "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo,
+        Courier, monospace;
     --font-univers:
         "Univers Next Variable", apple-system, system-ui, BlinkMacSystemFont,
         "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -44,6 +46,7 @@
     /* --color-green-dark: oklch(58% 0.127 170); */
     --color-table-outline: #bfbfbf;
     --color-figure-outline: #cccccc;
+    --color-code-bg: #ededed;
 }
 
 @utility hyperlink {
@@ -110,6 +113,24 @@
 
         p {
             @apply first:mt-0 last:mb-0;
+        }
+    }
+
+    code {
+        @apply font-berkeley;
+        @apply bg-code-bg;
+        @apply text-[90%];
+        @apply px-[3px] py-[1.5px];
+        @apply rounded-[1.5px];
+    }
+
+    .astro-code {
+        @apply !bg-code-bg;
+        @apply border;
+        @apply px-3 py-1.5;
+
+        code {
+            @apply bg-inherit p-0;
         }
     }
 
