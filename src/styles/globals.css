@@ -107,6 +107,11 @@
         @apply list-decimal;
     }
 
+    p + ul,
+    p + ol {
+        @apply -mt-[0.5em];
+    }
+
     blockquote {
         @apply border-l;
         @apply py-1.5 pl-3;
