@@ -183,8 +183,11 @@
         @apply not-italic;
     }
 
-    .mb-reply * {
-        @apply m-0;
+    .mb-reply p,
+    .mb-reply blockquote,
+    .mb-reply ol,
+    .mb-reply ul {
+        @apply my-[0.5em];
     }
 
     .mb-reply a:first-of-type {
