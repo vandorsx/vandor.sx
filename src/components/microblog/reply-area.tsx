@@ -18,7 +18,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
     }
 
     const postIdMatch = props.microdotblog.home_page_url.match(/(\d+)$/);
-    const postId = postIdMatch && postIdMatch[1];
+    const postId = postIdMatch?.[1];
 
     const [microdotblog, setMicrodotblog] = createSignal<Microdotblog>(
         props.microdotblog,
