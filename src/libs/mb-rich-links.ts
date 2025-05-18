@@ -1,5 +1,7 @@
 import * as cheerio from "cheerio";
 
+const INTERNAL_DOMAIN = "vandor.sx";
+
 export const createRichLinks = (content_html: string): string => {
     const $ = cheerio.load(
         `<div class="content-wrapper">${content_html}</div>`,
@@ -20,8 +22,11 @@ export const createRichLinks = (content_html: string): string => {
 
         const niceUrl = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
         linkElement.text(niceUrl);
-        linkElement.attr("target", "_blank");
-        linkElement.attr("rel", "noopener noreferrer");
+
+        if (new URL(url).hostname !== INTERNAL_DOMAIN) {
+            linkElement.attr("target", "_blank");
+            linkElement.attr("rel", "noopener noreferrer");
+        }
     });
 
     return $(".content-wrapper").html() || content_html;
