@@ -91,7 +91,7 @@ export default function ReplyArea(props: ReplyAreaProps) {
     return (
         <div>
             {token() && username() ?
-                <form onSubmit={handleReply} class="mb-5">
+                <form onSubmit={handleReply} class="mb-5 pt-5">
                     <textarea
                         onInput={(e) => {
                             setReplyText(e.currentTarget.value);
