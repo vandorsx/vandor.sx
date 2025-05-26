@@ -123,30 +123,34 @@ export default function ReplyArea(props: ReplyAreaProps) {
                 </div>
             )}
             {!token() && !username() && (
-                <div class="pt-5">
+                <div class="flex flex-col pt-5">
                     <div class="mb-1 font-medium">Reply with:</div>
-                    <div class="flex gap-1.5">
-                        <span class="absolute -translate-y-1.5 text-[24px] font-[250]">
+                    <div>
+                        <span class="absolute mr-1.5 block -translate-y-1.5 text-[24px] font-[250]">
                             └
                         </span>
-                        <a
-                            href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
-                            class="ml-7 inline-flex w-20 items-center justify-center border border-black bg-[#ff8800] px-1.5 text-white hover:bg-black"
-                        >
-                            <span class="relative top-[1px]">Micro.blog</span>
-                        </a>
-                        <a
-                            href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
-                            class="inline-flex w-20 items-center justify-center border border-black bg-[#0a7aff] px-1.5 text-white hover:bg-black"
-                        >
-                            <span class="relative top-[1px]">Bluesky</span>
-                        </a>
-                        <a
-                            href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
-                            class="inline-flex w-20 items-center justify-center border border-black bg-[#563ACC] px-1.5 text-white hover:bg-black"
-                        >
-                            <span class="relative top-[1px]">Mastodon</span>
-                        </a>
+                        <div class="text-slightly-smaller flex gap-1.5">
+                            <a
+                                href={`https://micro.blog/account/comments/${postId}/mb?url=${props.postUrl}`}
+                                class="ml-7 inline-flex w-[72px] items-center justify-center border border-black bg-white px-1.5 shadow-[2px_2px_rgb(187,187,187)] hover:bg-black hover:text-white"
+                            >
+                                <span class="relative top-[1px]">
+                                    Micro.blog
+                                </span>
+                            </a>
+                            <a
+                                href={`https://micro.blog/account/comments/${postId}/bluesky?url=${props.postUrl}`}
+                                class="inline-flex w-[72px] items-center justify-center border border-black bg-white px-1.5 shadow-[2px_2px_rgb(187,187,187)] hover:bg-black hover:text-white"
+                            >
+                                <span class="relative top-[1px]">Bluesky</span>
+                            </a>
+                            <a
+                                href={`https://micro.blog/account/comments/${postId}/mastodon?url=${props.postUrl}`}
+                                class="inline-flex w-[72px] items-center justify-center border border-black bg-white px-1.5 shadow-[2px_2px_rgb(187,187,187)] hover:bg-black hover:text-white"
+                            >
+                                <span class="relative top-[1px]">Mastodon</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             )}
