@@ -97,6 +97,16 @@
         @apply mt-[1em];
     }
 
+    /* img next to headings */
+    h1 + picture,
+    h2 + picture,
+    h3 + picture,
+    h4 + picture,
+    h5 + picture,
+    h6 + picture {
+        @apply mt-[1em];
+    }
+
     ul {
         @apply ml-[1em] pl-[1em];
         @apply list-disc;
