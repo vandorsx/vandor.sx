@@ -3,15 +3,15 @@
     "version": "0.0.1",
     "dependencies": {
         "@astrojs/cloudflare": "12.6.0",
-        "@astrojs/mdx": "^4.3.1",
+        "@astrojs/mdx": "^4.3.3",
         "@astrojs/rss": "^4.0.12",
         "@astrojs/solid-js": "^5.1.0",
         "@tailwindcss/vite": "^4.1.11",
         "astro": "5.12.0",
         "astro-seo": "^0.8.4",
-        "cheerio": "^1.1.0",
+        "cheerio": "^1.1.2",
         "sanitize-html": "^2.17.0",
-        "solid-js": "^1.9.7",
+        "solid-js": "^1.9.8",
         "tailwindcss": "^4.1.11"
     },
     "scripts": {
