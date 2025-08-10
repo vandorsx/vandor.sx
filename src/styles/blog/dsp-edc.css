@@ -1,18 +1,15 @@
-p:has(a[href="https://www.specialized.com/us/en/mens-specializedfjllrven-field-suit/p/221233"]),
+p:has(a[href="https://www.specialized.com/us/en/womens-specializedfjllrven-field-suit/p/221234"]),
 p:has(a[href="https://www.thenorthface.com/en-us/p/shop-all/brimmer-and-bucket-hats-554777/horizon-breeze-brimmer-hat-NF0A5FX6"]),
 p:has(a[href="https://www.nrs.com/nrs-mens-boaters-gloves/pu1s"]),
-p:has(a[href="https://www.pearlizumi.com/products/sun-leg-sleeves-14371835"]),
+p:has(a[href="https://www.specialized.com/us/en/seamless-uv-arm-covers/p/216685"]),
 p:has(a[href="https://www.hoka.com/en/us/mens-recovery-comfort-shoes/bondi-sr/1110520.html"]),
 p:has(a[href="https://www.fjallraven.com/us/en-us/bags-gear/backpacks-bags/travel-bags/farden-carry-on-pack/"]),
 p:has(a[href="https://www.petnps.com"]),
 p:has(a[href="https://www.hydroflask.com/40-oz-wide-mouth-with-flex-straw-cap"]),
 p:has(a[href="https://www.hydroflask.com/8-l-lunch-bag"]),
-p:has(a[href="https://www.apple.com/shop/buy-airpods/airpods-pro-2"])
+p:has(a[href="https://www.apple.com/shop/buy-airpods/airpods-pro-2"]),
+p:has(a[href="https://shop.lululemon.com/p/men-tights/Fast-and-Free-Tight-28/_/prod11520444"]),
+p:has(a[href="https://darntough.com/products/mens-merino-wool-run-quarter-cushioned-ultra-lightweight-running-socks"])
 {
     margin-block-start: 0;
-}
-
-p:has(a[href="https://www.pearlizumi.com/products/sun-arm-sleeves-14371833"])
-{
-    margin-block: 0;
 }
