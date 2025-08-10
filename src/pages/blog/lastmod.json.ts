@@ -6,17 +6,22 @@ export const GET: APIRoute = async () => {
         import.meta.env.PROD ? data.draft !== true : true,
     ).then(
         (
-            posts, // sort by datePublished
+            posts, // sort by most recent date (dateModified or datePublished)
         ) =>
             posts.sort(
                 (a, b) =>
-                    new Date(b.data.datePublished).getTime() -
-                    new Date(a.data.datePublished).getTime(),
+                    new Date(
+                        b.data.dateModified || b.data.datePublished,
+                    ).getTime() -
+                    new Date(
+                        a.data.dateModified || a.data.datePublished,
+                    ).getTime(),
             ),
     );
 
     const json = {
-        lastmod: blog[0]?.data.datePublished || null,
+        lastmod:
+            blog[0]?.data.dateModified || blog[0]?.data.datePublished || null,
     };
 
     return new Response(JSON.stringify(json), {
