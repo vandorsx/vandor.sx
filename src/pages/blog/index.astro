@@ -64,6 +64,18 @@ const blog = await getCollection("blog", ({ data }) =>
                                     .toISOString()
                                     .substring(0, 10)}
                             </time>
+                            {entry.data.dateModified && (
+                                <span
+                                    class="-ml-0.5"
+                                    title={`Modified ${new Date(
+                                        entry.data.dateModified,
+                                    )
+                                        .toISOString()
+                                        .substring(0, 10)}`}
+                                >
+                                    *
+                                </span>
+                            )}
                         </td>
                         <td class="px-2.5 pt-1.5">
                             <a href={`/blog/${entry.id}`} class="hyperlink">
