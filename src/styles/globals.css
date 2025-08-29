@@ -122,6 +122,11 @@
         @apply -mt-[0.5em];
     }
 
+    b,
+    strong {
+        @apply font-medium;
+    }
+
     blockquote {
         @apply border-l;
         @apply py-1.5 pl-3;
